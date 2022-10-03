@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StaticMap } from "react-map-gl";
+import Map from "react-map-gl";
 import DeckGL from "@deck.gl/react";
 import { GeoJsonLayer, PolygonLayer } from "@deck.gl/layers";
 import {
@@ -7,7 +7,7 @@ import {
   AmbientLight,
   _SunLight as SunLight,
 } from "@deck.gl/core";
-import { scaleThreshold } from "d3-scale";
+// import { scaleThreshold } from "d3-scale";
 
 // import floor_data from "../data/bld_floors.json";
 import floor_data from "../../data/processed_bld_floors.json";
@@ -16,26 +16,8 @@ import floor_data from "../../data/processed_bld_floors.json";
 const DATA_URL =
   "https://raw.githubusercontent.com/visgl/deck.gl-data/master/examples/geojson/vancouver-blocks.json"; // eslint-disable-line
 
-export const COLOR_SCALE = scaleThreshold()
-  .domain([
-    -0.6, -0.45, -0.3, -0.15, 0, 0.15, 0.3, 0.45, 0.6, 0.75, 0.9, 1.05, 1.2,
-  ])
-  .range([
-    [65, 182, 196],
-    [127, 205, 187],
-    [199, 233, 180],
-    [237, 248, 177],
-    // zero
-    [255, 255, 204],
-    [255, 237, 160],
-    [254, 217, 118],
-    [254, 178, 76],
-    [253, 141, 60],
-    [252, 78, 42],
-    [227, 26, 28],
-    [189, 0, 38],
-    [128, 0, 38],
-  ]);
+export const MAPBOX_TOKEN =
+  "pk.eyJ1IjoiamFqYW1vYSIsImEiOiJjbDhzeDI4aHgwMXh6M3hrbmVxbG9vcDlyIn0.cdD4-PP7QcxegAsxlhC3mA";
 
 const INITIAL_VIEW_STATE = {
   latitude: 42.36347106,
@@ -96,7 +78,7 @@ function getTooltip({ object }) {
   );
 }
 
-export default function Map() {
+export default function CityMap() {
   const [effects] = useState(() => {
     const lightingEffect = new LightingEffect({ ambientLight, dirLight });
     lightingEffect.shadowColor = [0, 0, 0, 0.5];
@@ -147,7 +129,12 @@ export default function Map() {
       controller={true}
       getTooltip={getTooltip}
     >
-      <StaticMap reuseMaps mapStyle={MAP_STYLE} preventStyleDiffing={true} />
+      <Map
+        reuseMaps
+        mapStyle={MAP_STYLE}
+        preventStyleDiffing={true}
+        mapboxAccessToken={MAPBOX_TOKEN}
+      />
     </DeckGL>
   );
 }
