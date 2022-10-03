@@ -3,7 +3,9 @@ import { render } from "react-dom";
 import { stateStore } from "./stores";
 
 import CityMap from "./components/0_map/CityMap.js";
-import IntroPage from "./components/1_intro_page/IntroPgae.js";
+import CoverPage from "./components/1_cover_page/CoverPage.js";
+import VotingIntroPgae from "./components/2_voting_intro_page/VotingIntroPgae";
+
 
 const App = () => {
   const { page } = stateStore;
@@ -17,8 +19,8 @@ const App = () => {
 //   }, []);
 
   const content = {
-    1: <IntroPage />,
-    2: <IntroPage />,
+    1: <CoverPage />,
+    2: <VotingIntroPgae />,
     3: <CityMap />,
   };
 

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import styles from "./IntroPgae.module.css";
+import styles from "./CoverPage.module.css";
 import Button from "@mui/material/Button";
 
 import { stateStore } from "../../stores";
 
-const IntroPage = () => {
+const CoverPage = () => {
   const { page, nextPage } = stateStore;
   useEffect(() => {}, []);
 
@@ -25,4 +25,4 @@ const IntroPage = () => {
   );
 };
 
-export default IntroPage;
+export default CoverPage;
