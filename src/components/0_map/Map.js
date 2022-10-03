@@ -10,7 +10,7 @@ import {
 import { scaleThreshold } from "d3-scale";
 
 // import floor_data from "../data/bld_floors.json";
-import floor_data from "../data/processed_bld_floors.json";
+import floor_data from "../../data/processed_bld_floors.json";
 
 // Source data GeoJSON
 const DATA_URL =
@@ -38,9 +38,9 @@ export const COLOR_SCALE = scaleThreshold()
   ]);
 
 const INITIAL_VIEW_STATE = {
-  latitude: 42.35347106,
+  latitude: 42.36347106,
   longitude: -71.094054,
-  zoom: 14,
+  zoom: 15,
   maxZoom: 22,
   pitch: 45,
   bearing: 0,
@@ -55,18 +55,21 @@ const INITIAL_VIEW_STATE = {
 //     bearing: 0
 //   };
 
+// const MAP_STYLE =
+//   "https://basemaps.cartocdn.com/gl/positron-nolabels-gl-style/style.json";
+
 const MAP_STYLE =
-  "https://basemaps.cartocdn.com/gl/positron-nolabels-gl-style/style.json";
+  "https://basemaps.cartocdn.com/gl/dark-matter-nolabels-gl-style/style.json";
 
 const ambientLight = new AmbientLight({
   color: [255, 255, 255],
-  intensity: 1.0,
+  intensity: 0.7,
 });
 
 const dirLight = new SunLight({
   timestamp: Date.UTC(2019, 7, 1, 18),
   color: [255, 255, 255],
-  intensity: 0.8,
+  intensity: 1,
   _shadow: true,
 });
 
@@ -87,6 +90,7 @@ function getTooltip({ object }) {
   <div><b>Floor:  </b>${object.properties.floor}</div>
   <div><b>Category:  </b>${object.properties.Category}</div>
   <div><b>Area:  </b>${object.properties.area}</div>
+  <div><b>ID:  </b>${object.properties.ind.toString().indexOf("6")}</div>
   `,
     }
   );
@@ -98,6 +102,15 @@ export default function Map() {
     lightingEffect.shadowColor = [0, 0, 0, 0.5];
     return [lightingEffect];
   });
+
+  let getColor = (data) => {
+    let opacity = 0;
+    if (data.properties.ind.toString().indexOf("624-4") == 0) {
+      opacity = 0.2;
+      if (data.properties.floor < 4) opacity = 0.8;
+    }
+    return [255, 255, 255, opacity * 255];
+  };
 
   const layers = [
     // only needed when using shadows - a plane for shadows to drop on
@@ -113,13 +126,14 @@ export default function Map() {
       data: floor_data,
       opacity: 0.8,
       stroked: false,
-      //   filled: true,
+      filled: true,
       extruded: true,
       //   wireframe: true,
       //   getElevation: f => Math.sqrt(f.properties.valuePerSqm) * 10,
       //   getFillColor: f => COLOR_SCALE(f.properties.growth),
-      getElevation: 1,
-      getFillColor: [237, 129, 62],
+      getElevation: 2,
+      //   getFillColor: [237, 129, 62],
+      getFillColor: (f) => getColor(f),
       getLineColor: [255, 255, 255],
       pickable: true,
     }),

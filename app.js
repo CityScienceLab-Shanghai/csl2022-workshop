@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
+import resso from 'resso';
 
 import { render } from "react-dom";
-import Map from "./src/components/Map.js";
+import Map from "./src/components/0_map/Map.js";
+
+
+resso.config({ batch: ReactDOM.unstable_batchedUpdates });
 
 const App = () => {
   useEffect(() => {

@@ -7,11 +7,14 @@
     "start": "webpack-dev-server --progress --hot --open"
   },
   "dependencies": {
+    "@nivo/bar": "^0.80.0",
+    "@nivo/core": "^0.80.0",
     "d3-scale": "^2.0.0",
     "deck.gl": "^8.8.0",
     "react": "^16.3.0",
     "react-dom": "^16.3.0",
-    "react-map-gl": "^5.0.0"
+    "react-map-gl": "^5.0.0",
+    "resso": "^0.7.0"
   },
   "devDependencies": {
     "@babel/core": "^7.4.0",
