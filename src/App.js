@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { render } from "react-dom";
 import { stateStore } from "./stores";
+import 'mapbox-gl/dist/mapbox-gl.css';
 
 import CityMap from "./components/0_map/CityMap";
 import CoverPage from "./components/1_cover_page/CoverPage";
@@ -23,7 +24,7 @@ const App = () => {
     1: <CoverPage />,
     2: <VotingIntroPgae />,
     3: <IncentivePolicyIntroPage />,
-    4: <IncentivePolicyProposalPage />,
+    4: <CityMap />,
     5: <CityMap />,
   };
 
