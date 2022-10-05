@@ -14,14 +14,29 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  
+}
+
+.title {
+  width: 1111px;
+  height: 36px;
+
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 36px;
+  /* identical to box height, or 112% */
+
+  text-align: center;
+
+  color: #ffffff;
 }
 
 .description {
-  /* top: 46px;
-  position: relative; */
+  top: 46px;
+  position: relative;
 
-  width: 1004px;
+  width: 1111px;
 
   font-family: "Inter";
   font-style: normal;
@@ -29,9 +44,11 @@
   font-size: 24px;
   line-height: 36px;
 
-  text-align: center;
-
   color: #ffffff;
+}
+
+.image {
+  width: 1111px;
 }
 
 .button {
@@ -40,9 +57,9 @@
   left: calc(50% - 200px / 2);
   top: calc(50% - 60px / 2 + 298px);
 
-  color: black;
-  background: white;
-  border: 2px solid black;
+  color: white;
+  background: black;
+  border: 2px solid white;
 
   border-radius: 16px;
 
@@ -53,9 +70,9 @@
 }
 
 .button:hover {
-  color: white;
-  background: black;
-  border: 2px solid white;
+  color: black;
+  background: white;
+  border: 2px solid black;
 }
 
 .buttontext {

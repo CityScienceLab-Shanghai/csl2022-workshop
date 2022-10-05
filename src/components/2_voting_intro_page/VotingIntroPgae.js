@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import styles from "./VotingIntroPgae.module.css";
-import Button from "@mui/material/Button";
 
 import { stateStore } from "../../stores";
 
@@ -10,21 +9,25 @@ const VotingIntroPgae = () => {
 
   return (
     <div className={styles.container}>
-      <div>
-        <div>You will be part of the decision for:</div>
-        <div>1. How the building will be built</div>
-        <div>2. How will the community endowment be used</div>
-      </div>
-      <div>
-        <div>In every voting page, there are three steps you can do:</div>
-        <div>1. Enter a proposal</div>
-        <div>2. carry out simulation to see predictions</div>
-        <div>3. Submit your final decision</div>
+      <div className={styles.textGroup}>
+        <div className={styles.description}>
+          You will be part of the decision for: <br />
+          1. How the building will be built <br />
+          2. How will the community endowment be used <br />
+          <br />
+          In every voting page, there are three steps you can do: <br />
+          1. Enter a IncentivePolicyProposalPage <br />
+          2. carry out simulation to see predictions <br />
+          3. Submit your final decision <br />
+          <br />
+          Feel free to play around (1) and (2) before making your final
+          decision.
+        </div>
       </div>
 
-      <Button variant="outlined" onClick={nextPage}>
-        I am Ready!
-      </Button>
+      <button className={styles.button} onClick={nextPage}>
+        <div className={styles.buttontext}>I am Ready!</div>
+      </button>
       <div>{page}</div>
     </div>
   );
