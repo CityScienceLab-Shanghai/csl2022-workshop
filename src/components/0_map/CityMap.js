@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Map from "react-map-gl";
-import DeckGL from "@deck.gl/react";
+import DeckGL, { FlyToInterpolator } from "@deck.gl/react";
 import { GeoJsonLayer, PolygonLayer } from "@deck.gl/layers";
 import {
   LightingEffect,
@@ -64,7 +64,7 @@ const landCover = [
   ],
 ];
 
-function getTooltip({ object }) {
+const getTooltip = ({ object }) => {
   return (
     object && {
       html: `\
@@ -76,7 +76,9 @@ function getTooltip({ object }) {
   `,
     }
   );
-}
+};
+
+const catchError = (error) => console.log("catch error", error);
 
 export default function CityMap() {
   const [effects] = useState(() => {
@@ -85,13 +87,32 @@ export default function CityMap() {
     return [lightingEffect];
   });
 
-  let getColor = (data) => {
+  let getLineColor = (data) => {
+    let opacity = 0;
+    if (data.properties.ind.toString().indexOf("624-4") == 0) {
+       return [255, 255, 0];
+    }
+    return [0, 0, 0];
+  };
+
+//   let getFillColor = (data) => {
+//     let opacity = 0;
+//     if (data.properties.ind.toString().indexOf("624-4") == 0) {
+//       opacity = 0.2;
+//       if (data.properties.floor < 4) opacity = 0.8;
+//     }
+//     return [255, 255, 255, opacity * 255];
+//   };
+
+  let getFillColor = (data) => {
     let opacity = 0;
     if (data.properties.ind.toString().indexOf("624-4") == 0) {
       opacity = 0.2;
       if (data.properties.floor < 4) opacity = 0.8;
+    //   return [237, 129, 62, opacity * 255] 
+      return [255, 255, 255];
     }
-    return [255, 255, 255, opacity * 255];
+    return [255, 255, 255];
   };
 
   const layers = [
@@ -107,17 +128,28 @@ export default function CityMap() {
       id: "geojson",
       data: floor_data,
       opacity: 0.8,
-      stroked: false,
+    //   extruded: true,
+      pickable: true,
+      stroked: true,
       filled: true,
-      extruded: true,
-      //   wireframe: true,
+      wireframe: true,
+      lineWidthMinPixels: 3,
       //   getElevation: f => Math.sqrt(f.properties.valuePerSqm) * 10,
       //   getFillColor: f => COLOR_SCALE(f.properties.growth),
-      getElevation: 2,
-        getFillColor: [237, 129, 62],
-    //   getFillColor: (f) => getColor(f),
-      getLineColor: [255, 255, 255],
+    //   getElevation: 2,
+      getLineWidth: 1,
+      lineWidthUnits: "meters",
+      getLineColor: [255, 255, 0],
+
+      //   getFillColor: [237, 129, 62],
+      //   getLineColor: [255, 255, 0],
+      getFillColor: (f) => getFillColor(f),
+      getLineColor: (f) => getLineColor(f),
+      //   lineWidthUnits: "common",
+
       pickable: true,
+      autoHighlight: true,
+      highlightColor: [0, 0, 128, 128],
     }),
   ];
 
@@ -128,6 +160,7 @@ export default function CityMap() {
       initialViewState={INITIAL_VIEW_STATE}
       controller={true}
       getTooltip={getTooltip}
+      onError={catchError}
     >
       <Map
         reuseMaps
