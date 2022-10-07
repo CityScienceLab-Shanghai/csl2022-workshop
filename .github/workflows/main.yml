@@ -9,7 +9,12 @@ jobs:
       - uses: borales/actions-yarn@v3.0.0
         with:
           cmd: install --frozen-lockfile # will run `yarn install` command
+          env:
+            CI: false
       - uses: borales/actions-yarn@v3.0.0
         with:
           cmd: build # will run `yarn build` command
+          env:
+            CI: false
+          
         
