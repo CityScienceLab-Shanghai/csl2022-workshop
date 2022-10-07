@@ -1,7 +1,7 @@
 .container {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
   background: #000000;
 
@@ -30,10 +30,12 @@
   text-align: center;
 
   color: #ffffff;
+
+  margin-top: 120px;
 }
 
 .description {
-  top: 46px;
+  margin-top: 46px;
   position: relative;
 
   width: 1111px;
@@ -49,13 +51,12 @@
 
 .image {
   width: 1111px;
+  position: relative;
 }
 
 .button {
   width: 200px;
   height: 60px;
-  left: calc(50% - 200px / 2);
-  top: calc(50% - 60px / 2 + 298px);
 
   color: white;
   background: black;

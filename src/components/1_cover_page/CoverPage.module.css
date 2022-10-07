@@ -33,7 +33,7 @@
 }
 
 .subtitle {
-  top: 11px;
+  margin-top: 11px;
   position: relative;
 
   font-family: "Inter";
@@ -50,7 +50,7 @@
 }
 
 .description {
-  top: 46px;
+  margin-top: 46px;
   position: relative;
 
   width: 1004px;
@@ -67,8 +67,6 @@
 .button {
   width: 200px;
   height: 60px;
-  left: calc(50% - 200px / 2);
-  top: calc(50% - 60px / 2 + 298px);
 
   color: black;
   background: white;

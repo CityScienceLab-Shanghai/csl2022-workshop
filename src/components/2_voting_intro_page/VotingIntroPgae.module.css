@@ -37,8 +37,6 @@
 .button {
   width: 200px;
   height: 60px;
-  left: calc(50% - 200px / 2);
-  top: calc(50% - 60px / 2 + 298px);
 
   color: black;
   background: white;
