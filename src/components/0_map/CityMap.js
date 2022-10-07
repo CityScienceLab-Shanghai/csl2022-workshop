@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import Map from "react-map-gl";
+
+// eslint-disable-next-line import/no-webpack-loader-syntax
+import Map from "!react-map-gl";
 import DeckGL, { FlyToInterpolator } from "@deck.gl/react";
 import { GeoJsonLayer, PolygonLayer } from "@deck.gl/layers";
 import {
