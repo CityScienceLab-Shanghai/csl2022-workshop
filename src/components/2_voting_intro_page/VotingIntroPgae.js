@@ -28,7 +28,7 @@ const VotingIntroPgae = () => {
       <button className={styles.button} onClick={nextPage}>
         <div className={styles.buttontext}>I am Ready!</div>
       </button>
-      <div>{page}</div>
+      <div className={styles.pagination}>{page}</div>
     </div>
   );
 };

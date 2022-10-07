@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import Map from "react-map-gl";
 
@@ -17,9 +17,9 @@ import {
 import floor_data from "../../data/processed_bld_floors.json";
 
 // @ts-ignore
-// eslint-disable-next-line import/no-webpack-loader-syntax
-mapboxgl.workerClass = require("worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker").default;
-
+mapboxgl.workerClass =
+  // eslint-disable-next-line import/no-webpack-loader-syntax
+  require("worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker").default;
 
 // Source data GeoJSON
 const DATA_URL =
@@ -91,6 +91,13 @@ const getTooltip = ({ object }) => {
 const catchError = (error) => console.log("catch error", error);
 
 export default function CityMap() {
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, []);
+
   const [effects] = useState(() => {
     const lightingEffect = new LightingEffect({ ambientLight, dirLight });
     lightingEffect.shadowColor = [0, 0, 0, 0.5];

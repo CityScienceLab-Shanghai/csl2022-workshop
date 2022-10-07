@@ -22,7 +22,7 @@ const CoverPage = () => {
       <button className={styles.button} onClick={nextPage}>
         <div className={styles.buttontext}>Get Started</div>
       </button>
-      <div>{page}</div>
+      <div className={styles.pagination}>{page}</div>
     </div>
   );
 };
