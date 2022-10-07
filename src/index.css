@@ -15,7 +15,6 @@ body {
     width: 100%; 
     position: absolute;
     background: #000000;
-    overflow: hidden;
 }
 
 code {
