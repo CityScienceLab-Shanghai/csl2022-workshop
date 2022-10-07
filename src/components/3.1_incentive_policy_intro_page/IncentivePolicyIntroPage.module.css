@@ -17,7 +17,7 @@
 }
 
 .title {
-  width: 1111px;
+  width: 45%;
   height: 36px;
 
   font-family: "Inter";
@@ -38,7 +38,7 @@
   margin-top: 46px;
   position: relative;
 
-  width: 1111px;
+  width: 45%;
 
   font-family: "Inter";
   font-style: normal;
@@ -50,7 +50,8 @@
 }
 
 .image {
-  width: 1111px;
+  margin-top: 15px;
+  width: 35%;
   position: relative;
 }
 
@@ -81,5 +82,4 @@
   font-style: normal;
   font-weight: 500;
   font-size: 20px;
-  line-height: 48px;
 }

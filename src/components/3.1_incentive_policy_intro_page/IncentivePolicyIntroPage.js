@@ -10,7 +10,7 @@ const IncentivePolicyIntroPage = () => {
 
   return (
     <div className={styles.container}>
-      <div>
+      <div className={styles.textGroup}>
         <div className={styles.title}>How to Incentivize the Developer</div>
         <div className={styles.description}>
           The masterplan height limitation for the new building is set out to be

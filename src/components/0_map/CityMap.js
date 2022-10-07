@@ -54,7 +54,8 @@ const dirLight = new SunLight({
   timestamp: Date.UTC(2019, 7, 1, 18),
   color: [255, 255, 255],
   intensity: 1,
-  _shadow: true,
+  //   _shadow: true,
+  _shadow: false,
 });
 
 const landCover = [
@@ -92,26 +93,26 @@ export default function CityMap() {
   let getLineColor = (data) => {
     let opacity = 0;
     if (data.properties.ind.toString().indexOf("624-4") == 0) {
-       return [255, 255, 0];
+      return [255, 255, 0];
     }
     return [0, 0, 0];
   };
 
-//   let getFillColor = (data) => {
-//     let opacity = 0;
-//     if (data.properties.ind.toString().indexOf("624-4") == 0) {
-//       opacity = 0.2;
-//       if (data.properties.floor < 4) opacity = 0.8;
-//     }
-//     return [255, 255, 255, opacity * 255];
-//   };
+  //   let getFillColor = (data) => {
+  //     let opacity = 0;
+  //     if (data.properties.ind.toString().indexOf("624-4") == 0) {
+  //       opacity = 0.2;
+  //       if (data.properties.floor < 4) opacity = 0.8;
+  //     }
+  //     return [255, 255, 255, opacity * 255];
+  //   };
 
   let getFillColor = (data) => {
     let opacity = 0;
     if (data.properties.ind.toString().indexOf("624-4") == 0) {
       opacity = 0.2;
       if (data.properties.floor < 4) opacity = 0.8;
-    //   return [237, 129, 62, opacity * 255] 
+      //   return [237, 129, 62, opacity * 255]
       return [255, 255, 255];
     }
     return [255, 255, 255];
@@ -130,7 +131,7 @@ export default function CityMap() {
       id: "geojson",
       data: floor_data,
       opacity: 0.8,
-    //   extruded: true,
+      //   extruded: true,
       pickable: true,
       stroked: true,
       filled: true,
@@ -138,7 +139,7 @@ export default function CityMap() {
       lineWidthMinPixels: 3,
       //   getElevation: f => Math.sqrt(f.properties.valuePerSqm) * 10,
       //   getFillColor: f => COLOR_SCALE(f.properties.growth),
-    //   getElevation: 2,
+      //   getElevation: 2,
       getLineWidth: 1,
       lineWidthUnits: "meters",
       getLineColor: [255, 255, 0],
