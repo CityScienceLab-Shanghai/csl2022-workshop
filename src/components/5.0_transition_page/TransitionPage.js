@@ -31,14 +31,14 @@ const TransitionPage = () => {
 
         <div className={styles.rowGroup}>
           <CustomButton
-            buttonText="Get Started"
+            buttonText="Sandbox"
             positionStyle={styles.button_left}
             buttonOnclick={nextPage}
             colorIndex={0}
             largeFont={true}
           />
           <CustomButton
-            buttonText="Get Started"
+            buttonText="Learn More"
             positionStyle={styles.button_right}
             buttonOnclick={nextPage}
             colorIndex={0}
