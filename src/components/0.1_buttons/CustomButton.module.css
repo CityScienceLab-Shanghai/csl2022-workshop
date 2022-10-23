@@ -1,0 +1,33 @@
+.button {
+  border-radius: 16px;
+
+  transition: color 0.7s, background-color, border 0.7s;
+  align-items: center;
+  cursor: pointer;
+}
+
+.largetext {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.smalltext {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+}
+
+.button_0 {
+  color: white;
+  background: transparent;
+  border: 3px solid white;
+}
+
+.button_0:hover {
+  color: black;
+  background: white;
+  /* border: 3px solid black; */
+}
