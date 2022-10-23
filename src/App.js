@@ -5,11 +5,12 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 
 import CityMap from "./components/0.0_map/CityMap";
 import Sandbox from "./components/0.0_map/Sandbox";
+
 import CoverPage from "./components/1.0_cover_page/CoverPage";
 import CurrentPracticePage from "./components/1.1_current_practice/CurrentPracticePage";
-import VotingIntroPgae from "./components/2_voting_intro_page/VotingIntroPgae";
-import IncentivePolicyIntroPage from "./components/3.1_incentive_policy_intro_page/IncentivePolicyIntroPage";
-import IncentivePolicyProposalPage from "./components/3.2_incentive_policy_proposal_page/IncentivePolicyProposalPage";
+import StructurePage from "./components/1.2_structure/StructurePage";
+import StakeholderPage from "./components/1.3_stakeholder/StakeholderPage";
+import VotingPage from "./components/1.4_voting/VotingPage";
 
 const App = () => {
   const { page } = stateStore;
@@ -25,9 +26,12 @@ const App = () => {
   const content = {
     1: <CoverPage />,
     2: <CurrentPracticePage />,
-    3: <IncentivePolicyIntroPage />,
-    4: <Sandbox />,
-    5: <CityMap />,
+    3: <StructurePage />,
+    4: <StakeholderPage />,
+    5: <VotingPage />,
+    // 3: <IncentivePolicyIntroPage />,
+    6: <Sandbox />,
+    7: <CityMap />,
   };
 
   return content[page];

@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
-import styles from "./CurrentPracticePage.module.css";
+import styles from "./StructurePage.module.css";
 
 import CustomButton from "../0.1_buttons/CustomButton";
 
 import { stateStore } from "../../stores";
 
-const CurrentPracticePage = () => {
+const StructurePage = () => {
   const { page, nextPage } = stateStore;
 
   return (
     <>
-      <img className={styles.content} src={`/content/1.1.png`} alt={""} />
+      <img className={styles.content} src={`/content/1.2.png`} alt={""} />
 
       <CustomButton
         buttonText="Next"
@@ -23,4 +23,4 @@ const CurrentPracticePage = () => {
   );
 };
 
-export default CurrentPracticePage;
+export default StructurePage;
