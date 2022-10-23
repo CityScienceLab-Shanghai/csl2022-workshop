@@ -30,8 +30,8 @@ const App = () => {
   //   }, []);
 
   const content = {
-    1: <TransitionPage />,
-    // 1: <CoverPage />,
+    // 1: <TransitionPage />,
+    1: <CoverPage />,
     2: <CurrentPracticePage />,
     3: <StructurePage />,
     4: <StakeholderPage />,

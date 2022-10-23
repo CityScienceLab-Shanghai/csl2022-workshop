@@ -13,15 +13,20 @@ const CoverPage = () => {
       <img className={styles.background} src={`/bg.gif`} alt={""} />
       <img className={styles.logo} src={`/lablogo.png`} alt={""} />
       <div className={styles.vcenter}>
-        <img className={styles.socitylogo} src={`/socity.png`} alt={""} />
-        <div className={styles.title}>Community DAO</div>
-        <CustomButton
-          buttonText="Get Started"
-          positionStyle={styles.button}
-          buttonOnclick={nextPage}
-          colorIndex={0}
-          largeFont={true}
-        />
+        <div className={`${styles.rowGroup} ${styles.titleGroup}`}>
+          <img className={styles.socitylogo} src={`/socity.png`} alt={""} />
+          <div className={styles.title}>Community DAO</div>
+        </div>
+
+        <div className={styles.rowGroup}>
+          <CustomButton
+            buttonText="Get Started"
+            positionStyle={styles.button}
+            buttonOnclick={nextPage}
+            colorIndex={0}
+            largeFont={true}
+          />
+        </div>
       </div>
     </>
   );

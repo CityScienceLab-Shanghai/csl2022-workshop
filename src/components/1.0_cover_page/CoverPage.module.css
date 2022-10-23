@@ -35,19 +35,22 @@
   margin-left: 40px;
 }
 
-.titleGroup {
+.rowGroup {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row;
+  width: 100%;
+}
+
+.titleGroup {
+  margin-bottom: 65px;
 }
 
 .vcenter {
   width: 100%;
   position: absolute;
-  top: 45%;
-  transform: translate(0%, -50%);
+  top: 25%;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
 }
 
@@ -104,11 +107,9 @@
 }
 
 .button {
-  position: relative;
-  left: -620px;
-  top: 180px;
+  margin-left: 253px;
 
-  width: 200px;
+  min-width: 200px;
   min-height: 60px;
 }
 

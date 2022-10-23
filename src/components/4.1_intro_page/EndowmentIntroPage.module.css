@@ -26,6 +26,6 @@
   right: 64px;
   bottom: 76px;
 
-  width: 200px;
+  min-width: 200px;
   min-height: 60px;
 }

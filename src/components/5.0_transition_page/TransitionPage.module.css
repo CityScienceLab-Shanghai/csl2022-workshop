@@ -95,9 +95,8 @@
 .button_left {
   margin-left: 253px;
   margin-top: 60px;
-  width: 200px;
-  min-height: 60px;
   min-width: 200px;
+  min-height: 60px;
 }
 
 .button_right {
