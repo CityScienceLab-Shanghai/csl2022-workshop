@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import styles from "./CoverPage.module.css";
 
+import CustomButton from "../0.1_buttons/CustomButton";
+
 import { stateStore } from "../../stores";
 
 const CoverPage = () => {
   const { page, nextPage } = stateStore;
-  useEffect(() => {}, []);
 
   return (
     <>
@@ -14,9 +15,13 @@ const CoverPage = () => {
       <div className={styles.vcenter}>
         <img className={styles.socitylogo} src={`/socity.png`} alt={""} />
         <div className={styles.title}>Community DAO</div>
-        <button className={styles.button} onClick={nextPage}>
-          <div className={styles.buttontext}>Get Started</div>
-        </button>
+        <CustomButton
+          buttonText="Get Started"
+          positionStyle={styles.button}
+          buttonOnclick={nextPage}
+          colorIndex={0}
+          largeFont={true}
+        />
       </div>
     </>
   );

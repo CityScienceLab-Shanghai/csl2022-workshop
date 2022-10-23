@@ -110,30 +110,6 @@
 
   width: 200px;
   min-height: 60px;
-
-  color: white;
-  background: transparent;
-  border: 3px solid white;
-
-  border-radius: 16px;
-
-  /* padding: 0.25rem 0.5rem; */
-  transition: color 0.7s, background-color, border 0.7s;
-  align-items: center;
-  cursor: pointer;
-}
-
-.button:hover {
-  color: black;
-  background: white;
-  border: 3px solid black;
-}
-
-.buttontext {
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 700;
-  font-size: 20px;
 }
 
 .pagination {
