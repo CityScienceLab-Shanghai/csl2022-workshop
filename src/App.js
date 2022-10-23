@@ -12,6 +12,11 @@ import StructurePage from "./components/1.2_structure/StructurePage";
 import StakeholderPage from "./components/1.3_stakeholder/StakeholderPage";
 import VotingPage from "./components/1.4_voting/VotingPage";
 
+import IncentiveIntroPage from "./components/2.1_intro_page/IncentiveIntroPage";
+
+import EndowmentIntroPage from "./components/4.1_intro_page/EndowmentIntroPage";
+
+
 const App = () => {
   const { page } = stateStore;
 
@@ -29,9 +34,11 @@ const App = () => {
     3: <StructurePage />,
     4: <StakeholderPage />,
     5: <VotingPage />,
+    6: <IncentiveIntroPage />,
+    7: <EndowmentIntroPage />,
     // 3: <IncentivePolicyIntroPage />,
-    6: <Sandbox />,
-    7: <CityMap />,
+    16: <Sandbox />,
+    17: <CityMap />,
   };
 
   return content[page];
