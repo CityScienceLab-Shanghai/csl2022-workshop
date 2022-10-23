@@ -1,0 +1,32 @@
+.container {
+  width: 432px;
+  height: 100%;
+
+  position: absolute;
+  top: 0px;
+  left: 0px;
+
+  background: #121212;
+  border: 1px solid #2c2c2c;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+  z-index: 1;
+}
+
+.title_active {
+  width: 356px;
+  height: 72px;
+  left: 33px;
+  top: 42px;
+
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 900;
+  font-size: 18px;
+  line-height: 72px;
+  /* identical to box height, or 400% */
+
+  text-align: right;
+
+  color: #ffffff;
+}

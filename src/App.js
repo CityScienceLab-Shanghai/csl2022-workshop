@@ -5,6 +5,7 @@ import "mapbox-gl/dist/mapbox-gl.css";
 
 import CityMap from "./components/0.0_map/CityMap";
 import Sandbox from "./components/0.0_map/Sandbox";
+import Navigation from "./components/0.2_navigation/Navigation";
 
 import CoverPage from "./components/1.0_cover_page/CoverPage";
 import CurrentPracticePage from "./components/1.1_current_practice/CurrentPracticePage";
@@ -44,7 +45,12 @@ const App = () => {
     17: <CityMap />,
   };
 
-  return content[page];
+  return (
+    <>
+      <Navigation />
+      {content[page]}
+    </>
+  );
 };
 
 export default App;
