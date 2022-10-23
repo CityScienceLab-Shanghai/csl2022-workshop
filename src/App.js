@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { render } from "react-dom";
 import { stateStore } from "./stores";
-import 'mapbox-gl/dist/mapbox-gl.css';
+import "mapbox-gl/dist/mapbox-gl.css";
 
 import CityMap from "./components/0.0_map/CityMap";
 import Sandbox from "./components/0.0_map/Sandbox";
@@ -16,6 +16,7 @@ import IncentiveIntroPage from "./components/2.1_intro_page/IncentiveIntroPage";
 
 import EndowmentIntroPage from "./components/4.1_intro_page/EndowmentIntroPage";
 
+import TransitionPage from "./components/5.0_transition_page/TransitionPage";
 
 const App = () => {
   const { page } = stateStore;
@@ -29,13 +30,15 @@ const App = () => {
   //   }, []);
 
   const content = {
-    1: <CoverPage />,
+    1: <TransitionPage />,
+    // 1: <CoverPage />,
     2: <CurrentPracticePage />,
     3: <StructurePage />,
     4: <StakeholderPage />,
     5: <VotingPage />,
     6: <IncentiveIntroPage />,
     7: <EndowmentIntroPage />,
+    8: <TransitionPage />,
     // 3: <IncentivePolicyIntroPage />,
     16: <Sandbox />,
     17: <CityMap />,

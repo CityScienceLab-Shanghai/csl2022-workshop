@@ -1,0 +1,112 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  /* background: #000000; */
+
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+
+.title {
+  left: 15%;
+  margin-left: 40px;
+
+  width: 620px;
+  height: 205px;
+
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 96px;
+  line-height: 96px;
+  /* or 100% */
+
+  display: flex;
+  align-items: center;
+
+  color: #ffffff;
+}
+
+.background {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  z-index: -1;
+}
+
+.logo {
+  height: 50px;
+  position: absolute;
+  right: 17px;
+  bottom: 10px;
+}
+
+.socitylogo {
+  width: 173px;
+  height: 173px;
+  left: 10%;
+
+  mix-blend-mode: luminosity;
+  border-radius: 96px;
+
+  margin-left: 40px;
+}
+
+.rowGroup {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.titleGroup {
+  margin-bottom: 65px;
+}
+
+.vcenter {
+  width: 100%;
+  position: absolute;
+  top: 13%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.description {
+  margin-left: 253px;
+  margin-right: 253px;
+  margin-bottom: 35px;
+  width: 993px;
+  min-width: 420px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 42px;
+  /* or 150% */
+
+  text-align: justify;
+
+  color: #ffffff;
+}
+
+.button_left {
+  margin-left: 253px;
+  margin-top: 60px;
+  width: 200px;
+  min-height: 60px;
+  min-width: 200px;
+}
+
+.button_right {
+  margin-left: 46px;
+  margin-top: 60px;
+  min-width: 200px;
+  min-height: 60px;
+}
+
+.pagination {
+  margin-top: 120px;
+}
