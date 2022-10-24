@@ -100,7 +100,7 @@
 }
 
 .rowGroup {
-  margin-top: 28px;
+  margin-top: 22px;
   display: flex;
   flex-direction: row;
   width: 100%;
@@ -125,4 +125,22 @@
   width: 450px;
   overflow: auto;
   overflow-x: hidden;
+}
+
+.decoLine_1 {
+    position: absolute;
+    right: 22px;
+    top: 65px;
+}
+
+.decoLine_2 {
+    position: absolute;
+    right: 22px;
+    top: 320px;
+}
+
+.decoLine_3 {
+    position: absolute;
+    right: 22px;
+    top: 575px;
 }

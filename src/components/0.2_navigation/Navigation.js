@@ -7,7 +7,7 @@ import _NAVIGATION_DATA from "../../data/navigation_text.json";
 // Hide navigation on some pages
 const HIDE_PAGES_INDEX = [1];
 
-const LargeCircle = () => (
+const LargeCircle = ({ isActive }) => (
   <svg
     width="11"
     height="11"
@@ -15,11 +15,17 @@ const LargeCircle = () => (
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <circle cx="5.5" cy="5.5" r="5.5" fill="white" />
+    <circle
+      cx="5.5"
+      cy="5.5"
+      r="5.5"
+      fill={isActive ? "white" : "#5B5B5B"}
+      stroke={isActive ? "white" : "#5B5B5B"}
+    />
   </svg>
 );
 
-const SmallCircle = () => (
+const SmallCircle = ({ isActive }) => (
   <svg
     width="8"
     height="8"
@@ -27,30 +33,105 @@ const SmallCircle = () => (
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <circle cx="4" cy="4" r="3.5" fill="#121212" stroke="white" />
+    <circle
+      cx="4"
+      cy="4"
+      r="3.5"
+      fill="#121212"
+      stroke={isActive ? "white" : "#5B5B5B"}
+    />
+  </svg>
+);
+
+const DecoLine_1 = () => (
+  <svg
+    width="1"
+    height="176"
+    viewBox="0 0 0.5 176"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    className={styles.decoLine_1}
+  >
+    <line
+      x1="0.25"
+      y1="1.09278e-08"
+      x2="0.249993"
+      y2="176"
+      stroke="#5B5B5B"
+      stroke-width="2"
+    />
+  </svg>
+);
+
+const DecoLine_2 = () => (
+  <svg
+    width="1"
+    height="176"
+    viewBox="0 0 0.5 176"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    className={styles.decoLine_2}
+  >
+    <line
+      x1="0.25"
+      y1="1.09278e-08"
+      x2="0.249993"
+      y2="176"
+      stroke="#5B5B5B"
+      stroke-width="2"
+    />
+  </svg>
+);
+
+const DecoLine_3 = () => (
+  <svg
+    width="1"
+    height="176"
+    viewBox="0 0 0.5 176"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    className={styles.decoLine_3}
+  >
+    <line
+      x1="0.25"
+      y1="1.09278e-08"
+      x2="0.249993"
+      y2="176"
+      stroke="#5B5B5B"
+      stroke-width="2"
+    />
   </svg>
 );
 
 const NavItem = ({ index, text, firstLevel = true }) => {
-  const { page, maxPage } = stateStore;
+  const { page, maxPage, setPage } = stateStore;
   let isActive = maxPage >= index || page >= index;
 
   return isActive ? (
     <div className={styles.rowGroup}>
       <div
         className={firstLevel ? styles.title_active : styles.subtitle_active}
+        onClick={() => setPage(index)}
       >
         {text}
       </div>
-      <div className={styles.circle_active}>
-        {firstLevel ? <LargeCircle /> : <SmallCircle />}
+      <div className={styles.circle_active} onClick={() => setPage(index)}>
+        {firstLevel ? (
+          <LargeCircle isActive={isActive} />
+        ) : (
+          <SmallCircle isActive={isActive} />
+        )}
       </div>
     </div>
   ) : (
     <div className={styles.rowGroup}>
       <div className={firstLevel ? styles.title : styles.subtitle}>{text}</div>
       <div className={styles.circle}>
-        {firstLevel ? <LargeCircle /> : <SmallCircle />}
+        {firstLevel ? (
+          <LargeCircle isActive={isActive} />
+        ) : (
+          <SmallCircle isActive={isActive} />
+        )}
       </div>
     </div>
   );
@@ -112,6 +193,10 @@ const Navigation = () => {
     return (
       <div className={styles.scrollCol}>
         <div className={styles.container}>
+          <DecoLine_1 />
+          <DecoLine_2 />
+          <DecoLine_3 />
+
           <div className={styles.chapter}>{chapter_1}</div>
           <div className={styles.chapter}>{chapter_2}</div>
           <div className={styles.chapter}>{chapter_3}</div>
