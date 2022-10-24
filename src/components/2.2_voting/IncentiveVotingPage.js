@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import styles from "./IncentiveVotingPage.module.css";
 
 import CustomButton from "../0.1_buttons/CustomButton";
+import IndicatorCard from "./IndicatorCard";
 
 import { stateStore } from "../../stores";
 
@@ -10,8 +11,27 @@ const IncentiveVotingPage = () => {
 
   return (
     <>
-      {/* <img className={styles.content} src={`/content/2.1.png`} alt={""} /> */}
-
+      <div className={styles.container}>
+        <div className={styles.rowGroup} style={{ marginTop: "0px" }}>
+          <div className={styles.title}>Incentive for Developers</div>
+        </div>
+        <div className={styles.rowGroup} style={{ marginTop: "30px" }}>
+          <div className={styles.description}>
+            Please use the slider to decide how many extra floors you think is
+            appropriate as an incentive for the developer.
+          </div>
+          <div className={styles.slider}>
+            Please use the slider to decide how many extra floors you think is
+            appropriate as an incentive for the developer.
+          </div>
+        </div>
+        <div style={{ marginTop: "62px", marginBottom: "92px" }}>
+          <IndicatorCard />
+        </div>
+      </div>
+      <div className={styles.hint}>
+        {"Test around. Hit the button once you decide ->"}
+      </div>
       <CustomButton
         buttonText="Submit"
         positionStyle={styles.button}
