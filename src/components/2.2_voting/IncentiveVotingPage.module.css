@@ -1,13 +1,13 @@
 .container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   align-items: center;
   /* background: #000000; */
 
-  height: 100%;
-  width: 100%;
-  position: absolute;
+  /* height: 100%;
+  width: 100%; */
 }
 
 .button {

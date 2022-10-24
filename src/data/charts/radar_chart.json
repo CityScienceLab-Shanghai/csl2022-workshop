@@ -1,117 +1,32 @@
 [
   {
-    "IndicatorType": "E. Embodied -Vehicles",
-    "Benchmark": 0,
-    "Improvement": 0
+    "IndicatorType": "traffic",
+    "Baseline": 50,
+    "Proposal": 70
   },
   {
-    "IndicatorType": "E. Operational -Vehicles",
-    "Benchmark": 0,
-    "Improvement": 0
+    "IndicatorType": "noise",
+    "Baseline": 50,
+    "Proposal": 70
   },
   {
-    "IndicatorType": "E. Embodied -Houses",
-    "Benchmark": 0,
-    "Improvement": 0
+    "IndicatorType": "sunlight",
+    "Baseline": 50,
+    "Proposal": 70
   },
   {
-    "IndicatorType": "E. Operational -Houses",
-    "Benchmark": 0,
-    "Improvement": 0
+    "IndicatorType": "density",
+    "Baseline": 50,
+    "Proposal": 70
   },
   {
-    "IndicatorType": "E. Embodied-Delivery",
-    "Benchmark": 0,
-    "Improvement": 0
+    "IndicatorType": "proximity",
+    "Baseline": 50,
+    "Proposal": 70
   },
   {
-    "IndicatorType": "E. Operational -Delivery",
-    "Benchmark": 0,
-    "Improvement": 0
-  },
-  {
-    "IndicatorType": "E. E. Water&Sanitation + Food",
-    "Benchmark": 0,
-    "Improvement": 0
-  },
-  {
-    "IndicatorType": "E. O. Water&Sanitation + Food",
-    "Benchmark": 0,
-    "Improvement": 0
-  },
-  {
-    "IndicatorType": "Clean Energy",
-    "Benchmark": 0,
-    "Improvement": 0
-  },
-  {
-    "IndicatorType": "Residential Density",
-    "Benchmark": 0,
-    "Improvement": 0
-  },
-  {
-    "IndicatorType": "Employment Density",
-    "Benchmark": 0,
-    "Improvement": 0
-  },
-  {
-    "IndicatorType": "3rd Places Density",
-    "Benchmark": 0,
-    "Improvement": 0
-  },
-  {
-    "IndicatorType": "Cultural Density",
-    "Benchmark": 0,
-    "Improvement": 0
-  },
-  {
-    "IndicatorType": "Residential Diversity",
-    "Benchmark": 0,
-    "Improvement": 0
-  },
-  {
-    "IndicatorType": "Employment Diversity",
-    "Benchmark": 0,
-    "Improvement": 0
-  },
-  {
-    "IndicatorType": "3rd Places Diversity",
-    "Benchmark": 0,
-    "Improvement": 0
-  },
-  {
-    "IndicatorType": "Cultural Diversity",
-    "Benchmark": 0,
-    "Improvement": 0
-  },
-  {
-    "IndicatorType": "Safety & Security",
-    "Benchmark": 0,
-    "Improvement": 0
-  },
-  {
-    "IndicatorType": "Wellbeing & Health",
-    "Benchmark": 0,
-    "Improvement": 0
-  },
-  {
-    "IndicatorType": "Innovation potential",
-    "Benchmark": 0,
-    "Improvement": 0
-  },
-  {
-    "IndicatorType": "Local Economic ",
-    "Benchmark": 0,
-    "Improvement": 0
-  },
-  {
-    "IndicatorType": "Investment locally",
-    "Benchmark": 0,
-    "Improvement": 0
-  },
-  {
-    "IndicatorType": "Circular economy",
-    "Benchmark": 0,
-    "Improvement": 0
+    "IndicatorType": "diveristy",
+    "Baseline": 50,
+    "Proposal": 70
   }
 ]
