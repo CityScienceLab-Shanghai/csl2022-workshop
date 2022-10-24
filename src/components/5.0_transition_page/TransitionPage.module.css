@@ -66,7 +66,7 @@
 }
 
 .vcenter {
-  width: 100%;
+  width: calc(100% - 42px);
   position: absolute;
   left: 42px;
   top: 13%;
