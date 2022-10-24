@@ -10,7 +10,7 @@ const EndowmentIntroPage = () => {
 
   return (
     <>
-      <img className={styles.content} src={`/content/1.4.png`} alt={""} />
+      <img className={styles.content} src={`/content/4.1.png`} alt={""} />
 
       <CustomButton
         buttonText="Next"
