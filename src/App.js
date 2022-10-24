@@ -6,6 +6,7 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import CityMap from "./components/0.0_map/CityMap";
 import Sandbox from "./components/0.0_map/Sandbox";
 import Navigation from "./components/0.2_navigation/Navigation";
+import ResPage from "./components/0.3_resolution/ResPage";
 
 import CoverPage from "./components/1.0_cover_page/CoverPage";
 import CurrentPracticePage from "./components/1.1_current_practice/CurrentPracticePage";
@@ -30,6 +31,31 @@ const App = () => {
   //     };
   //   }, []);
 
+  // responsive design
+  const [windowSize, setWindowSize] = useState({
+    width: undefined,
+    height: undefined,
+  });
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    function handleResize() {
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    }
+
+    window.addEventListener("resize", handleResize);
+    handleResize();
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  useEffect(() => {
+    if (windowSize.width < 1280) setIsMobile(true);
+    else setIsMobile("ontouchstart" in document.documentElement);
+  }, [windowSize.width, windowSize.height]);
+
   const content = {
     // 1: <TransitionPage />,
     1: <CoverPage />,
@@ -45,7 +71,9 @@ const App = () => {
     17: <CityMap />,
   };
 
-  return (
+  return isMobile ? (
+    <ResPage />
+  ) : (
     <>
       <Navigation />
       {content[page]}
