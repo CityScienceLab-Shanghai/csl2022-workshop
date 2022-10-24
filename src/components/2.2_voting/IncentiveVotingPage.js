@@ -10,10 +10,10 @@ const IncentiveVotingPage = () => {
 
   return (
     <>
-      <img className={styles.content} src={`/content/2.1.png`} alt={""} />
+      {/* <img className={styles.content} src={`/content/2.1.png`} alt={""} /> */}
 
       <CustomButton
-        buttonText="Play"
+        buttonText="Submit"
         positionStyle={styles.button}
         buttonOnclick={nextPage}
         colorIndex={0}

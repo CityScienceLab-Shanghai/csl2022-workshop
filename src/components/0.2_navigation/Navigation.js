@@ -58,7 +58,7 @@ const DecoLine_1 = () => (
       x2="0.249993"
       y2="176"
       stroke="#5B5B5B"
-      stroke-width="2"
+      strokeWidth="2"
     />
   </svg>
 );
@@ -78,7 +78,7 @@ const DecoLine_2 = () => (
       x2="0.249993"
       y2="176"
       stroke="#5B5B5B"
-      stroke-width="2"
+      strokeWidth="2"
     />
   </svg>
 );
@@ -98,7 +98,7 @@ const DecoLine_3 = () => (
       x2="0.249993"
       y2="176"
       stroke="#5B5B5B"
-      stroke-width="2"
+      strokeWidth="2"
     />
   </svg>
 );
