@@ -17,7 +17,7 @@
   font-family: "Inter";
   font-style: normal;
   font-weight: 400;
-  font-size: 12px;
+  font-size: 15px;
 }
 
 .button_0 {
@@ -29,5 +29,293 @@
 .button_0:hover {
   color: black;
   background: white;
+  /* border: 3px solid black; */
+}
+
+.button_1 {
+  color: #566a44;
+  background: transparent;
+  border: 3px solid #566a44;
+}
+
+.button_1:hover {
+  color: white;
+  background: #566a44;
+  /* border: 3px solid black; */
+}
+
+.button_2 {
+  color: #ba77a8;
+  background: transparent;
+  border: 3px solid #ba77a8;
+}
+
+.button_2:hover {
+  color: white;
+  background: #ba77a8;
+  /* border: 3px solid black; */
+}
+
+.button_3 {
+  color: #873671;
+  background: transparent;
+  border: 3px solid #873671;
+}
+
+.button_3:hover {
+  color: white;
+  background: #873671;
+  /* border: 3px solid black; */
+}
+
+.button_4 {
+  color: #6c1254;
+  background: transparent;
+  border: 3px solid #6c1254;
+}
+
+.button_4:hover {
+  color: white;
+  background: #6c1254;
+  /* border: 3px solid black; */
+}
+
+.button_5 {
+  color: #c09b9f;
+  background: transparent;
+  border: 3px solid #c09b9f;
+}
+
+.button_5:hover {
+  color: white;
+  background: #c09b9f;
+  /* border: 3px solid black; */
+}
+
+.button_6 {
+  color: #B46A71;
+  background: transparent;
+  border: 3px solid #B46A71;
+}
+
+.button_6:hover {
+  color: white;
+  background: #B46A71;
+  /* border: 3px solid black; */
+}
+
+.button_7 {
+  color: #923740;
+  background: transparent;
+  border: 3px solid #923740;
+}
+
+.button_7:hover {
+  color: white;
+  background: #923740;
+  /* border: 3px solid black; */
+}
+
+.button_8 {
+  color: #FADABD;
+  background: transparent;
+  border: 3px solid #FADABD;
+}
+
+.button_8:hover {
+  color: white;
+  background: #FADABD;
+  /* border: 3px solid black; */
+}
+
+.button_9 {
+  color: #DFB187;
+  background: transparent;
+  border: 3px solid #DFB187;
+}
+
+.button_9:hover {
+  color: white;
+  background: #DFB187;
+  /* border: 3px solid black; */
+}
+
+.button_10 {
+  color: #BC8B5E;
+  background: transparent;
+  border: 3px solid #BC8B5E;
+}
+
+.button_10:hover {
+  color: white;
+  background: #BC8B5E;
+  /* border: 3px solid black; */
+}
+
+.button_11 {
+  color: #FBF0D3;
+  background: transparent;
+  border: 3px solid #FBF0D3;
+}
+
+.button_11:hover {
+  color: white;
+  background: #EFDBA6;
+  /* border: 3px solid black; */
+}
+
+.button_12 {
+  color: #EFDBA6;
+  background: transparent;
+  border: 3px solid #EFDBA6;
+}
+
+.button_12:hover {
+  color: white;
+  background: #EFDBA6;
+  /* border: 3px solid black; */
+}
+
+.button_13 {
+  color: #C38173;
+  background: transparent;
+  border: 3px solid #C38173;
+}
+
+.button_13:hover {
+  color: white;
+  background: #C38173;
+  /* border: 3px solid black; */
+}
+
+.button_14 {
+  color: #F29383;
+  background: transparent;
+  border: 3px solid #F29383;
+}
+
+.button_14:hover {
+  color: white;
+  background: #F29383;
+  /* border: 3px solid black; */
+}
+
+.button_15 {
+  color: #D96149;
+  background: transparent;
+  border: 3px solid #D96149;
+}
+
+.button_15:hover {
+  color: white;
+  background: #D96149;
+  /* border: 3px solid black; */
+}
+
+.button_16 {
+  color: #D8D8D8;
+  background: transparent;
+  border: 3px solid #D8D8D8;
+}
+
+.button_16:hover {
+  color: white;
+  background: #D8D8D8;
+  /* border: 3px solid black; */
+}
+
+.button_17 {
+  color: #8B9BEA;
+  background: transparent;
+  border: 3px solid #8B9BEA;
+}
+
+.button_17:hover {
+  color: white;
+  background: #8B9BEA;
+  /* border: 3px solid black; */
+}
+
+.button_18 {
+  color: #7783C5;
+  background: transparent;
+  border: 3px solid #7783C5;
+}
+
+.button_18:hover {
+  color: white;
+  background: #7783C5;
+  /* border: 3px solid black; */
+}
+
+.button_19 {
+  color: #555F93;
+  background: transparent;
+  border: 3px solid #555F93;
+}
+
+.button_19:hover {
+  color: white;
+  background: #555F93;
+  /* border: 3px solid black; */
+}
+
+.button_20 {
+  color: #B9B5DE;
+  background: transparent;
+  border: 3px solid #B9B5DE;
+}
+
+.button_20:hover {
+  color: white;
+  background: #B9B5DE;
+  /* border: 3px solid black; */
+}
+
+.button_21 {
+  color: #7E78B1;
+  background: transparent;
+  border: 3px solid #7E78B1;
+}
+
+.button_21:hover {
+  color: white;
+  background: #7E78B1;
+  /* border: 3px solid black; */
+}
+
+.button_22 {
+  color: #46407C;
+  background: transparent;
+  border: 3px solid #46407C;
+}
+
+.button_22:hover {
+  color: white;
+  background: #46407C;
+  /* border: 3px solid black; */
+}
+
+.button_23 {
+  color: #7AB3DC;
+  background: transparent;
+  border: 3px solid #7AB3DC;
+}
+
+.button_23:hover {
+  color: white;
+  background: #7AB3DC;
+  /* border: 3px solid black; */
+}
+
+.button_24 {
+  color: #568FB8;
+  background: transparent;
+  border: 3px solid #568FB8;
+}
+
+.button_24:hover {
+  color: white;
+  background: #568FB8;
   /* border: 3px solid black; */
 }

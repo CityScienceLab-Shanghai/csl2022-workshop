@@ -4,7 +4,7 @@ import styles from "./EndowmentVotingPage.module.css";
 import CustomButton from "../0.1_buttons/CustomButton";
 import IndicatorCard from "./IndicatorCard";
 
-import _AMENITIES_DATA from "../../data/amenities.json"
+import _AMENITIES_DATA from "../../data/amenities.json";
 
 import { stateStore } from "../../stores";
 
@@ -12,6 +12,20 @@ const IncentiveVotingPage = () => {
   const { page, nextPage } = stateStore;
 
   const [index, setIndex] = useState(0);
+
+  let button_set = [];
+  for (var i = 0; i < 24; i++) {
+    button_set.push(
+      <CustomButton
+        key={_AMENITIES_DATA[i].id}
+        buttonText={_AMENITIES_DATA[i].name}
+        positionStyle={styles.amen_button}
+        buttonOnclick={nextPage}
+        colorIndex={_AMENITIES_DATA[i].id + 1}
+        largeFont={false}
+      />
+    );
+  }
 
   return (
     <>
@@ -28,7 +42,7 @@ const IncentiveVotingPage = () => {
         <div style={{ marginTop: "62px", marginBottom: "92px" }}></div>
         <IndicatorCard index={index} />
       </div>
-
+      {button_set}
       <div className={styles.hint}>
         {"Test around. Hit the button once you decide ->"}
       </div>
