@@ -1,0 +1,14 @@
+[
+  {
+    "type": "Economical",
+    "value": 0.05
+  },
+  {
+    "type": "Enviromental",
+    "value": 0.05
+  },
+  {
+    "type": "Social",
+    "value": 0.05
+  }
+]
