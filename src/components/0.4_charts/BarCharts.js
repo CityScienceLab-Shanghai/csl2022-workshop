@@ -7,7 +7,7 @@ const BarChart = ({ data, maxValue = 1 }) => (
     data={data}
     keys={["value"]}
     indexBy="type"
-    margin={{ top: 30, right: 30, bottom: 50, left: 60 }}
+    margin={{ top: 30, right: 30, bottom: 30, left: 30 }}
     padding={0.3}
     minValue={0}
     maxValue={maxValue}
