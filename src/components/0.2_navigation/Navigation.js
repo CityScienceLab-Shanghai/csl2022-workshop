@@ -7,7 +7,7 @@ import _NAVIGATION_DATA from "../../data/navigation_text.json";
 // Hide navigation on some pages
 const HIDE_PAGES_INDEX = [1];
 
-const LargeCircle = ({ isActive }) => (
+const LargeCircle = ({ isActive, isSelected }) => (
   <svg
     width="11"
     height="11"
@@ -18,14 +18,15 @@ const LargeCircle = ({ isActive }) => (
     <circle
       cx="5.5"
       cy="5.5"
-      r="5.5"
-      fill={isActive ? "white" : "#5B5B5B"}
+      r="5"
+      //   fill={isActive ? "white" : "#5B5B5B"}
+      fill={isSelected ? "white" : "#121212"}
       stroke={isActive ? "white" : "#5B5B5B"}
     />
   </svg>
 );
 
-const SmallCircle = ({ isActive }) => (
+const SmallCircle = ({ isActive, isSelected }) => (
   <svg
     width="8"
     height="8"
@@ -37,7 +38,7 @@ const SmallCircle = ({ isActive }) => (
       cx="4"
       cy="4"
       r="3.5"
-      fill="#121212"
+      fill={isSelected ? "white" : "#121212"}
       stroke={isActive ? "white" : "#5B5B5B"}
     />
   </svg>
@@ -106,6 +107,9 @@ const DecoLine_3 = () => (
 const NavItem = ({ index, text, firstLevel = true }) => {
   const { page, maxPage, setPage } = stateStore;
   let isActive = maxPage >= index || page >= index;
+  let isSelected = firstLevel
+    ? Math.floor((page - 2) / 4) == Math.floor((index - 2) / 4)
+    : page == index;
 
   return isActive ? (
     <div className={styles.rowGroup}>
@@ -117,9 +121,9 @@ const NavItem = ({ index, text, firstLevel = true }) => {
       </div>
       <div className={styles.circle_active} onClick={() => setPage(index)}>
         {firstLevel ? (
-          <LargeCircle isActive={isActive} />
+          <LargeCircle isActive={isActive} isSelected={isSelected} />
         ) : (
-          <SmallCircle isActive={isActive} />
+          <SmallCircle isActive={isActive} isSelected={isSelected} />
         )}
       </div>
     </div>
@@ -128,9 +132,9 @@ const NavItem = ({ index, text, firstLevel = true }) => {
       <div className={firstLevel ? styles.title : styles.subtitle}>{text}</div>
       <div className={styles.circle}>
         {firstLevel ? (
-          <LargeCircle isActive={isActive} />
+          <LargeCircle isActive={isActive} isSelected={isSelected} />
         ) : (
-          <SmallCircle isActive={isActive} />
+          <SmallCircle isActive={isActive} isSelected={isSelected} />
         )}
       </div>
     </div>
