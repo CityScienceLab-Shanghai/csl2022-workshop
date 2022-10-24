@@ -1,12 +1,14 @@
 .logo {
-  height: 50px;
+  max-height: 50px;
+  max-width: 80%;
+  aspect-ratio: 46 / 5;
   position: absolute;
   right: 17px;
   bottom: 10px;
 }
 
 .text {
-  top: 40%;
+  top: 30%;
   left: 50%;
   transform: translate(-50%, 0);
 
@@ -15,7 +17,7 @@
   font-family: "Inter";
   font-style: italic;
   font-weight: 500;
-  font-size: 32px;
+  font-size: 26px;
   line-height: 39px;
 
   display: flex;
