@@ -145,3 +145,8 @@
     right: 22px;
     top: 575px;
 }
+
+::-webkit-scrollbar {
+    width: 0px;
+  }
+  
