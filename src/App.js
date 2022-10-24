@@ -15,8 +15,15 @@ import StakeholderPage from "./components/1.3_stakeholder/StakeholderPage";
 import VotingPage from "./components/1.4_voting/VotingPage";
 
 import IncentiveIntroPage from "./components/2.1_intro_page/IncentiveIntroPage";
+import IncentiveVotingPage from "./components/2.2_voting/IncentiveVotingPage";
+import IncentiveResultPage from "./components/2.3_results/IncentiveResultPage";
+import IncentivePerformancePage from "./components/2.4_performance/IncentivePerformancePage";
+
 
 import EndowmentIntroPage from "./components/4.1_intro_page/EndowmentIntroPage";
+import EndowmentVotingPage from "./components/4.2_voting/EndowmentVotingPage";
+import EndowmentResultPage from "./components/4.3_results/EndowmentResultPage";
+import EndowmentPerformancePage from "./components/4.4_performance/EndowmentPerformancePage";
 
 import TransitionPage from "./components/5.0_transition_page/TransitionPage";
 
@@ -65,13 +72,13 @@ const App = () => {
     4: <StakeholderPage />,
     5: <VotingPage />,
     6: <IncentiveIntroPage />,
-    7: <IncentiveIntroPage />,
-    8: <IncentiveIntroPage />,
-    9: <IncentiveIntroPage />,
+    7: <IncentiveVotingPage />,
+    8: <IncentiveResultPage />,
+    9: <IncentivePerformancePage />,
     10: <EndowmentIntroPage />,
-    11: <EndowmentIntroPage />,
-    12: <EndowmentIntroPage />,
-    13: <EndowmentIntroPage />,
+    11: <EndowmentVotingPage />,
+    12: <EndowmentResultPage />,
+    13: <EndowmentPerformancePage />,
     14: <TransitionPage />,
     16: <Sandbox />,
     17: <CityMap />,
