@@ -1,0 +1,112 @@
+[
+  {
+    "id": 0,
+    "name": "public open space",
+    "type": "amenities",
+    "subtype": "public open space",
+    "cost": "1000",
+    "ROI": "60%",
+    "noise": 2,
+    "density": 2,
+    "traffic": 2
+  },
+  {
+    "id": 1,
+    "name": "daycare",
+    "type": "amenities",
+    "subtype": "Education",
+    "cost": "1000",
+    "ROI": "60%",
+    "noise": 1,
+    "density": 1,
+    "traffic": 1
+  },
+  {
+    "id": 2,
+    "name": "skill training",
+    "type": "amenities",
+    "subtype": "Education",
+    "cost": "1000",
+    "ROI": "60%",
+    "noise": 2,
+    "density": 3,
+    "traffic": 3
+  },
+  {
+    "id": 3,
+    "name": "library",
+    "type": "amenities",
+    "subtype": "Education",
+    "cost": "1000",
+    "ROI": "60%",
+    "noise": 1,
+    "density": 3,
+    "traffic": 3
+  },
+  {
+    "id": 4,
+    "name": "children’s welfare homes",
+    "type": "amenities",
+    "subtype": "Utility",
+    "cost": "1000",
+    "ROI": "60%",
+    "noise": 1,
+    "density": 1,
+    "traffic": 1
+  },
+  {
+    "id": 5,
+    "name": "retirement home",
+    "type": "amenities",
+    "subtype": "Utility",
+    "cost": "1000",
+    "ROI": "60%",
+    "noise": 2,
+    "density": 3,
+    "traffic": 3
+  },
+  {
+    "id": 6,
+    "name": "laundry",
+    "type": "amenities",
+    "subtype": "Utility",
+    "cost": "1000",
+    "ROI": "60%",
+    "noise": 1,
+    "density": 3,
+    "traffic": 3
+  },
+  {
+    "id": 7,
+    "name": "children’s welfare homes",
+    "type": "amenities",
+    "subtype": "Commercial",
+    "cost": "1000",
+    "ROI": "60%",
+    "noise": 1,
+    "density": 1,
+    "traffic": 1
+  },
+  {
+    "id": 8,
+    "name": "restaurant/bar",
+    "type": "amenities",
+    "subtype": "Commercial",
+    "cost": "1000",
+    "ROI": "60%",
+    "noise": 2,
+    "density": 3,
+    "traffic": 3
+  },
+  {
+    "id": 9,
+    "name": "laundry",
+    "type": "amenities",
+    "subtype": "Commercial",
+    "cost": "1000",
+    "ROI": "60%",
+    "noise": 1,
+    "density": 3,
+    "traffic": 3
+  }
+]

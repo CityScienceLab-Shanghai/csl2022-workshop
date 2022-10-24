@@ -1,11 +1,13 @@
 .card {
   box-sizing: border-box;
 
-  /* position: absolute; */
-  width: 1248px;
-  height: 461px;
+  position: absolute;
+  width: 46%;
+  height: 702px;
   /* left: 87px; */
   /* top: 390px; */
+  right: 0;
+  top: 0;
 
   background: #121212;
   border: 1px solid #2c2c2c;
@@ -17,24 +19,19 @@
 }
 
 .bar {
-  width: 15%;
-  height: 100%;
+  width: 25%;
+  margin-top: 20%;
+  height: 80%;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
 .radar {
-  width: 40%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.shading {
-  width: 40%;
-  height: 100%;
+  margin-left: 5%;
+  width: 70%;
+  margin-top: 20%;
+  height: 80%;
   display: flex;
   flex-direction: column;
   justify-content: center;

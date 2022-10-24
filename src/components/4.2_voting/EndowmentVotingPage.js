@@ -4,8 +4,7 @@ import styles from "./EndowmentVotingPage.module.css";
 import CustomButton from "../0.1_buttons/CustomButton";
 import IndicatorCard from "./IndicatorCard";
 
-import Slider from "rc-slider";
-import "rc-slider/assets/index.css";
+import _AMENITIES_DATA from "../../data/amenities.json"
 
 import { stateStore } from "../../stores";
 
@@ -22,14 +21,14 @@ const IncentiveVotingPage = () => {
         </div>
         <div className={styles.rowGroup} style={{ marginTop: "30px" }}>
           <div className={styles.description}>
-            Please use the slider to decide how many extra floors you think is
-            appropriate as an incentive for the developer.
+            Please drag in/out the amenities to the rectangle area to propose
+            your amenity composition.
           </div>
         </div>
-        <div style={{ marginTop: "62px", marginBottom: "92px" }}>
-          <IndicatorCard index={index} />
-        </div>
+        <div style={{ marginTop: "62px", marginBottom: "92px" }}></div>
+        <IndicatorCard index={index} />
       </div>
+
       <div className={styles.hint}>
         {"Test around. Hit the button once you decide ->"}
       </div>
