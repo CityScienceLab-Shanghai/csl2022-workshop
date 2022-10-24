@@ -13,8 +13,8 @@ import {
 } from "@deck.gl/core";
 // import { scaleThreshold } from "d3-scale";
 
-// import floor_data from "../data/bld_floors.json";
-import floor_data from "../../data/processed_bld_floors.json";
+// import floor_data from "../data/map/bld_floors.json";
+import floor_data from "../../data/map/processed_bld_floors.json";
 
 // @ts-ignore
 mapboxgl.workerClass =
