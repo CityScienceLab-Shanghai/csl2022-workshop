@@ -1,14 +1,10 @@
 [
   {
-    "type": "Economical",
+    "type": "Proposal",
     "value": 0.05
   },
   {
-    "type": "Enviromental",
-    "value": 0.05
-  },
-  {
-    "type": "Social",
-    "value": 0.05
+    "type": "Baseline",
+    "value": 0.5
   }
 ]

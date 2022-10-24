@@ -4,10 +4,15 @@ import styles from "./IncentiveVotingPage.module.css";
 import CustomButton from "../0.1_buttons/CustomButton";
 import IndicatorCard from "./IndicatorCard";
 
+import Slider from "rc-slider";
+import "rc-slider/assets/index.css";
+
 import { stateStore } from "../../stores";
 
 const IncentiveVotingPage = () => {
   const { page, nextPage } = stateStore;
+
+  const [index, setIndex] = useState(0);
 
   return (
     <>
@@ -21,12 +26,18 @@ const IncentiveVotingPage = () => {
             appropriate as an incentive for the developer.
           </div>
           <div className={styles.slider}>
-            Please use the slider to decide how many extra floors you think is
-            appropriate as an incentive for the developer.
+            <Slider
+              min={0}
+              max={10}
+              onChange={(value) => {
+                // console.log(value);
+                setIndex(value)
+              }}
+            />
           </div>
         </div>
         <div style={{ marginTop: "62px", marginBottom: "92px" }}>
-          <IndicatorCard />
+          <IndicatorCard index={index} />
         </div>
       </div>
       <div className={styles.hint}>
