@@ -33,11 +33,23 @@ const SmallCircle = () => (
 
 const NavItem = ({ index, text, firstLevel = true }) => {
   const { page, maxPage } = stateStore;
-  //   let isActive = maxPage > index;
-  return (
+  let isActive = maxPage >= index || page >= index;
+
+  return isActive ? (
     <div className={styles.rowGroup}>
-      <div className={styles.title_active}>{text}</div>
+      <div
+        className={firstLevel ? styles.title_active : styles.subtitle_active}
+      >
+        {text}
+      </div>
       <div className={styles.circle_active}>
+        {firstLevel ? <LargeCircle /> : <SmallCircle />}
+      </div>
+    </div>
+  ) : (
+    <div className={styles.rowGroup}>
+      <div className={firstLevel ? styles.title : styles.subtitle}>{text}</div>
+      <div className={styles.circle}>
         {firstLevel ? <LargeCircle /> : <SmallCircle />}
       </div>
     </div>
@@ -52,6 +64,7 @@ let sandbox = [];
 for (var i = 0; i < 5; i++) {
   chapter_1.push(
     <NavItem
+      key={i}
       index={_NAVIGATION_DATA[i].page}
       text={_NAVIGATION_DATA[i].text}
       firstLevel={_NAVIGATION_DATA[i].titleLevel == 1}
@@ -62,6 +75,7 @@ for (var i = 0; i < 5; i++) {
 for (var i = 5; i < 10; i++) {
   chapter_2.push(
     <NavItem
+      key={i}
       index={_NAVIGATION_DATA[i].page}
       text={_NAVIGATION_DATA[i].text}
       firstLevel={_NAVIGATION_DATA[i].titleLevel == 1}
@@ -72,6 +86,7 @@ for (var i = 5; i < 10; i++) {
 for (var i = 10; i < 15; i++) {
   chapter_3.push(
     <NavItem
+      key={i}
       index={_NAVIGATION_DATA[i].page}
       text={_NAVIGATION_DATA[i].text}
       firstLevel={_NAVIGATION_DATA[i].titleLevel == 1}
@@ -81,6 +96,7 @@ for (var i = 10; i < 15; i++) {
 
 sandbox.push(
   <NavItem
+    key={15}
     index={_NAVIGATION_DATA[15].page}
     text={_NAVIGATION_DATA[15].text}
     firstLevel={_NAVIGATION_DATA[15].titleLevel == 1}
@@ -94,12 +110,14 @@ const Navigation = () => {
   if (HIDE_PAGES_INDEX.includes(page)) return <></>;
   else
     return (
-      <div className={styles.container}>
-        <div className={styles.chapter}>{chapter_1}</div>
-        <div className={styles.chapter}>{chapter_2}</div>
-        <div className={styles.chapter}>{chapter_3}</div>
-        <div className={styles.sandbox}>{sandbox}</div>
-        {/* <div className={styles.title_active}>{maxPage}</div> */}
+      <div className={styles.scrollCol}>
+        <div className={styles.container}>
+          <div className={styles.chapter}>{chapter_1}</div>
+          <div className={styles.chapter}>{chapter_2}</div>
+          <div className={styles.chapter}>{chapter_3}</div>
+          <div className={styles.sandbox}>{sandbox}</div>
+          {/* <div className={styles.title_active}>{maxPage}</div> */}
+        </div>
       </div>
     );
 };

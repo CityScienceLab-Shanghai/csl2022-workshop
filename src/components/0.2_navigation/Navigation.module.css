@@ -5,19 +5,25 @@
 
   position: absolute;
   top: 0px;
-  left: 0px;
+  left: -390px;
+
+  transition: left 0.5s;
+  transition-timing-function: ease-in-out;
 
   background: #121212;
   border: 1px solid #2c2c2c;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 8px;
   z-index: 1;
+  /* overflow: auto; */
+}
 
+.container:hover {
+  left: 0px;
 }
 
 .title {
   margin-right: 15px;
-
   font-family: "Inter";
   font-style: normal;
   font-weight: 900;
@@ -26,7 +32,7 @@
 
   text-align: right;
 
-  color: #ffffff;
+  color: #5b5b5b;
 }
 
 .title_active {
@@ -40,6 +46,49 @@
   text-align: right;
 
   color: #ffffff;
+  cursor: pointer;
+}
+
+.subtitle {
+  margin-right: 15px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  /* identical to box height, or 400% */
+
+  text-align: right;
+
+  color: #5b5b5b;
+}
+
+.subtitle_active {
+  margin-right: 15px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  /* identical to box height, or 400% */
+
+  text-align: right;
+
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.title_active:hover {
+  text-decoration: underline;
+}
+
+.subtitle_active:hover {
+  text-decoration: underline;
+}
+
+.circle {
+  margin-right: 23px;
+  transform: translate(50%, 0);
+
+  color: #5b5b5b;
 }
 
 .circle_active {
@@ -47,6 +96,7 @@
   transform: translate(50%, 0);
 
   color: #ffffff;
+  cursor: pointer;
 }
 
 .rowGroup {
@@ -59,12 +109,20 @@
 }
 
 .chapter {
-    margin-top: 56px;
+  margin-top: 56px;
 }
 
 .sandbox {
-    margin-top: 56px;
-    position: absolute;
-    bottom: 60px;
-    width: 100%;
+  margin-top: 56px;
+  position: absolute;
+  bottom: 60px;
+  width: 100%;
+}
+
+.scrollCol {
+  position: absolute;
+  height: 100%;
+  width: 450px;
+  overflow: auto;
+  overflow-x: hidden;
 }
