@@ -23,6 +23,7 @@ import TransitionPage from "./components/5.0_transition_page/TransitionPage";
 const App = () => {
   const { page } = stateStore;
 
+  // disable right click
   //   useEffect(() => {
   //     document.oncontextmenu = function (e) {
   //       // block right-click context menu
@@ -64,9 +65,14 @@ const App = () => {
     4: <StakeholderPage />,
     5: <VotingPage />,
     6: <IncentiveIntroPage />,
-    7: <EndowmentIntroPage />,
-    8: <TransitionPage />,
-    // 3: <IncentivePolicyIntroPage />,
+    7: <IncentiveIntroPage />,
+    8: <IncentiveIntroPage />,
+    9: <IncentiveIntroPage />,
+    10: <EndowmentIntroPage />,
+    11: <EndowmentIntroPage />,
+    12: <EndowmentIntroPage />,
+    13: <EndowmentIntroPage />,
+    14: <TransitionPage />,
     16: <Sandbox />,
     17: <CityMap />,
   };
