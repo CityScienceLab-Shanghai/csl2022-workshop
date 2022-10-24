@@ -19,7 +19,8 @@
 }
 
 .container:hover {
-  left: 0px;
+  /* left: 0px; */
+  left: -40px;
 }
 
 .title {
