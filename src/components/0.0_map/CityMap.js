@@ -116,8 +116,11 @@ export default function CityMap({ isVoting, isBuilding, buildingID }) {
 
   let getLineColor = (data) => {
     let opacity = 0;
-    if (data.properties.Category.toString().indexOf("624-4") == 0) {
-      return [255, 255, 0];
+    if (
+      isBuilding &&
+      data.properties.ind.toString().indexOf(buildingID.toString()) == 0
+    ) {
+      return [209, 66, 82];
     }
     return [0, 0, 0];
   };
@@ -157,6 +160,12 @@ export default function CityMap({ isVoting, isBuilding, buildingID }) {
   };
 
   let getFillColor = (data) => {
+    if (
+      isBuilding &&
+      data.properties.ind.toString().indexOf(buildingID.toString()) == 0
+    ) {
+      return [255, 255, 255];
+    }
     let _color_id = data.properties.type.toString();
     let _hex_color = CAT_COLOR[_color_id];
     return _hex_color.slice(1, 7).convertToRGB();
@@ -186,10 +195,7 @@ export default function CityMap({ isVoting, isBuilding, buildingID }) {
       //   getElevation: 2,
       getLineWidth: 1,
       lineWidthUnits: "meters",
-      getLineColor: [255, 255, 0],
 
-      //   getFillColor: [237, 129, 62],
-      //   getLineColor: [255, 255, 0],
       getFillColor: (f) => getFillColor(f),
       getLineColor: (f) => getLineColor(f),
       //   lineWidthUnits: "common",
@@ -197,6 +203,11 @@ export default function CityMap({ isVoting, isBuilding, buildingID }) {
       pickable: true,
       autoHighlight: true,
       highlightColor: [0, 0, 128, 128],
+
+      updateTriggers: {
+        getLineColor: [isBuilding],
+        getFillColor: [isBuilding],
+      },
     }),
   ];
 
@@ -206,9 +217,46 @@ export default function CityMap({ isVoting, isBuilding, buildingID }) {
 
   //   let displayWalkCircle = true;
   useEffect(() => {
+    // console.log(buildingID);
+
     if (isBuilding) {
       setLayers([
-        ...layers,
+        new PolygonLayer({
+          id: "ground",
+          data: landCover,
+          stroked: false,
+          getPolygon: (f) => f,
+          getFillColor: [0, 0, 0, 0],
+        }),
+        new GeoJsonLayer({
+          id: "geojson",
+          data: floor_data,
+          opacity: 0.8,
+          //   extruded: true,
+          pickable: true,
+          stroked: true,
+          filled: true,
+          wireframe: true,
+          lineWidthMinPixels: 2,
+          //   getElevation: f => Math.sqrt(f.properties.valuePerSqm) * 10,
+          //   getFillColor: f => COLOR_SCALE(f.properties.growth),
+          //   getElevation: 2,
+          getLineWidth: 1,
+          lineWidthUnits: "meters",
+
+          getFillColor: (f) => getFillColor(f),
+          getLineColor: (f) => getLineColor(f),
+          //   lineWidthUnits: "common",
+
+          pickable: true,
+          autoHighlight: true,
+          highlightColor: [0, 0, 128, 128],
+
+          updateTriggers: {
+            getLineColor: [isBuilding],
+            getFillColor: [isBuilding],
+          },
+        }),
         ...GetWalkCircle(
           _BUILDINGS[buildingID].coord[0],
           _BUILDINGS[buildingID].coord[1]
@@ -218,8 +266,8 @@ export default function CityMap({ isVoting, isBuilding, buildingID }) {
       setViewState({
         longitude: _BUILDINGS[buildingID].coord[0],
         latitude: _BUILDINGS[buildingID].coord[1],
-        zoom: 17,
-        pitch: 45,
+        zoom: 15,
+        pitch: 0,
         bearing: 0,
         transitionDuration: 1000,
         transitionInterpolator: new FlyToInterpolator(),
