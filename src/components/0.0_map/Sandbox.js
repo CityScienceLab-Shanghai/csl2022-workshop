@@ -326,6 +326,8 @@ const Sandbox = () => {
           )}
         </div>
       </div>
+
+      <img className={styles.logo} src={`/lablogo.png`} alt={""} />
     </div>
   );
 };
