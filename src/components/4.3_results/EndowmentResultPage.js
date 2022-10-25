@@ -33,7 +33,7 @@ const EndowmentResultPage = () => {
       </div>
 
       <CustomButton
-        buttonText="Next"
+        buttonText="Performance"
         positionStyle={styles.button}
         buttonOnclick={nextPage}
         colorIndex={0}

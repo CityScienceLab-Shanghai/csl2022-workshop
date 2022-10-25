@@ -40,7 +40,7 @@ const IncentiveVotingPage = () => {
         </div>
       </div>
       <CustomButton
-        buttonText="Submit"
+        buttonText="Performance"
         positionStyle={styles.button}
         buttonOnclick={nextPage}
         colorIndex={0}

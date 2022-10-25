@@ -13,7 +13,7 @@ const EndowmentIntroPage = () => {
       <img className={styles.content} src={`/content/4.1.png`} alt={""} />
 
       <CustomButton
-        buttonText="Next"
+        buttonText="Play"
         positionStyle={styles.button}
         buttonOnclick={nextPage}
         colorIndex={0}
