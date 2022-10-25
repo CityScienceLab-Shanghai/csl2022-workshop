@@ -26,9 +26,9 @@ for i in tqdm(range(len(load_json["features"]))):
 # amenities color
 color_mapping = {
     "Public Open Space": 1,
-    "Higher Education": 4,
+    "Higher Education": 2,
     "Education Residential": 26,
-    "Education": 4,
+    "Education": 2,
     "Residential": 26,
     "Utility": 5,
     "Mixed Use Residential": 26,
@@ -45,7 +45,7 @@ color_mapping = {
     "Government Operations": 5,
     "Industrial": 25,
     "Vacant Commercial": 9,
-    "Mixed Use Education": 4,
+    "Mixed Use Education": 2,
 }
 
 for i in tqdm(range(len(load_json["features"]))):
