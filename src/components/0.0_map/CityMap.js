@@ -4,8 +4,10 @@ import Map from "react-map-gl";
 
 import mapboxgl from "mapbox-gl";
 
-import DeckGL, { FlyToInterpolator } from "@deck.gl/react";
+import DeckGL from "@deck.gl/react";
+import { FlyToInterpolator } from "@deck.gl/core";
 import { GeoJsonLayer, PolygonLayer } from "@deck.gl/layers";
+
 import {
   LightingEffect,
   AmbientLight,
@@ -16,6 +18,7 @@ import {
 // import floor_data from "../data/map/bld_floors.json";
 import floor_data from "../../data/map/processed_bld_floors.json";
 import CAT_COLOR from "../../data/color/categorical_color_palette.json";
+import _BUILDINGS from "../../data/explorable_building.json";
 
 import GetCircle from "./GetCircle";
 import GetWalkCircle from "./GetWalkCircle";
@@ -39,19 +42,9 @@ const INITIAL_VIEW_STATE = {
   maxZoom: 22,
   pitch: 45,
   bearing: 0,
+  transitionDuration: 1000,
+  transitionInterpolator: new FlyToInterpolator(),
 };
-
-// const INITIAL_VIEW_STATE = {
-//     latitude: 49.254,
-//     longitude: -123.13,
-//     zoom: 11,
-//     maxZoom: 16,
-//     pitch: 45,
-//     bearing: 0
-//   };
-
-// const MAP_STYLE =
-//   "https://basemaps.cartocdn.com/gl/positron-nolabels-gl-style/style.json";
 
 const MAP_STYLE =
   "https://basemaps.cartocdn.com/gl/dark-matter-nolabels-gl-style/style.json";
@@ -104,7 +97,10 @@ const getTooltip = ({ object }) => {
 
 const catchError = (error) => console.log("catch error", error);
 
-export default function CityMap() {
+export default function CityMap({ isVoting, isBuilding, buildingID }) {
+  const [viewState, setViewState] = useState(INITIAL_VIEW_STATE);
+  const [layers, setLayers] = useState([]);
+
   useEffect(() => {
     document.body.style.overflow = "hidden";
     return () => {
@@ -162,12 +158,11 @@ export default function CityMap() {
 
   let getFillColor = (data) => {
     let _color_id = data.properties.type.toString();
-    console.log(_color_id);
     let _hex_color = CAT_COLOR[_color_id];
     return _hex_color.slice(1, 7).convertToRGB();
   };
 
-  const layers = [
+  const basicLayers = [
     // only needed when using shadows - a plane for shadows to drop on
     new PolygonLayer({
       id: "ground",
@@ -205,16 +200,41 @@ export default function CityMap() {
     }),
   ];
 
-  let displayWalkCircle = true;
-  if (displayWalkCircle) {
-    layers.push(...GetWalkCircle(-71.094054, 42.36347106));
-  }
+  useEffect(() => {
+    setLayers(basicLayers);
+  }, []);
+
+  //   let displayWalkCircle = true;
+  useEffect(() => {
+    if (isBuilding) {
+      setLayers([
+        ...layers,
+        ...GetWalkCircle(
+          _BUILDINGS[buildingID].coord[0],
+          _BUILDINGS[buildingID].coord[1]
+        ),
+      ]);
+
+      setViewState({
+        longitude: _BUILDINGS[buildingID].coord[0],
+        latitude: _BUILDINGS[buildingID].coord[1],
+        zoom: 17,
+        pitch: 45,
+        bearing: 0,
+        transitionDuration: 1000,
+        transitionInterpolator: new FlyToInterpolator(),
+      });
+    } else {
+      setViewState(INITIAL_VIEW_STATE);
+      setLayers(basicLayers);
+    }
+  }, [isBuilding]);
 
   return (
     <DeckGL
       layers={layers}
       effects={effects}
-      initialViewState={INITIAL_VIEW_STATE}
+      initialViewState={viewState}
       controller={true}
       getTooltip={getTooltip}
       onError={catchError}

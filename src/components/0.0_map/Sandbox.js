@@ -11,19 +11,279 @@ import BarChart from "../0.4_charts/BarCharts";
 import RadarChart from "../0.4_charts/RadarChart";
 import _BAR_DATA from "../../data/charts/bar_chart.json";
 import _RADAR_DATA from "../../data/charts/radar_chart.json";
+import _BUILDINGS from "../../data/explorable_building.json";
+import _AMENITIES_DATA from "../../data/amenities.json";
+import _COLOR from "../../data/color/categorical_color_palette.json";
 
 import CustomButton from "../0.1_buttons/CustomButton";
 
+import _CONTENT from "../../data/sandbox_card_content.json";
+
+import Slider from "rc-slider";
+import "rc-slider/assets/index.css";
+
 const Sandbox = () => {
+  const [isBuilding, setIsBuilding] = useState(false);
+  const [isVoting, setIsVoting] = useState(false);
+  const [isVoted, setIsVoted] = useState(false);
+  const [buildingID, setBuildingID] = useState(0);
+  const [votePolicy, setVotePolicy] = useState(true);
+
+  const [sliderIndex, setSliderIndex] = useState(0);
+
+  let button_set_1 = [];
+  let button_set_2 = [];
+  let selected_status = {};
+  for (var i = 0; i < 24; i++) selected_status[_AMENITIES_DATA[i].id] = false;
+
+  const [selected, setSelected] = useState(selected_status);
+  const [countSelected, setCountSelected] = useState(0);
+
+  if (_AMENITIES_DATA) {
+    for (var i = 0; i < 12; i++) {
+      button_set_1.push(
+        <CustomButton
+          key={_AMENITIES_DATA[i]["id"]}
+          index={_AMENITIES_DATA[i]["id"]}
+          buttonText={_AMENITIES_DATA[i].name}
+          positionStyle={styles.amen_button}
+          buttonOnclick={() => {}}
+          colorIndex={parseInt(_AMENITIES_DATA[i].id) + 1}
+          largeFont={false}
+          selectedColor={_COLOR[parseInt(_AMENITIES_DATA[i].id) + 1]}
+          selected={selected}
+          setSelected={setSelected}
+          countSelected={countSelected}
+          setCountSelected={setCountSelected}
+          isVoted={isVoted}
+        />
+      );
+    }
+    for (var i = 12; i < 24; i++) {
+      button_set_2.push(
+        <CustomButton
+          key={_AMENITIES_DATA[i]["id"]}
+          index={_AMENITIES_DATA[i]["id"]}
+          buttonText={_AMENITIES_DATA[i].name}
+          positionStyle={styles.amen_button}
+          buttonOnclick={() => {}}
+          colorIndex={parseInt(_AMENITIES_DATA[i].id) + 1}
+          largeFont={false}
+          selectedColor={_COLOR[parseInt(_AMENITIES_DATA[i].id) + 1]}
+          selected={selected}
+          setSelected={setSelected}
+          countSelected={countSelected}
+          setCountSelected={setCountSelected}
+          isVoted={isVoted}
+        />
+      );
+    }
+  }
+
+  const KendallInfoCard = () => (
+    <PanelCard
+      title="Site Information"
+      subTitle="Kendall Square"
+      content={_CONTENT["kendall"]}
+    />
+  );
+
+  const BuildingButtonCard = () => {
+    let buttonGroup = [];
+    const buildingList = Object.values(_BUILDINGS);
+    for (var i = 0; i < 2; i++) {
+      buttonGroup.push(
+        <CustomButton
+          key={buildingList[i].id}
+          buttonText={buildingList[i].name}
+          positionStyle={styles.inbox_button}
+          buttonOnclick={() => {}}
+          colorIndex={25}
+          largeFont={false}
+          building={buildingList[i].id}
+          setIsBuilding={setIsBuilding}
+          setBuildingID={setBuildingID}
+          setIsVoting={setIsVoting}
+        />
+      );
+    }
+    return (
+      <PanelCard
+        title="Explore"
+        subTitle="All Explorable Buildings"
+        content={<div className={styles.buttonGroup}>{buttonGroup}</div>}
+      />
+    );
+  };
+
+  const BuildingInfoCard = () => (
+    <PanelCard
+      title="Building Information"
+      subTitle={_BUILDINGS[buildingID].name}
+      content={_BUILDINGS[buildingID].content}
+    />
+  );
+
+  const BuildingVoteCard = () => {
+    let buttonGroup = [];
+    buttonGroup.push(
+      <CustomButton
+        key="1"
+        buttonText="Vote for Incentive Policy"
+        positionStyle={styles.inbox_button}
+        buttonOnclick={() => {
+          setIsVoting(true);
+          setVotePolicy(true);
+        }}
+        colorIndex={25}
+        largeFont={false}
+      />
+    );
+    buttonGroup.push(
+      <CustomButton
+        key="2"
+        buttonText="Vote for Endowment Usage"
+        positionStyle={styles.inbox_button}
+        buttonOnclick={() => {
+          setIsVoting(true);
+          setVotePolicy(false);
+        }}
+        colorIndex={25}
+        largeFont={false}
+      />
+    );
+    return (
+      <PanelCard
+        title="Explore"
+        subTitle="All Explorable Buildings"
+        content={<div className={styles.buttonGroup}>{buttonGroup}</div>}
+      />
+    );
+  };
+
+  const PolicyVoteCard = () => {
+    let content = (
+      <div className={styles.buttonGroup}>
+        <div className={styles.slider}>
+          <Slider
+            min={0}
+            max={10}
+            onChange={(value) => {
+              setSliderIndex(value);
+            }}
+          />
+        </div>
+        {isVoted ? (
+          <CustomButton
+            buttonText="Voted"
+            positionStyle={styles.inbox_button}
+            buttonOnclick={() => {}}
+            colorIndex={26}
+            largeFont={false}
+          />
+        ) : (
+          <CustomButton
+            buttonText="Submit"
+            positionStyle={styles.inbox_button}
+            buttonOnclick={() => {
+              setIsVoted(true);
+            }}
+            colorIndex={25}
+            largeFont={false}
+          />
+        )}
+      </div>
+    );
+
+    return (
+      <PanelCard
+        title="Incentive for Developers"
+        subTitle="Voting Panel"
+        content={content}
+      />
+    );
+  };
+
+  const EndowmentVoteCard = () => {
+    let content = (
+      <div>
+        <div className={styles.amen_list}>
+          {button_set_1}
+          {button_set_2}
+        </div>
+        {isVoted ? (
+          <CustomButton
+            buttonText="Voted"
+            positionStyle={styles.inbox_button}
+            buttonOnclick={() => {}}
+            colorIndex={26}
+            largeFont={false}
+          />
+        ) : (
+          <CustomButton
+            buttonText="Submit"
+            positionStyle={styles.inbox_button}
+            buttonOnclick={() => {
+              setIsVoted(true);
+            }}
+            colorIndex={25}
+            largeFont={false}
+          />
+        )}
+      </div>
+    );
+    return (
+      <PanelCard
+        title="Endowment Usage"
+        subTitle="Voting Panel"
+        content={<div className={styles.buttonGroup}>{content}</div>}
+      />
+    );
+  };
+
+  const PolicyResultCard = () => {
+    let content = <div></div>;
+    return (
+      <PanelCard
+        title="Incentive for Developers"
+        subTitle="Voting Result"
+        content={<div className={styles.buttonGroup}>{content}</div>}
+      />
+    );
+  };
+
+  const EndowmentResultCard = () => {
+    let content = <div></div>;
+    return (
+      <PanelCard
+        title="Endowment Usage"
+        subTitle="Voting Result"
+        content={<div className={styles.buttonGroup}>{content}</div>}
+      />
+    );
+  };
+
   return (
     <div>
-      <CityMap className={styles.visualization} />
+      <CityMap
+        className={styles.visualization}
+        isBuilding={isBuilding}
+        isVoting={isVoting}
+        buildingID={buildingID}
+      />
       <div
         className={`${styles.containerFluid} ${styles.h100} ${styles.w100} ${styles.flexRow}`}
       >
         <div className={`${styles.panelCol} ${styles.col3} ${styles.flexCol}`}>
           <TitleCard />
-          <PanelCard title="Indicators" subTitle="Urban Performance" />
+          {!isBuilding ? <KendallInfoCard /> : ""}
+          {!isBuilding ? <BuildingButtonCard /> : ""}
+          {isBuilding && !isVoting ? <BuildingInfoCard /> : ""}
+          {isBuilding && !isVoting ? <BuildingVoteCard /> : ""}
+          {isVoting && votePolicy ? <PolicyVoteCard /> : ""}
+          {isVoting && !votePolicy ? <EndowmentVoteCard /> : ""}
+          {isVoted && votePolicy ? <PolicyResultCard /> : ""}
+          {isVoted && !votePolicy ? <EndowmentResultCard /> : ""}
         </div>
         <div className={`${styles.col}`}></div>
         <div className={`${styles.outputCol} ${styles.col3} ${styles.flexCol}`}>
@@ -45,15 +305,25 @@ const Sandbox = () => {
               </div>
             }
           />
-          <div className={styles.button}>
-            <CustomButton
-              buttonText="Next"
-              positionStyle={styles.button}
-              buttonOnclick={() => {}}
-              colorIndex={25}
-              largeFont={true}
-            />
-          </div>
+          {isBuilding ? (
+            <div className={styles.button}>
+              <CustomButton
+                buttonText="Save and Leave"
+                positionStyle={styles.button}
+                buttonOnclick={() => {
+                  setIsBuilding(false);
+                  setIsVoting(false);
+                  setIsVoted(false);
+                  setSelected(selected_status);
+                  setCountSelected(0);
+                }}
+                colorIndex={25}
+                largeFont={true}
+              />
+            </div>
+          ) : (
+            ""
+          )}
         </div>
       </div>
     </div>

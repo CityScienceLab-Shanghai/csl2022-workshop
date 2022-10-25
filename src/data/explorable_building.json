@@ -1,0 +1,15 @@
+{
+  "624-4": {
+    "id": "624-4",
+    "coord": [-71.104143147066566, 42.364228188558464],
+    "name": "John Hancock Tower",
+    "content": "The John Hancock Center is a 100-story, 1,128-foot supertall skyscraper located in Chicago, Illinois. Located in the Magnificent Mile district, the building was officially renamed 875 North Michigan Avenue in 2018."
+  },
+
+  "710-9": {
+    "id": "710-9",
+    "coord": [-71.10711135942104, 42.359550359479798],
+    "name": "Millennium Tower",
+    "content": "Millennium Tower is a 60-story, 684-foot-tall residential skyscraper in Boston, Massachusetts, United States. Construction began in 2013 at the site of the former flagship store for Filene's in Downtown Crossing and was completed in 2016. As of 2022, it is the fifth tallest building in Boston."
+  }
+}

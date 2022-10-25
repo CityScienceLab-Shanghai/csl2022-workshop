@@ -28,6 +28,7 @@ const COLOR_STYLE = {
   23: styles.button_23,
   24: styles.button_24,
   25: styles.button_25,
+  26: styles.button_26,
 };
 
 const CustomButton = ({
@@ -37,25 +38,54 @@ const CustomButton = ({
   positionStyle,
   selected = undefined,
   setSelected = undefined,
+  countSelected = undefined,
+  setCountSelected = undefined,
   colorIndex = 0,
   largeFont = true,
   selectedColor = "white",
+  building = undefined,
+  setIsBuilding = undefined,
+  setBuildingID = undefined,
+  setIsVoting = undefined,
+  isVoted = undefined,
 }) => {
   useEffect(() => {}, []);
   let isSelected = selected && selected[index];
   let toggle =
     selected &&
     (() => {
-      setSelected({
-        ...selected,
-        [index]: !selected[index],
-      });
+      if (isVoted) return;
+      
+      if (selected[index]) {
+        setCountSelected(countSelected - 1);
+        setSelected({
+          ...selected,
+          [index]: !selected[index],
+        });
+      }
+      if (!selected[index] && countSelected < 3) {
+        setCountSelected(countSelected + 1);
+        setSelected({
+          ...selected,
+          [index]: !selected[index],
+        });
+      }
     });
+
+  let enterBuilding =
+    building &&
+    (() => {
+      setIsBuilding(true);
+      setBuildingID(building);
+    });
+
+  buttonOnclick = selected ? toggle : buttonOnclick;
+  buttonOnclick = building ? enterBuilding : buttonOnclick;
 
   return (
     <button
       className={`${styles.button} ${COLOR_STYLE[colorIndex]} ${positionStyle}`}
-      onClick={selected ? toggle : buttonOnclick}
+      onClick={buttonOnclick}
       style={isSelected ? { color: "white", background: selectedColor } : {}}
     >
       <div className={largeFont ? styles.largetext : styles.smalltext}>
