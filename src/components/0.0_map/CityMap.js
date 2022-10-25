@@ -82,10 +82,10 @@ const getTooltip = ({ object }) => {
   return (
     object && {
       html: `\
-  <div><b>ID:  </b>${object.properties.ind}</div>
-  <div><b>Floor:  </b>${object.properties.floor}</div>
   <div><b>Category:  </b>${object.properties.Category}</div>
   <div><b>Area:  </b>${object.properties.area.toFixed(2)} ft^2</div>
+  <div><b>Floor:  </b>${object.properties.floor}</div>
+  <div><b>ID:  </b>${object.properties.ind}</div>
   `,
       style: {
         background: "#121212",

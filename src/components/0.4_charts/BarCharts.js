@@ -3,7 +3,7 @@ import { ResponsiveBar } from "@nivo/bar";
 import styles from "./BarCharts.module.css";
 import * as d3 from "d3";
 
-const BarChart = ({ data, maxValue = 1 }) => {
+const BarChart = ({ data, maxValue = 1, horizontal = false }) => {
   const ref = useRef();
   let svg = d3.select(ref.current);
 
@@ -19,6 +19,7 @@ const BarChart = ({ data, maxValue = 1 }) => {
   return (
     <div ref={ref} style={{ width: "100%", height: "100%" }}>
       <ResponsiveBar
+        layout={horizontal ? "horizontal" : "vertical"}
         data={data}
         keys={["value"]}
         indexBy="type"
@@ -38,7 +39,8 @@ const BarChart = ({ data, maxValue = 1 }) => {
         axisRight={null}
         axisBottom={null}
         axisLeft={null}
-        enableGridY={true}
+        // enableGridY={true}
+        enableGridY={false}
         // axisBottom={{
         //   tickSize: 5,
         //   tickPadding: 5,
