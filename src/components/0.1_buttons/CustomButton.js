@@ -27,6 +27,7 @@ const COLOR_STYLE = {
   22: styles.button_22,
   23: styles.button_23,
   24: styles.button_24,
+  25: styles.button_25,
 };
 
 const CustomButton = ({

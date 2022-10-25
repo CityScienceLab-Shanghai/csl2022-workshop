@@ -12,6 +12,8 @@ import RadarChart from "../0.4_charts/RadarChart";
 import _BAR_DATA from "../../data/charts/bar_chart.json";
 import _RADAR_DATA from "../../data/charts/radar_chart.json";
 
+import CustomButton from "../0.1_buttons/CustomButton";
+
 const Sandbox = () => {
   return (
     <div>
@@ -43,6 +45,15 @@ const Sandbox = () => {
               </div>
             }
           />
+          <div className={styles.button}>
+            <CustomButton
+              buttonText="Next"
+              positionStyle={styles.button}
+              buttonOnclick={() => {}}
+              colorIndex={25}
+              largeFont={true}
+            />
+          </div>
         </div>
       </div>
     </div>

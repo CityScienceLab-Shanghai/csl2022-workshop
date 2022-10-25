@@ -26,7 +26,7 @@ const IndicatorCard = ({ title, subTitle, content }) => {
         <div className={styles.legend_1_text}>proposal</div>
         <div className={styles.legend_2_text}>baseline</div>
 
-        <div className={`${styles.contentTextSmall}`}>{content}</div>
+        <div className={`${styles.ind_contentTextSmall}`}>{content}</div>
       </div>
     </div>
   );
