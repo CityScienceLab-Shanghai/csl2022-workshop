@@ -9,14 +9,13 @@ import _COLOR from "../../data/color/categorical_color_palette.json";
 
 import { stateStore } from "../../stores";
 
-const IncentiveVotingPage = () => {
+const EndowmentVotingPage = () => {
   const { page, nextPage } = stateStore;
 
   let button_set = [];
   let selected_status = {};
   for (var i = 0; i < 24; i++) selected_status[_AMENITIES_DATA[i].id] = false;
 
-  const [index, setIndex] = useState(0);
   const [selected, setSelected] = useState(selected_status);
 
   if (_AMENITIES_DATA)
@@ -50,7 +49,7 @@ const IncentiveVotingPage = () => {
           </div>
         </div>
         <div style={{ marginTop: "62px", marginBottom: "92px" }}></div>
-        <IndicatorCard index={index} />
+        <IndicatorCard />
       </div>
       {button_set}
       <div className={styles.hint}>
@@ -67,4 +66,4 @@ const IncentiveVotingPage = () => {
   );
 };
 
-export default IncentiveVotingPage;
+export default EndowmentVotingPage;

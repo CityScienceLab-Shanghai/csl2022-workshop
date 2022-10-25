@@ -30,25 +30,32 @@ const COLOR_STYLE = {
 };
 
 const CustomButton = ({
+  index,
   buttonText,
   buttonOnclick,
   positionStyle,
+  selected = undefined,
+  setSelected = undefined,
   colorIndex = 0,
   largeFont = true,
-  isSelected = false,
-  selectedColor = "white"
+  selectedColor = "white",
 }) => {
   useEffect(() => {}, []);
+  let isSelected = selected && selected[index];
+  let toggle =
+    selected &&
+    (() => {
+      setSelected({
+        ...selected,
+        [index]: !selected[index],
+      });
+    });
 
   return (
     <button
       className={`${styles.button} ${COLOR_STYLE[colorIndex]} ${positionStyle}`}
-      onClick={buttonOnclick}
-      style={
-        isSelected
-          ? { color: "white", background: selectedColor }
-          : {}
-      }
+      onClick={selected ? toggle : buttonOnclick}
+      style={isSelected ? { color: "white", background: selectedColor } : {}}
     >
       <div className={largeFont ? styles.largetext : styles.smalltext}>
         {buttonText}

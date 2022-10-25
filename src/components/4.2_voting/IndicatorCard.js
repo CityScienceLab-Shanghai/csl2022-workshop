@@ -19,7 +19,7 @@ const DecoLine = () => (
   </svg>
 );
 
-const IndicatorCard = ({ index }) => {
+const IndicatorCard = ({}) => {
   return (
     <div className={styles.card}>
       <div className={styles.title}>Indicators</div>
@@ -36,7 +36,7 @@ const IndicatorCard = ({ index }) => {
         <div className={styles.h80}>
           <RadarChart data={_RADAR_DATA} />
         </div>
-        <div className={styles.chartName}>community endowment</div>
+        <div className={styles.chartName}>urban performance</div>
       </div>
       <div className={styles.bar}>
         <div className={styles.h80}>

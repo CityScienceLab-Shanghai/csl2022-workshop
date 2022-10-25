@@ -19,12 +19,12 @@ const DecoLine = () => (
   </svg>
 );
 
-const IndicatorCard = ({ index }) => {
+const IndicatorCard = ({}) => {
   return (
     <div className={styles.card}>
       <div className={styles.title}>Indicators</div>
       <div className={styles.hint}>
-        simulation that helps your decision to be more informative
+        comparison between the current practice and community DAO
       </div>
       <DecoLine />
       <div className={styles.legend_1}></div>
@@ -32,17 +32,6 @@ const IndicatorCard = ({ index }) => {
       <div className={styles.legend_1_text}>proposal</div>
       <div className={styles.legend_2_text}>baseline</div>
 
-      <div className={styles.shading}>
-        <div className={styles.h80}>
-          <img
-            className={styles.img}
-            src={`/building_rendered/${index}.png`}
-            alt={""}
-          />
-        </div>
-
-        <div className={styles.chartName}>shading</div>
-      </div>
       <div className={styles.radar}>
         <div className={styles.h80}>
           <RadarChart data={_RADAR_DATA} />

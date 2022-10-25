@@ -10,10 +10,30 @@ const EndowmentResultPage = () => {
 
   return (
     <>
-      <img className={styles.content} src={`/content/2.1.png`} alt={""} />
+      <div className={styles.container}>
+        <div className={styles.rowGroup} style={{ marginTop: "0px" }}>
+          <div className={styles.title}>Community Endowment Usage</div>
+        </div>
+        <div className={styles.rowGroup} style={{ marginTop: "30px" }}>
+          <div className={styles.description}>
+            Here are the choices every participant has made.
+          </div>
+        </div>
+        <div className={styles.rowGroup} style={{ marginTop: "15px" }}>
+          <div className={styles.description}>
+            However, this is not the final result. DAO voting is normally a
+            weighted voting, which means each participant may have different
+            voting power. Click on the toggle to see how that will affect the
+            result.
+          </div>
+        </div>
+        <div style={{ marginTop: "62px", marginBottom: "92px" }}>
+          {/* <IndicatorCard index={index} /> */}
+        </div>
+      </div>
 
       <CustomButton
-        buttonText="Play"
+        buttonText="Next"
         positionStyle={styles.button}
         buttonOnclick={nextPage}
         colorIndex={0}
