@@ -262,5 +262,27 @@
     "noise": 1,
     "density": 3,
     "traffic": 3
+  },
+  {
+    "id": 24,
+    "name": "Industry",
+    "type": "Industry",
+    "subtype": "Industry",
+    "cost": "1000",
+    "ROI": "60%",
+    "noise": 3,
+    "density": 2,
+    "traffic": 3
+  },
+  {
+    "id": 25,
+    "name": "Residential",
+    "type": "Residential",
+    "subtype": "Residential",
+    "cost": "1000",
+    "ROI": "60%",
+    "noise": 1,
+    "density": 2,
+    "traffic": 2
   }
 ]

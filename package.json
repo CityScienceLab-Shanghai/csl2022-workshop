@@ -10,6 +10,7 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "@turf/turf": "^6.5.0",
     "d3": "^7.6.1",
     "deck.gl": "^8.8.11",
     "mapbox-gl": "^2.10.0",

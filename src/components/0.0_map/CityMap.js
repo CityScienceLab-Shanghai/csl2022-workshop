@@ -15,6 +15,10 @@ import {
 
 // import floor_data from "../data/map/bld_floors.json";
 import floor_data from "../../data/map/processed_bld_floors.json";
+import CAT_COLOR from "../../data/color/categorical_color_palette.json";
+
+import GetCircle from "./GetCircle";
+import GetWalkCircle from "./GetWalkCircle";
 
 // @ts-ignore
 mapboxgl.workerClass =
@@ -81,8 +85,10 @@ const getTooltip = ({ object }) => {
   <div><b>ID:  </b>${object.properties.ind}</div>
   <div><b>Floor:  </b>${object.properties.floor}</div>
   <div><b>Category:  </b>${object.properties.Category}</div>
+  <div><b>Type:  </b>${object.properties.type.toString()}</div>
   <div><b>Area:  </b>${object.properties.area}</div>
-  <div><b>ID:  </b>${object.properties.ind.toString().indexOf("6")}</div>
+  <div><b>ID:  </b>${object.properties.ind.toString()}</div>
+  <div><b>ID has 6:  </b>${object.properties.ind.toString().indexOf("6")}</div>
   `,
     }
   );
@@ -106,7 +112,7 @@ export default function CityMap() {
 
   let getLineColor = (data) => {
     let opacity = 0;
-    if (data.properties.ind.toString().indexOf("624-4") == 0) {
+    if (data.properties.Category.toString().indexOf("624-4") == 0) {
       return [255, 255, 0];
     }
     return [0, 0, 0];
@@ -121,15 +127,36 @@ export default function CityMap() {
   //     return [255, 255, 255, opacity * 255];
   //   };
 
-  let getFillColor = (data) => {
-    let opacity = 0;
-    if (data.properties.ind.toString().indexOf("624-4") == 0) {
-      opacity = 0.2;
-      if (data.properties.floor < 4) opacity = 0.8;
-      //   return [237, 129, 62, opacity * 255]
-      return [255, 255, 255];
+  //   let getFillColor = (data) => {
+  //     let opacity = 0;
+  //     if (data.properties.ind.toString().indexOf("624-4") == 0) {
+  //       opacity = 0.2;
+  //       if (data.properties.floor < 4) opacity = 0.8;
+  //       //   return [237, 129, 62, opacity * 255]
+  //       return [255, 255, 255];
+  //     }
+  //     return [255, 255, 255];
+  //   };
+
+  String.prototype.convertToRGB = function () {
+    if (this.length != 6) {
+      throw "Only six-digit hex colors are allowed.";
     }
-    return [255, 255, 255];
+
+    var aRgbHex = this.match(/.{1,2}/g);
+    var aRgb = [
+      parseInt(aRgbHex[0], 16),
+      parseInt(aRgbHex[1], 16),
+      parseInt(aRgbHex[2], 16),
+    ];
+    return aRgb;
+  };
+
+  let getFillColor = (data) => {
+    let _color_id = data.properties.type.toString();
+    console.log(_color_id)
+    let _hex_color = CAT_COLOR[_color_id]
+    return _hex_color.slice(1, 7).convertToRGB();
   };
 
   const layers = [
@@ -169,6 +196,11 @@ export default function CityMap() {
       highlightColor: [0, 0, 128, 128],
     }),
   ];
+
+  let displayWalkCircle = true;
+  if (displayWalkCircle) {
+    layers.push(...GetWalkCircle(-71.094054, 42.36347106));
+  }
 
   return (
     <DeckGL
