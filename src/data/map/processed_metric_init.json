@@ -1,0 +1,74 @@
+{
+  "624-4": {
+    "id": "624-4",
+    "5min_count": {
+      "public open space": 1,
+      "Education": 2,
+      "Utility": 2,
+      "Commercial": 10,
+      "Office/R&D": 26,
+      "Health": 0,
+      "religious": 7,
+      "Industry": 0,
+      "Residential": 187
+    },
+    "10min_count": {
+      "public open space": 1,
+      "Education": 2,
+      "Utility": 17,
+      "Commercial": 11,
+      "Office/R&D": 33,
+      "Health": 0,
+      "religious": 19,
+      "Industry": 4,
+      "Residential": 636
+    },
+    "15min_count": {
+      "public open space": 1,
+      "Education": 19,
+      "Utility": 9,
+      "Commercial": 16,
+      "Office/R&D": 29,
+      "Health": 2,
+      "religious": 10,
+      "Industry": 2,
+      "Residential": 885
+    }
+  },
+  "710-9": {
+    "id": "710-9",
+    "5min_count": {
+      "public open space": 1,
+      "Education": 0,
+      "Utility": 1,
+      "Commercial": 2,
+      "Office/R&D": 10,
+      "Health": 0,
+      "religious": 1,
+      "Industry": 1,
+      "Residential": 301
+    },
+    "10min_count": {
+      "public open space": 1,
+      "Education": 10,
+      "Utility": 5,
+      "Commercial": 10,
+      "Office/R&D": 13,
+      "Health": 0,
+      "religious": 8,
+      "Industry": 3,
+      "Residential": 701
+    },
+    "15min_count": {
+      "public open space": 1,
+      "Education": 13,
+      "Utility": 12,
+      "Commercial": 20,
+      "Office/R&D": 47,
+      "Health": 0,
+      "religious": 12,
+      "Industry": 0,
+      "Residential": 471
+    }
+  }
+}
