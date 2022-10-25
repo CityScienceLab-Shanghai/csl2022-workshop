@@ -85,11 +85,19 @@ const getTooltip = ({ object }) => {
   <div><b>ID:  </b>${object.properties.ind}</div>
   <div><b>Floor:  </b>${object.properties.floor}</div>
   <div><b>Category:  </b>${object.properties.Category}</div>
-  <div><b>Type:  </b>${object.properties.type.toString()}</div>
-  <div><b>Area:  </b>${object.properties.area}</div>
-  <div><b>ID:  </b>${object.properties.ind.toString()}</div>
-  <div><b>ID has 6:  </b>${object.properties.ind.toString().indexOf("6")}</div>
+  <div><b>Area:  </b>${object.properties.area.toFixed(2)} ft^2</div>
   `,
+      style: {
+        background: "#121212",
+        border: "1px solid #2C2C2C",
+        boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+        borderRadius: "8px",
+        fontFamily: "Inter",
+        fontStyle: "normal",
+        fontWeight: "700",
+        fontSize: "12px",
+        color: "#FFFFFF",
+      },
     }
   );
 };
@@ -154,8 +162,8 @@ export default function CityMap() {
 
   let getFillColor = (data) => {
     let _color_id = data.properties.type.toString();
-    console.log(_color_id)
-    let _hex_color = CAT_COLOR[_color_id]
+    console.log(_color_id);
+    let _hex_color = CAT_COLOR[_color_id];
     return _hex_color.slice(1, 7).convertToRGB();
   };
 
@@ -177,7 +185,7 @@ export default function CityMap() {
       stroked: true,
       filled: true,
       wireframe: true,
-      lineWidthMinPixels: 3,
+      lineWidthMinPixels: 2,
       //   getElevation: f => Math.sqrt(f.properties.valuePerSqm) * 10,
       //   getFillColor: f => COLOR_SCALE(f.properties.growth),
       //   getElevation: 2,
