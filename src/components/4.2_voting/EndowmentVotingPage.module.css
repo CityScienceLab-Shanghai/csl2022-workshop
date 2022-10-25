@@ -85,8 +85,16 @@
   color: #ffffff;
 }
 
-
 .amen_button {
-    min-width: 190px;
-    min-height: 32px;
-  }
+  margin-top: 15px;
+  min-width: 190px;
+  min-height: 32px;
+}
+
+.amen_list {
+  margin-right: 40px;
+  margin-left: 20px;
+  margin-top: 15px;
+  width: 200px;
+  height: 100%;
+}
