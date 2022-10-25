@@ -5,27 +5,37 @@ import CustomButton from "../0.1_buttons/CustomButton";
 import IndicatorCard from "./IndicatorCard";
 
 import _AMENITIES_DATA from "../../data/amenities.json";
+import _COLOR from "../../data/color/categorical_color_palette.json";
 
 import { stateStore } from "../../stores";
 
 const IncentiveVotingPage = () => {
   const { page, nextPage } = stateStore;
 
-  const [index, setIndex] = useState(0);
-
   let button_set = [];
-  for (var i = 0; i < 24; i++) {
-    button_set.push(
-      <CustomButton
-        key={_AMENITIES_DATA[i].id}
-        buttonText={_AMENITIES_DATA[i].name}
-        positionStyle={styles.amen_button}
-        buttonOnclick={nextPage}
-        colorIndex={_AMENITIES_DATA[i].id + 1}
-        largeFont={false}
-      />
-    );
-  }
+  let selected_status = {};
+  for (var i = 0; i < 24; i++) selected_status[_AMENITIES_DATA[i].id] = false;
+
+  const [index, setIndex] = useState(0);
+  const [selected, setSelected] = useState(selected_status);
+
+  if (_AMENITIES_DATA)
+    for (var i = 0; i < 24; i++) {
+      button_set.push(
+        <CustomButton
+          key={_AMENITIES_DATA[i]["id"]}
+          index={_AMENITIES_DATA[i]["id"]}
+          buttonText={_AMENITIES_DATA[i].name}
+          positionStyle={styles.amen_button}
+          buttonOnclick={() => {}}
+          colorIndex={parseInt(_AMENITIES_DATA[i].id) + 1}
+          largeFont={false}
+          selectedColor={_COLOR[parseInt(_AMENITIES_DATA[i].id) + 1]}
+          selected={selected}
+          setSelected={setSelected}
+        />
+      );
+    }
 
   return (
     <>
