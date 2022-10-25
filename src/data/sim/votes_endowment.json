@@ -1,0 +1,216 @@
+{
+  "name": "DAO",
+  "color": "hsl(153, 70%, 50%)",
+  "children": [
+    {
+      "name": "public open space",
+      "color": "hsl(125, 70%, 50%)",
+      "children": [
+        {
+          "name": "public open space",
+          "color": "hsl(283, 70%, 50%)",
+          "children": [
+            {
+              "name": "0x01",
+              "color": "hsl(8, 70%, 50%)",
+              "ppl": 1,
+              "token": 20
+            },
+            {
+              "name": "0x03",
+              "color": "hsl(315, 70%, 50%)",
+              "ppl": 1,
+              "token": 50
+            },
+            {
+              "name": "0x05",
+              "color": "hsl(7, 70%, 50%)",
+              "ppl": 1,
+              "token": 130
+            },
+            {
+              "name": "0x02",
+              "color": "hsl(158, 70%, 50%)",
+              "ppl": 1,
+              "token": 99
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Education",
+      "color": "hsl(125, 70%, 50%)",
+      "children": [
+        {
+          "name": "daycare",
+          "color": "hsl(283, 70%, 50%)",
+          "children": [
+            {
+              "name": "0x01",
+              "color": "hsl(8, 70%, 50%)",
+              "ppl": 1,
+              "token": 200
+            },
+            {
+              "name": "0x03",
+              "color": "hsl(315, 70%, 50%)",
+              "ppl": 1,
+              "token": 50
+            }
+          ]
+        },
+        {
+          "name": "skill training",
+          "color": "hsl(283, 70%, 50%)",
+          "children": [
+            {
+              "name": "0x01",
+              "color": "hsl(8, 70%, 50%)",
+              "ppl": 1,
+              "token": 20
+            }
+          ]
+        },
+        {
+          "name": "library",
+          "color": "hsl(283, 70%, 50%)",
+          "children": [
+            {
+              "name": "0x01",
+              "color": "hsl(8, 70%, 50%)",
+              "ppl": 1,
+              "token": 20
+            },
+            {
+              "name": "0x03",
+              "color": "hsl(315, 70%, 50%)",
+              "ppl": 1,
+              "token": 30
+            },
+            {
+              "name": "0x05",
+              "color": "hsl(7, 70%, 50%)",
+              "ppl": 1,
+              "token": 40
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Utility",
+      "color": "hsl(125, 70%, 50%)",
+      "children": [
+        {
+          "name": "children’s welfare homes",
+          "color": "hsl(283, 70%, 50%)",
+          "children": [
+            {
+              "name": "0x01",
+              "color": "hsl(8, 70%, 50%)",
+              "ppl": 1,
+              "token": 200
+            }
+          ]
+        },
+        {
+          "name": "retirement home",
+          "color": "hsl(283, 70%, 50%)",
+          "children": [
+            {
+              "name": "0x01",
+              "color": "hsl(8, 70%, 50%)",
+              "ppl": 1,
+              "token": 20
+            }
+          ]
+        },
+        {
+          "name": "laundry",
+          "color": "hsl(283, 70%, 50%)",
+          "children": [
+            {
+              "name": "0x01",
+              "color": "hsl(8, 70%, 50%)",
+              "ppl": 1,
+              "token": 20
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Commercial",
+      "color": "hsl(125, 70%, 50%)",
+      "children": [
+        {
+          "name": "restaurant/bar",
+          "color": "hsl(283, 70%, 50%)",
+          "children": [
+            {
+              "name": "0x01",
+              "color": "hsl(8, 70%, 50%)",
+              "ppl": 1,
+              "token": 200
+            },
+            {
+              "name": "0x01",
+              "color": "hsl(8, 70%, 50%)",
+              "ppl": 1,
+              "token": 20
+            }
+          ]
+        },
+        {
+          "name": "beauty/hair salon",
+          "color": "hsl(283, 70%, 50%)",
+          "children": [
+            {
+              "name": "0x01",
+              "color": "hsl(8, 70%, 50%)",
+              "ppl": 1,
+              "token": 20
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Office/R&D",
+      "color": "hsl(125, 70%, 50%)",
+      "children": [
+        {
+          "name": "co-working spaces",
+          "color": "hsl(283, 70%, 50%)",
+          "children": [
+            {
+              "name": "0x09",
+              "color": "hsl(8, 70%, 50%)",
+              "ppl": 1,
+              "token": 30
+            },
+            {
+              "name": "0x11",
+              "color": "hsl(8, 70%, 50%)",
+              "ppl": 1,
+              "token": 150
+            }
+          ]
+        },
+        {
+          "name": "printing services",
+          "color": "hsl(283, 70%, 50%)",
+          "children": [
+            {
+              "name": "0x01",
+              "color": "hsl(8, 70%, 50%)",
+              "ppl": 1,
+              "token": 20
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
