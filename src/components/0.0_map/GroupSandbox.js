@@ -5,6 +5,7 @@ import styles from "./Sandbox.module.css";
 
 import TitleCard from "./TitleCard";
 import PanelCard from "./PanelCard";
+import VotingCard from "./VotingCard";
 import IndicatorCard from "./IndicatorCard";
 
 import BarChart from "../0.4_charts/BarCharts";
@@ -67,7 +68,7 @@ const GroupSandbox = () => {
           <div className={styles.costText}>
             {"Cost $" +
               _AMENITIES_DATA[i]["cost"] +
-              "  ROI " +
+              "\nROI " +
               _AMENITIES_DATA[i]["ROI"]}{" "}
           </div>
         </div>
@@ -115,87 +116,6 @@ const GroupSandbox = () => {
     console.log(barCharts);
   }, [selected]);
 
-  const KendallInfoCard = () => (
-    <PanelCard
-      title="Site Information"
-      subTitle="Kendall Square"
-      content={_CONTENT["kendall"]}
-    />
-  );
-
-  const BuildingButtonCard = () => {
-    let buttonGroup = [];
-    const buildingList = Object.values(_BUILDINGS);
-    for (var i = 0; i < 2; i++) {
-      buttonGroup.push(
-        <CustomButton
-          key={buildingList[i].id}
-          buttonText={buildingList[i].name}
-          positionStyle={styles.inbox_button}
-          buttonOnclick={() => {}}
-          colorIndex={25}
-          largeFont={false}
-          building={buildingList[i].id}
-          setIsBuilding={setIsBuilding}
-          setBuildingID={setBuildingID}
-          setIsVoting={setIsVoting}
-        />
-      );
-    }
-    return (
-      <PanelCard
-        title="Explore"
-        subTitle="All Explorable Buildings"
-        content={<div className={styles.buttonGroup}>{buttonGroup}</div>}
-      />
-    );
-  };
-
-  const BuildingInfoCard = () => (
-    <PanelCard
-      title="Building Information"
-      subTitle={_BUILDINGS[buildingID].name}
-      content={_BUILDINGS[buildingID].content}
-    />
-  );
-
-  const BuildingVoteCard = () => {
-    let buttonGroup = [];
-    buttonGroup.push(
-      <CustomButton
-        key="1"
-        buttonText="Vote for Incentive Policy"
-        positionStyle={styles.inbox_button}
-        buttonOnclick={() => {
-          setIsVoting(true);
-          setVotePolicy(true);
-        }}
-        colorIndex={25}
-        largeFont={false}
-      />
-    );
-    buttonGroup.push(
-      <CustomButton
-        key="2"
-        buttonText="Vote for Endowment Usage"
-        positionStyle={styles.inbox_button}
-        buttonOnclick={() => {
-          setIsVoting(true);
-          setVotePolicy(false);
-        }}
-        colorIndex={25}
-        largeFont={false}
-      />
-    );
-    return (
-      <PanelCard
-        title="Explore"
-        subTitle="All Explorable Buildings"
-        content={<div className={styles.buttonGroup}>{buttonGroup}</div>}
-      />
-    );
-  };
-
   const PolicyVoteCard = () => {
     let content = (
       <div className={styles.buttonGroup}>
@@ -212,7 +132,7 @@ const GroupSandbox = () => {
     );
 
     return (
-      <PanelCard
+      <VotingCard
         title="Incentive for Developers"
         subTitle="Voting Panel"
         content={content}
@@ -230,31 +150,9 @@ const GroupSandbox = () => {
       </div>
     );
     return (
-      <PanelCard
+      <VotingCard
         title="Endowment Usage"
         subTitle="Voting Panel"
-        content={<div className={styles.buttonGroup}>{content}</div>}
-      />
-    );
-  };
-
-  const PolicyResultCard = () => {
-    let content = <div></div>;
-    return (
-      <PanelCard
-        title="Incentive for Developers"
-        subTitle="Voting Result"
-        content={<div className={styles.buttonGroup}>{content}</div>}
-      />
-    );
-  };
-
-  const EndowmentResultCard = () => {
-    let content = <div></div>;
-    return (
-      <PanelCard
-        title="Endowment Usage"
-        subTitle="Voting Result"
         content={<div className={styles.buttonGroup}>{content}</div>}
       />
     );

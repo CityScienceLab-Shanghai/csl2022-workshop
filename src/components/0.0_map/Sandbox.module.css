@@ -104,6 +104,22 @@
   padding-right: 10px;
 }
 
+.votingBox {
+  box-sizing: border-box;
+
+  margin-top: 25px;
+
+  z-index: 2;
+
+  background: #121212;
+  border: 1px solid #2c2c2c;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+
+  pointer-events: auto;
+  padding-left: 10px;
+}
+
 .contentTextSmall {
   margin-right: 14px;
   margin-left: 14px;
@@ -268,7 +284,14 @@
 }
 
 .buttonGroup {
+  overflow-y: scroll;
+  overflow-x: hidden;
+
   width: 100%;
+  margin-top: 20px;
+  margin-bottom: 30px;
+
+  padding: 2px;
 }
 
 .inbox_button {
@@ -297,6 +320,8 @@
   font-weight: 400;
   font-size: 11px;
   margin-left: 7px;
+  color: white;
+  width: 80px;
 }
 
 .legend_1 {
@@ -396,4 +421,23 @@
   position: absolute;
   right: 17px;
   bottom: 10px;
+}
+
+/* Scrollbar */
+/* width */
+::-webkit-scrollbar {
+  width: 9px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: white;
+  /* border-radius: 7px; */
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  /* background: rgb(127, 255, 0); */
+  background: black;
+  outline: 2px solid white;
 }
