@@ -18,7 +18,7 @@ import {
 // import floor_data from "../data/map/bld_floors.json";
 import floor_data from "../../data/map/processed_bld_floors_small.json";
 import CAT_COLOR from "../../data/color/categorical_color_palette.json";
-import _BUILDINGS from "../../data/sandbox/explorable_building.json";
+import _BUILDINGS from "../../data/sandbox/explorable_building_simple.json";
 
 import GetCircle from "./GetCircle";
 import GetWalkCircle from "./GetWalkCircle";
@@ -42,7 +42,7 @@ const INITIAL_VIEW_STATE = {
   minZoom: 14.5,
   maxZoom: 22,
   pitch: 30,
-  bearing: 0,
+  bearing: -36,
   transitionDuration: 1000,
   transitionInterpolator: new FlyToInterpolator(),
 };
@@ -138,10 +138,13 @@ export default function KendallMap({ isVoting, isBuilding, buildingID }) {
   };
 
   let getFillColor = (data) => {
-    if (false) {
+    if (data.properties.ind.toString().indexOf("658-4") == 0) {
       return [255, 255, 255];
     }
-    if (false) return [68, 68, 68];
+    if (data.properties.ind.toString().indexOf("591-21") == 0) {
+      return [255, 255, 255];
+    }
+    if (true) return [128, 128, 128];
 
     let _color_id = data.properties.type.toString();
     let _hex_color = CAT_COLOR[_color_id];
