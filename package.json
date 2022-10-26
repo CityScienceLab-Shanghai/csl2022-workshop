@@ -1,5 +1,9 @@
 {
   "dependencies": {
+    "@deck.gl/core": "^8.8.14",
+    "@deck.gl/extensions": "^8.8.14",
+    "@deck.gl/layers": "^8.8.14",
+    "@deck.gl/react": "^8.8.14",
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
     "@mui/material": "^5.10.11",

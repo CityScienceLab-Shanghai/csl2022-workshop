@@ -7,6 +7,7 @@ import mapboxgl from "mapbox-gl";
 import DeckGL from "@deck.gl/react";
 import { FlyToInterpolator } from "@deck.gl/core";
 import { GeoJsonLayer, PolygonLayer } from "@deck.gl/layers";
+import { DataFilterExtension } from "@deck.gl/extensions";
 
 import {
   LightingEffect,
@@ -22,6 +23,8 @@ import _BUILDINGS from "../../data/sandbox/explorable_building_simple.json";
 
 import GetCircle from "./GetCircle";
 import GetWalkCircle from "./GetWalkCircle";
+
+import { stateStore } from "../../stores";
 
 // @ts-ignore
 mapboxgl.workerClass =
@@ -99,6 +102,16 @@ const getTooltip = ({ object }) => {
 const catchError = (error) => console.log("catch error", error);
 
 export default function KendallMap({ isVoting, isBuilding, buildingID }) {
+  const { simple_sandbox_slider_value_1, simple_sandbox_slider_value_2 } =
+    stateStore;
+
+  let _BUILDING_A = ["658-4"];
+  let _BUILDING_B = ["591-21"];
+  //   let current_h_A = 13;
+  //   let current_h_B = 17;
+  let current_h_A = 0;
+  let current_h_B = 0;
+
   const [viewState, setViewState] = useState(INITIAL_VIEW_STATE);
   const [layers, setLayers] = useState([]);
 
@@ -115,14 +128,6 @@ export default function KendallMap({ isVoting, isBuilding, buildingID }) {
     return [lightingEffect];
   });
 
-  let getLineColor = (data) => {
-    let opacity = 0;
-    if (false) {
-      return [209, 66, 82];
-    }
-    return [0, 0, 0];
-  };
-
   String.prototype.convertToRGB = function () {
     if (this.length != 6) {
       throw "Only six-digit hex colors are allowed.";
@@ -137,18 +142,69 @@ export default function KendallMap({ isVoting, isBuilding, buildingID }) {
     return aRgb;
   };
 
+  let getLineColor = (data) => {
+    if (data.properties.ind.toString().indexOf("658-4") == 0) {
+      let dao_line =
+        current_h_A + Math.ceil(0.3 * simple_sandbox_slider_value_1);
+      let dev_line = current_h_A;
+      if (data.properties.floor > dao_line) return [234, 76, 111];
+      if (data.properties.floor > dev_line) return [36, 83, 255];
+      return [0, 0, 0];
+    }
+    if (data.properties.ind.toString().indexOf("591-21") == 0) {
+      let dao_line =
+        current_h_B + Math.ceil(0.3 * simple_sandbox_slider_value_2);
+      let dev_line = current_h_B;
+      if (data.properties.floor > dao_line) return [234, 76, 111];
+      if (data.properties.floor > dev_line) return [36, 83, 255];
+      return [0, 0, 0];
+    }
+    return [0, 0, 0];
+  };
+
   let getFillColor = (data) => {
     if (data.properties.ind.toString().indexOf("658-4") == 0) {
+      let dao_line =
+        current_h_A + Math.ceil(0.3 * simple_sandbox_slider_value_1);
+      let dev_line = current_h_A;
+      if (data.properties.floor > dao_line) return [234, 76, 111, 0.5 * 255];
+      if (data.properties.floor > dev_line) return [36, 83, 255, 0.5 * 255];
       return [255, 255, 255];
     }
     if (data.properties.ind.toString().indexOf("591-21") == 0) {
+      let dao_line =
+        current_h_B + Math.ceil(0.3 * simple_sandbox_slider_value_2);
+      let dev_line = current_h_B;
+      if (data.properties.floor > dao_line) return [234, 76, 111, 0.5 * 255];
+      if (data.properties.floor > dev_line) return [36, 83, 255, 0.5 * 255];
       return [255, 255, 255];
     }
+    // grey
     if (true) return [128, 128, 128];
 
     let _color_id = data.properties.type.toString();
     let _hex_color = CAT_COLOR[_color_id];
     return _hex_color.slice(1, 7).convertToRGB();
+  };
+
+  let getPickable = (data) => {
+    return false;
+  };
+
+  let getAutoHighlight = (data) => {
+    return false;
+  };
+
+  let filterCheck = (data) => {
+    if (_BUILDING_A.includes(data.properties.bld)) {
+      if (data.properties.floor > current_h_A + simple_sandbox_slider_value_1)
+        return 0;
+    }
+    if (_BUILDING_B.includes(data.properties.bld)) {
+      if (data.properties.floor > current_h_B + simple_sandbox_slider_value_2)
+        return 0;
+    }
+    return 1;
   };
 
   const basicLayers = [
@@ -163,9 +219,9 @@ export default function KendallMap({ isVoting, isBuilding, buildingID }) {
     new GeoJsonLayer({
       id: "geojson",
       data: floor_data,
+      material: false,
       opacity: 0.8,
       //   extruded: true,
-      pickable: true,
       stroked: true,
       filled: true,
       wireframe: true,
@@ -176,17 +232,33 @@ export default function KendallMap({ isVoting, isBuilding, buildingID }) {
       getLineWidth: 1,
       lineWidthUnits: "meters",
 
+      pickable: true,
+      autoHighlight: true,
       getFillColor: (f) => getFillColor(f),
       getLineColor: (f) => getLineColor(f),
       //   lineWidthUnits: "common",
 
-      pickable: true,
-      autoHighlight: true,
+      getFilterValue: (f) => filterCheck(f),
+      filterRange: [1, 1],
+      extensions: [new DataFilterExtension({ filterSize: 1 })],
+
       highlightColor: [0, 0, 128, 128],
 
       updateTriggers: {
-        getLineColor: [isBuilding],
-        getFillColor: [isBuilding],
+        getLineColor: [
+          isBuilding,
+          simple_sandbox_slider_value_1,
+          simple_sandbox_slider_value_2,
+        ],
+        getFillColor: [
+          isBuilding,
+          simple_sandbox_slider_value_1,
+          simple_sandbox_slider_value_2,
+        ],
+        getFilterValue: [
+          simple_sandbox_slider_value_1,
+          simple_sandbox_slider_value_2,
+        ],
       },
     }),
   ];
@@ -257,6 +329,65 @@ export default function KendallMap({ isVoting, isBuilding, buildingID }) {
       setLayers(basicLayers);
     }
   }, [isBuilding]);
+
+  useEffect(() => {
+    // console.log(simple_sandbox_slider_value_1);
+
+    setLayers([
+      new PolygonLayer({
+        id: "ground",
+        data: landCover,
+        stroked: false,
+        getPolygon: (f) => f,
+        getFillColor: [0, 0, 0, 0],
+      }),
+      new GeoJsonLayer({
+        id: "geojson",
+        data: floor_data,
+        material: false,
+        opacity: 0.8,
+        //   extruded: true,
+        stroked: true,
+        filled: true,
+        wireframe: true,
+        lineWidthMinPixels: 2,
+        //   getElevation: f => Math.sqrt(f.properties.valuePerSqm) * 10,
+        //   getFillColor: f => COLOR_SCALE(f.properties.growth),
+        //   getElevation: 2,
+        getLineWidth: 1,
+        lineWidthUnits: "meters",
+
+        pickable: true,
+        autoHighlight: true,
+        getFillColor: (f) => getFillColor(f),
+        getLineColor: (f) => getLineColor(f),
+        //   lineWidthUnits: "common",
+
+        getFilterValue: (f) => filterCheck(f),
+        filterRange: [1, 1],
+        extensions: [new DataFilterExtension({ filterSize: 1 })],
+
+        highlightColor: [0, 0, 128, 128],
+
+        updateTriggers: {
+          getLineColor: [
+            isBuilding,
+            simple_sandbox_slider_value_1,
+            simple_sandbox_slider_value_2,
+          ],
+          getFillColor: [
+            isBuilding,
+            simple_sandbox_slider_value_1,
+            simple_sandbox_slider_value_2,
+          ],
+          getFilterValue: [
+            simple_sandbox_slider_value_1,
+            simple_sandbox_slider_value_2,
+          ],
+        },
+      }),
+    ]);
+  }, [simple_sandbox_slider_value_1, simple_sandbox_slider_value_2]);
 
   return (
     <DeckGL

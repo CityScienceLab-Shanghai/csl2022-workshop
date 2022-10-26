@@ -36,7 +36,7 @@ const GroupSandbox = () => {
 
   console.log("render");
 
-  const [radarCharts, setRadarCharts] = useState(_RADAR_DATA);
+//   const [radarCharts, setRadarCharts] = useState(_RADAR_DATA);
 
   let button_set_1 = [];
   let button_set_2 = [];
@@ -176,7 +176,7 @@ const GroupSandbox = () => {
             subTitle="Urban Performance"
             content={
               <div className={styles.radar}>
-                <RadarChart data={radarCharts} />
+                <RadarChart dataKey="ks" />
               </div>
             }
           />

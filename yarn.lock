@@ -1293,10 +1293,36 @@
     math.gl "^3.6.2"
     mjolnir.js "^2.7.0"
 
+"@deck.gl/core@^8.8.14":
+  version "8.8.14"
+  resolved "https://registry.yarnpkg.com/@deck.gl/core/-/core-8.8.14.tgz#d9995b6b1f926f71f000296763e523cf791ff4bd"
+  integrity sha512-sWunaQu6nZTB+q3wF7STe93SFlpiCQgeLdhbLFLPPLLc/DQlNVyFaildGRH2kH4J2eu5rKc3bbgPtTqm74Xtzg==
+  dependencies:
+    "@loaders.gl/core" "^3.2.5"
+    "@loaders.gl/images" "^3.2.5"
+    "@luma.gl/constants" "^8.5.16"
+    "@luma.gl/core" "^8.5.16"
+    "@math.gl/core" "^3.6.2"
+    "@math.gl/sun" "^3.6.2"
+    "@math.gl/web-mercator" "^3.6.2"
+    "@probe.gl/env" "^3.5.0"
+    "@probe.gl/log" "^3.5.0"
+    "@probe.gl/stats" "^3.5.0"
+    gl-matrix "^3.0.0"
+    math.gl "^3.6.2"
+    mjolnir.js "^2.7.0"
+
 "@deck.gl/extensions@8.8.12":
   version "8.8.12"
   resolved "https://registry.yarnpkg.com/@deck.gl/extensions/-/extensions-8.8.12.tgz#e2e53ddec9d86e1333cf86ddba364d65498e19ef"
   integrity sha512-DiInCSLaJ+4qzczRJxBApffYjMtdHT0d56o9K9IKKuP/vCAbuIv7+LgeEHrehspe6YQVjwkfzdVIAKbMwNsWfA==
+  dependencies:
+    "@luma.gl/shadertools" "^8.5.16"
+
+"@deck.gl/extensions@^8.8.14":
+  version "8.8.14"
+  resolved "https://registry.yarnpkg.com/@deck.gl/extensions/-/extensions-8.8.14.tgz#337dc3ea457c34be268512b3a375fe6ba25624c8"
+  integrity sha512-jG2MjPhMHA7I5CSTiYcyLy2jrFZ8pPB5rYQN6ab4UDocNYp279wJZ+XdaeLh5TstPqHkPCJZARZwutjlrFdlQA==
   dependencies:
     "@luma.gl/shadertools" "^8.5.16"
 
@@ -1348,6 +1374,20 @@
     "@math.gl/web-mercator" "^3.6.2"
     earcut "^2.0.6"
 
+"@deck.gl/layers@^8.8.14":
+  version "8.8.14"
+  resolved "https://registry.yarnpkg.com/@deck.gl/layers/-/layers-8.8.14.tgz#814b86a8657b6b5f88ba08035c2fabafea1b6a5f"
+  integrity sha512-ci0worwyNCpSS5SG0Q/GtS9PfH9rM1GHE1g69ee2faP9YmzIWnzja4zKV+5mrO56FBh66DiI+N6axxPqHilUgQ==
+  dependencies:
+    "@loaders.gl/images" "^3.2.5"
+    "@loaders.gl/schema" "^3.2.5"
+    "@luma.gl/constants" "^8.5.16"
+    "@mapbox/tiny-sdf" "^1.1.0"
+    "@math.gl/core" "^3.6.2"
+    "@math.gl/polygon" "^3.6.2"
+    "@math.gl/web-mercator" "^3.6.2"
+    earcut "^2.0.6"
+
 "@deck.gl/mapbox@8.8.12":
   version "8.8.12"
   resolved "https://registry.yarnpkg.com/@deck.gl/mapbox/-/mapbox-8.8.12.tgz#bca30dc4a7e5688a0ed7ca6eb6cc8c212b1ab7fe"
@@ -1369,6 +1409,11 @@
   version "8.8.12"
   resolved "https://registry.yarnpkg.com/@deck.gl/react/-/react-8.8.12.tgz#19aeb74901d413b132ae17a12c075a15d0c9c7df"
   integrity sha512-04eB6ksUdJYO1cl8Hmg47H1QDUkm81HFHqpmF/4lAuOrwwcrILlS2slbuQPUVvT68dB19W8yQe+3O5xaJZU1mA==
+
+"@deck.gl/react@^8.8.14":
+  version "8.8.14"
+  resolved "https://registry.yarnpkg.com/@deck.gl/react/-/react-8.8.14.tgz#a312b503071007d4e9009827198bea56450f5c77"
+  integrity sha512-sQ90hyXsZ6IDq7LpoavhVruFzwhHrDutVwlu2kKIPTVSdOnU4TAA9vYVvYIA9ZOfrS+U166u70tac6VBZG3YzQ==
 
 "@emotion/babel-plugin@^11.10.0":
   version "11.10.2"

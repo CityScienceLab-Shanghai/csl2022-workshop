@@ -2,6 +2,7 @@ import resso from "resso";
 
 import _INIT_BAR_DATA from "../data/charts/bar_chart.json";
 import _INIT_RADAR_DATA from "../data/charts/radar_chart.json";
+import _INIT_RADAR_DATA_SIMPLE from "../data/charts/radar_chart _simple.json";
 import _INIT_BLD from "../data/map/processed_metric_init.json";
 import _AMENITIES_DATA from "../data/sandbox/amenities.json";
 
@@ -26,7 +27,7 @@ const getBarCharts = (stateStore) => {
     bar_init[tracked_list[i]] = JSON.parse(JSON.stringify(_INIT_BAR_DATA));
   }
 
-  console.log(bar_init);
+//   console.log(bar_init);
   return bar_init;
 };
 
@@ -41,7 +42,7 @@ const getRadarCharts = (stateStore) => {
   let amenCount = getAmenCount();
   for (let i = 0; i < tracked_list.length; ++i) {
     // deepcopy
-    radar_init[tracked_list[i]] = JSON.parse(JSON.stringify(_INIT_RADAR_DATA));
+    radar_init[tracked_list[i]] = JSON.parse(JSON.stringify(_INIT_RADAR_DATA_SIMPLE));
     radar_init[tracked_list[i]][0]["Baseline"] = CalcNoise(
       amenCount[tracked_list[i]]
     );
@@ -57,15 +58,13 @@ const getRadarCharts = (stateStore) => {
     radar_init[tracked_list[i]][4]["Baseline"] = CalcNoise(
       amenCount[tracked_list[i]]
     );
-    radar_init[tracked_list[i]][5]["Baseline"] = CalcNoise(
-      amenCount[tracked_list[i]]
-    );
-    for (let j = 0; j < 6; ++j)
+
+    for (let j = 0; j < 5; ++j)
       radar_init[tracked_list[i]][j]["Proposal"] =
         radar_init[tracked_list[i]][j]["Baseline"];
   }
 
-  console.log(radar_init);
+//   console.log(radar_init);
   return radar_init;
 };
 

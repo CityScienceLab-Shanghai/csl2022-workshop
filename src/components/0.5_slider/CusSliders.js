@@ -60,7 +60,9 @@ const CusSliders = () => {
   const {
     selected,
     barCharts,
+    radarCharts,
     updateBarCharts,
+    setRadarCharts,
     simple_sandbox_slider_value_1,
     simple_sandbox_slider_value_2,
     set_simple_sandbox_slider_value_1,
@@ -81,6 +83,31 @@ const CusSliders = () => {
     });
 
     updateBarCharts("ks", 0, proposal);
+  }, [selected, simple_sandbox_slider_value_1, simple_sandbox_slider_value_2]);
+
+  useEffect(() => {
+    let newObj = JSON.parse(JSON.stringify(radarCharts["ks"]));
+
+    for (let i = 0; i < 5; ++i) {
+      newObj[i]["Proposal"] = newObj[i]["Baseline"];
+    }
+
+    let sunlightRedu =
+      (simple_sandbox_slider_value_1 + simple_sandbox_slider_value_2) * 2;
+
+    newObj[0]["Proposal"] = newObj[0]["Proposal"] - sunlightRedu;
+    newObj[1]["Proposal"] = newObj[1]["Proposal"] - sunlightRedu / 2;
+
+    Object.keys(selected).forEach(function (key) {
+      if (selected[key]) {
+        newObj[1]["Proposal"] = newObj[1]["Proposal"] + 10;
+        newObj[2]["Proposal"] = newObj[2]["Proposal"] + 5;
+        newObj[3]["Proposal"] = newObj[3]["Proposal"] + 3;
+        newObj[4]["Proposal"] = newObj[4]["Proposal"] + 7;
+      }
+    });
+
+    setRadarCharts("ks", newObj);
   }, [selected, simple_sandbox_slider_value_1, simple_sandbox_slider_value_2]);
 
   const valueLabelFormat = (value) => {

@@ -2,7 +2,11 @@ import React, { useEffect, useRef, useState } from "react";
 import { ResponsiveRadar } from "@nivo/radar";
 import * as d3 from "d3";
 
-const RadarChart = ({ data }) => {
+import { stateStore } from "../../stores";
+
+const RadarChart = ({ data, dataKey }) => {
+  const { radarCharts } = stateStore;
+
   const ref = useRef();
   let svg = d3.select(ref.current);
 
@@ -19,7 +23,7 @@ const RadarChart = ({ data }) => {
   return (
     <div ref={ref} style={{ width: "100%", height: "100%" }}>
       <ResponsiveRadar
-        data={data}
+        data={radarCharts["ks"]}
         keys={["Proposal", "Baseline"]}
         indexBy="IndicatorType"
         valueFormat=">-.2f"
