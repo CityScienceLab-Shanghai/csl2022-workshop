@@ -5,6 +5,7 @@ import "mapbox-gl/dist/mapbox-gl.css";
 
 import CityMap from "./components/0.0_map/CityMap";
 import Sandbox from "./components/0.0_map/Sandbox";
+import GroupSandbox from "./components/0.0_map/GroupSandbox";
 import Navigation from "./components/0.2_navigation/Navigation";
 import ResPage from "./components/0.3_resolution/ResPage";
 
@@ -65,7 +66,7 @@ const App = () => {
   }, [windowSize.width, windowSize.height]);
 
   const content = {
-    1: <Sandbox />,
+    1: <GroupSandbox />,
     // 1: <CoverPage />,
     2: <CurrentPracticePage />,
     3: <StructurePage />,

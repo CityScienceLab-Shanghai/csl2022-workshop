@@ -24,7 +24,7 @@ import "rc-slider/assets/index.css";
 
 import { stateStore } from "../../stores";
 
-const Sandbox = () => {
+const GroupSandbox = () => {
   const { radarCharts, barCharts, updateBarCharts } = stateStore;
 
   const [isBuilding, setIsBuilding] = useState(false);
@@ -208,25 +208,6 @@ const Sandbox = () => {
             }}
           />
         </div>
-        {isVoted ? (
-          <CustomButton
-            buttonText="Voted"
-            positionStyle={styles.inbox_button}
-            buttonOnclick={() => {}}
-            colorIndex={26}
-            largeFont={false}
-          />
-        ) : (
-          <CustomButton
-            buttonText="Submit"
-            positionStyle={styles.inbox_button}
-            buttonOnclick={() => {
-              setIsVoted(true);
-            }}
-            colorIndex={25}
-            largeFont={false}
-          />
-        )}
       </div>
     );
 
@@ -246,25 +227,6 @@ const Sandbox = () => {
           {button_set_1}
           {button_set_2}
         </div>
-        {isVoted ? (
-          <CustomButton
-            buttonText="Voted"
-            positionStyle={styles.inbox_button}
-            buttonOnclick={() => {}}
-            colorIndex={26}
-            largeFont={false}
-          />
-        ) : (
-          <CustomButton
-            buttonText="Submit"
-            positionStyle={styles.inbox_button}
-            buttonOnclick={() => {
-              setIsVoted(true);
-            }}
-            colorIndex={25}
-            largeFont={false}
-          />
-        )}
       </div>
     );
     return (
@@ -311,14 +273,8 @@ const Sandbox = () => {
       >
         <div className={`${styles.panelCol} ${styles.col3} ${styles.flexCol}`}>
           <TitleCard />
-          {!isBuilding ? <KendallInfoCard /> : ""}
-          {!isBuilding ? <BuildingButtonCard /> : ""}
-          {isBuilding && !isVoting ? <BuildingInfoCard /> : ""}
-          {isBuilding && !isVoting ? <BuildingVoteCard /> : ""}
-          {isVoting && votePolicy ? <PolicyVoteCard /> : ""}
-          {isVoting && !votePolicy ? <EndowmentVoteCard /> : ""}
-          {isVoted && votePolicy ? <PolicyResultCard /> : ""}
-          {isVoted && !votePolicy ? <EndowmentResultCard /> : ""}
+          <PolicyVoteCard />
+          <EndowmentVoteCard />
         </div>
         <div className={`${styles.col}`}></div>
         <div className={`${styles.outputCol} ${styles.col3} ${styles.flexCol}`}>
@@ -344,25 +300,6 @@ const Sandbox = () => {
               </div>
             }
           />
-          {isBuilding ? (
-            <div className={styles.button}>
-              <CustomButton
-                buttonText="Save and Leave"
-                positionStyle={styles.button}
-                buttonOnclick={() => {
-                  setIsBuilding(false);
-                  setIsVoting(false);
-                  setIsVoted(false);
-                  setSelected(selected_status);
-                  setCountSelected(0);
-                }}
-                colorIndex={25}
-                largeFont={true}
-              />
-            </div>
-          ) : (
-            ""
-          )}
         </div>
       </div>
 
@@ -371,4 +308,4 @@ const Sandbox = () => {
   );
 };
 
-export default Sandbox;
+export default GroupSandbox;

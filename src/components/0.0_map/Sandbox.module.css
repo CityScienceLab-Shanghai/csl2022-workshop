@@ -74,6 +74,7 @@
   box-sizing: border-box;
 
   height: 145px;
+  min-height: 145px;
   margin-top: 25px;
 
   z-index: 2;
