@@ -387,7 +387,7 @@
 .slider {
   margin-left: 5%;
   width: 300px;
-  height: 50px;
+  margin-top: 20px;
 
   font-family: "Inter";
   font-style: normal;
@@ -440,4 +440,31 @@
   /* background: rgb(127, 255, 0); */
   background: black;
   outline: 2px solid white;
+}
+
+.valueLabel {
+  margin-top: 3px;
+  background: #cecece !important;
+  border-radius: 2px !important;
+
+  font-family: "Inter" !important;
+  font-style: normal !important;
+  font-weight: 700 !important;
+  font-size: 10px !important;
+
+  color: rgba(0, 0, 0, 0.75) !important;
+
+  padding-top: 3px !important;
+  padding-right: 6px !important;
+  padding-bottom: 2px !important;
+  padding-left: 6px !important;
+}
+
+.sliderThumb {
+  background: #2f0f16 !important;
+  border: 1px solid #ea4c6f !important;
+  boxShadow: "#ebebeb 0 2px 2px",
+        "&:focus, &:hover, &$active": {
+            boxShadow: "#ccc 0 2px 3px 1px",
+        },
 }

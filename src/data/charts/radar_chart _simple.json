@@ -5,27 +5,22 @@
     "Proposal": 70
   },
   {
-    "IndicatorType": "noise",
-    "Baseline": 50,
-    "Proposal": 70
-  },
-  {
     "IndicatorType": "sunlight",
     "Baseline": 50,
     "Proposal": 70
   },
   {
-    "IndicatorType": "density",
+    "IndicatorType": "carbon neutralization",
     "Baseline": 50,
     "Proposal": 70
   },
   {
-    "IndicatorType": "proximity",
+    "IndicatorType": "walkability",
     "Baseline": 50,
     "Proposal": 70
   },
   {
-    "IndicatorType": "diveristy",
+    "IndicatorType": "equity",
     "Baseline": 50,
     "Proposal": 70
   }

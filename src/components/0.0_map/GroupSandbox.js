@@ -11,7 +11,8 @@ import IndicatorCard from "./IndicatorCard";
 import BarChart from "../0.4_charts/BarCharts";
 import RadarChart from "../0.4_charts/RadarChart";
 import _BAR_DATA from "../../data/charts/bar_chart.json";
-import _RADAR_DATA from "../../data/charts/radar_chart.json";
+// import _RADAR_DATA from "../../data/charts/radar_chart.json";
+import _RADAR_DATA from "../../data/charts/radar_chart _simple.json";
 import _BUILDINGS from "../../data/sandbox/explorable_building.json";
 import _AMENITIES_DATA from "../../data/sandbox/amenities.json";
 import _COLOR from "../../data/color/categorical_color_palette.json";
@@ -21,13 +22,12 @@ import CustomButton from "../0.1_buttons/CustomButton";
 
 import _CONTENT from "../../data/sandbox/sandbox_card_content.json";
 
-import Slider from "rc-slider";
-import "rc-slider/assets/index.css";
+import Slider from "@mui/material/Slider";
 
 import { stateStore } from "../../stores";
 
 const GroupSandbox = () => {
-  const { radarCharts, barCharts, updateBarCharts } = stateStore;
+  const { barCharts, updateBarCharts } = stateStore;
 
   const [isBuilding, setIsBuilding] = useState(false);
   const [isVoting, setIsVoting] = useState(false);
@@ -35,7 +35,11 @@ const GroupSandbox = () => {
   const [buildingID, setBuildingID] = useState(0);
   const [votePolicy, setVotePolicy] = useState(true);
 
-  const [sliderIndex, setSliderIndex] = useState(0);
+  //   const [sliderIndex, setSliderIndex] = useState(0);
+  const [value1, setValue1] = useState(0);
+  const [value2, setValue2] = useState(0);
+
+  const [radarCharts, setRadarCharts] = useState(_RADAR_DATA);
 
   let button_set_1 = [];
   let button_set_2 = [];
@@ -120,26 +124,65 @@ const GroupSandbox = () => {
     // console.log(barCharts["ks"][0]["value"]);
   }, [selected]);
 
-  const PolicyVoteCard = () => {
-    let content = (
+  const Sliders = () => {
+    const {
+      simple_sandbox_slider_value_1,
+      simple_sandbox_slider_value_2,
+      set_simple_sandbox_slider_value_1,
+      set_simple_sandbox_slider_value_2,
+    } = stateStore;
+
+    const valueLabelFormat = (value) => {
+      //   console.log(value.toString()+ ((value <= 1) ? "storey" : "stories"));
+      return value.toString() + (value <= 1 ? " storey" : " stories");
+    };
+
+    return (
       <div className={styles.buttonGroup}>
         <div className={styles.slider}>
           <Slider
             min={0}
             max={10}
-            onChange={(value) => {
-              setSliderIndex(value);
+            value={simple_sandbox_slider_value_1}
+            onChange={(event, newValue) => {
+              set_simple_sandbox_slider_value_1(newValue);
+            }}
+            step={1}
+            marks
+            valueLabelDisplay="on"
+            valueLabelFormat={valueLabelFormat}
+            slotProps={{
+              valueLabel: { className: styles.valueLabel },
+              thumb: { className: styles.sliderThumb },
+            }}
+          />
+          <Slider
+            min={0}
+            max={10}
+            value={simple_sandbox_slider_value_2}
+            onChange={(event, newValue) => {
+              set_simple_sandbox_slider_value_2(newValue);
+            }}
+            step={1}
+            marks
+            valueLabelDisplay="on"
+            valueLabelFormat={valueLabelFormat}
+            slotProps={{
+              valueLabel: { className: styles.valueLabel },
+              thumb: { className: styles.sliderThumb },
             }}
           />
         </div>
       </div>
     );
+  };
 
+  const PolicyVoteCard = () => {
     return (
       <VotingCard
         title="Incentive for Developers"
         subTitle="Voting Panel"
-        content={content}
+        content={<Sliders />}
       />
     );
   };
@@ -164,12 +207,12 @@ const GroupSandbox = () => {
 
   return (
     <div>
-      <CityMap
+      {/* <CityMap
         className={styles.visualization}
         isBuilding={isBuilding}
         isVoting={isVoting}
         buildingID={buildingID}
-      />
+      /> */}
       <div
         className={`${styles.containerFluid} ${styles.h100} ${styles.w100} ${styles.flexRow}`}
       >
@@ -194,11 +237,7 @@ const GroupSandbox = () => {
             subTitle="Urban Performance"
             content={
               <div className={styles.radar}>
-                <RadarChart
-                  data={
-                    isBuilding ? radarCharts[buildingID] : radarCharts["ks"]
-                  }
-                />
+                <RadarChart data={radarCharts} />
               </div>
             }
           />
