@@ -1,0 +1,32 @@
+[
+  {
+    "IndicatorType": "traffic",
+    "Baseline": 50,
+    "Proposal": 70
+  },
+  {
+    "IndicatorType": "noise",
+    "Baseline": 50,
+    "Proposal": 70
+  },
+  {
+    "IndicatorType": "sunlight",
+    "Baseline": 50,
+    "Proposal": 70
+  },
+  {
+    "IndicatorType": "density",
+    "Baseline": 50,
+    "Proposal": 70
+  },
+  {
+    "IndicatorType": "proximity",
+    "Baseline": 50,
+    "Proposal": 70
+  },
+  {
+    "IndicatorType": "diveristy",
+    "Baseline": 50,
+    "Proposal": 70
+  }
+]

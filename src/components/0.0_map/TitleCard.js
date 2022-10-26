@@ -22,8 +22,8 @@ const TitleCard = () => {
               d="M8 11L4 7L8 3"
               stroke="#EA4C6F"
               strokeWidth="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
           </svg>
         </div>
