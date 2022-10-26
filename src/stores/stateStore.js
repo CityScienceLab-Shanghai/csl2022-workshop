@@ -111,7 +111,9 @@ export const stateStore = resso({
     stateStore.radarCharts[key] = value;
   },
   updateBarCharts: (key, type, value) => {
-    stateStore.barCharts[key][type]["value"] = value;
+    let newObj = stateStore.barCharts;
+    newObj[key][type]["value"] = value;
+    stateStore.barCharts = JSON.parse(JSON.stringify(newObj));
   },
   updateAmenCount: (key, range, type, variation) => {
     stateStore.amenCount[key][range][type] += variation;

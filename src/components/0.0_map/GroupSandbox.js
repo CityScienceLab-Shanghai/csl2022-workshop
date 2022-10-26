@@ -113,7 +113,8 @@ const GroupSandbox = () => {
     });
 
     updateBarCharts("ks", 0, proposal);
-    console.log(barCharts);
+    // console.log(proposal);
+    // console.log(barCharts["ks"][0]["value"]);
   }, [selected]);
 
   const PolicyVoteCard = () => {
