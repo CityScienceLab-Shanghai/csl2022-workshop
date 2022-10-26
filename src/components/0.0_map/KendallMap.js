@@ -17,7 +17,9 @@ import {
 // import { scaleThreshold } from "d3-scale";
 
 // import floor_data from "../data/map/bld_floors.json";
-import floor_data from "../../data/map/processed_bld_floors_small.json";
+// import floor_data from "../../data/map/processed_bld_floors_small.json";
+import floor_data from "../../data/map/processed_bld_floors_small_more_floor.json";
+
 import CAT_COLOR from "../../data/color/categorical_color_palette.json";
 import _BUILDINGS from "../../data/sandbox/explorable_building_simple.json";
 
@@ -107,10 +109,10 @@ export default function KendallMap({ isVoting, isBuilding, buildingID }) {
 
   let _BUILDING_A = ["658-4"];
   let _BUILDING_B = ["591-21"];
-  //   let current_h_A = 13;
-  //   let current_h_B = 17;
-  let current_h_A = 0;
-  let current_h_B = 0;
+    let current_h_A = 13;
+    let current_h_B = 17;
+//   let current_h_A = 0;
+//   let current_h_B = 0;
 
   const [viewState, setViewState] = useState(INITIAL_VIEW_STATE);
   const [layers, setLayers] = useState([]);
