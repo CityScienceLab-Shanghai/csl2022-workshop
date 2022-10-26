@@ -16,7 +16,7 @@ import {
 // import { scaleThreshold } from "d3-scale";
 
 // import floor_data from "../data/map/bld_floors.json";
-import floor_data from "../../data/map/processed_bld_floors.json";
+import floor_data from "../../data/map/processed_bld_floors_small.json";
 import CAT_COLOR from "../../data/color/categorical_color_palette.json";
 import _BUILDINGS from "../../data/sandbox/explorable_building.json";
 
@@ -36,11 +36,12 @@ export const MAPBOX_TOKEN =
   "pk.eyJ1IjoiamFqYW1vYSIsImEiOiJjbDhzeDI4aHgwMXh6M3hrbmVxbG9vcDlyIn0.cdD4-PP7QcxegAsxlhC3mA";
 
 const INITIAL_VIEW_STATE = {
-  latitude: 42.36347106,
-  longitude: -71.094054,
-  zoom: 15,
+  latitude: 42.36299487835801,
+  longitude: -71.08780013311475,
+  zoom: 15.5,
+  minZoom: 14.5,
   maxZoom: 22,
-  pitch: 45,
+  pitch: 30,
   bearing: 0,
   transitionDuration: 1000,
   transitionInterpolator: new FlyToInterpolator(),
@@ -116,34 +117,11 @@ export default function KendallMap({ isVoting, isBuilding, buildingID }) {
 
   let getLineColor = (data) => {
     let opacity = 0;
-    if (
-      isBuilding &&
-      data.properties.ind.toString().indexOf(buildingID.toString()) == 0
-    ) {
+    if (false) {
       return [209, 66, 82];
     }
     return [0, 0, 0];
   };
-
-  //   let getFillColor = (data) => {
-  //     let opacity = 0;
-  //     if (data.properties.ind.toString().indexOf("624-4") == 0) {
-  //       opacity = 0.2;
-  //       if (data.properties.floor < 4) opacity = 0.8;
-  //     }
-  //     return [255, 255, 255, opacity * 255];
-  //   };
-
-  //   let getFillColor = (data) => {
-  //     let opacity = 0;
-  //     if (data.properties.ind.toString().indexOf("624-4") == 0) {
-  //       opacity = 0.2;
-  //       if (data.properties.floor < 4) opacity = 0.8;
-  //       //   return [237, 129, 62, opacity * 255]
-  //       return [255, 255, 255];
-  //     }
-  //     return [255, 255, 255];
-  //   };
 
   String.prototype.convertToRGB = function () {
     if (this.length != 6) {
@@ -160,12 +138,11 @@ export default function KendallMap({ isVoting, isBuilding, buildingID }) {
   };
 
   let getFillColor = (data) => {
-    if (
-      isBuilding &&
-      data.properties.ind.toString().indexOf(buildingID.toString()) == 0
-    ) {
+    if (false) {
       return [255, 255, 255];
     }
+    if (false) return [68, 68, 68];
+
     let _color_id = data.properties.type.toString();
     let _hex_color = CAT_COLOR[_color_id];
     return _hex_color.slice(1, 7).convertToRGB();

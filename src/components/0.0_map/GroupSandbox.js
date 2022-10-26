@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
-import CityMap from "./CityMap";
+
+// import CityMap from "./CityMap";
+import KendallMap from "./KendallMap"
 
 import styles from "./Sandbox.module.css";
 
@@ -186,7 +188,7 @@ const GroupSandbox = () => {
     };
 
     return (
-      <div >
+      <div>
         <div className={styles.sliderBox}>
           <div className={styles.sliderItemText}>Building A</div>
           <div className={styles.sliderItem}>
@@ -253,12 +255,12 @@ const GroupSandbox = () => {
 
   return (
     <div>
-      {/* <CityMap
+      <KendallMap
         className={styles.visualization}
         isBuilding={isBuilding}
         isVoting={isVoting}
         buildingID={buildingID}
-      /> */}
+      />
       <div
         className={`${styles.containerFluid} ${styles.h100} ${styles.w100} ${styles.flexRow}`}
       >
