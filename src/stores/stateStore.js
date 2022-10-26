@@ -105,10 +105,14 @@ export const stateStore = resso({
   barCharts: getBarCharts(),
   radarCharts: getRadarCharts(),
   setBarCharts: (key, value) => {
-    stateStore.barCharts[key] = value;
+    let newObj = stateStore.barCharts;
+    newObj[key] = value;
+    stateStore.barCharts = JSON.parse(JSON.stringify(newObj));
   },
   setRadarCharts: (key, value) => {
-    stateStore.radarCharts[key] = value;
+    let newObj = stateStore.radarCharts;
+    newObj[key] = value;
+    stateStore.radarCharts = JSON.parse(JSON.stringify(newObj));
   },
   updateBarCharts: (key, type, value) => {
     let newObj = stateStore.barCharts;
@@ -116,24 +120,21 @@ export const stateStore = resso({
     stateStore.barCharts = JSON.parse(JSON.stringify(newObj));
   },
   updateAmenCount: (key, range, type, variation) => {
-    stateStore.amenCount[key][range][type] += variation;
-    stateStore.radarCharts[key][0]["Proposal"] = CalcNoise(
-      stateStore.amenCount[key]
-    );
-    stateStore.radarCharts[key][1]["Proposal"] = CalcNoise(
-      stateStore.amenCount[key]
-    );
-    stateStore.radarCharts[key][2]["Proposal"] = CalcNoise(
-      stateStore.amenCount[key]
-    );
-    stateStore.radarCharts[key][3]["Proposal"] = CalcNoise(
-      stateStore.amenCount[key]
-    );
-    stateStore.radarCharts[key][4]["Proposal"] = CalcNoise(
-      stateStore.amenCount[key]
-    );
-    stateStore.radarCharts[key][5]["Proposal"] = CalcNoise(
-      stateStore.amenCount[key]
-    );
+    let newObj = stateStore.amenCount;
+    newObj[key][range][type] += variation;
+    stateStore.amenCount = JSON.parse(JSON.stringify(newObj));
+    stateStore.refreshRadarChart(key);
+  },
+  refreshRadarChart: (key) => {
+    let newObj = stateStore.radarCharts;
+
+    newObj[key][0]["Proposal"] = CalcNoise(stateStore.amenCount[key]);
+    newObj[key][1]["Proposal"] = CalcNoise(stateStore.amenCount[key]);
+    newObj[key][2]["Proposal"] = CalcNoise(stateStore.amenCount[key]);
+    newObj[key][3]["Proposal"] = CalcNoise(stateStore.amenCount[key]);
+    newObj[key][4]["Proposal"] = CalcNoise(stateStore.amenCount[key]);
+    newObj[key][5]["Proposal"] = CalcNoise(stateStore.amenCount[key]);
+
+    stateStore.radarCharts = JSON.parse(JSON.stringify(newObj));
   },
 });
