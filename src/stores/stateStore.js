@@ -3,8 +3,15 @@ import resso from "resso";
 import _INIT_BAR_DATA from "../data/charts/bar_chart.json";
 import _INIT_RADAR_DATA from "../data/charts/radar_chart.json";
 import _INIT_BLD from "../data/map/processed_metric_init.json";
+import _AMENITIES_DATA from "../data/sandbox/amenities.json";
 
 import CalcNoise from "../simulation/CalcNoise";
+
+const getSelected = () => {
+  let selected_status = {};
+  for (var i = 0; i < 24; i++) selected_status[_AMENITIES_DATA[i].id] = false;
+  return selected_status;
+};
 
 const getBarCharts = (stateStore) => {
   let bar_init = {};
@@ -144,5 +151,18 @@ export const stateStore = resso({
   },
   set_simple_sandbox_slider_value_2: (value) => {
     stateStore.simple_sandbox_slider_value_2 = value;
+  },
+  selected: getSelected(),
+  setSelected: (value) => {
+    stateStore.selected = value;
+  },
+  updateSelected: (index, value) => {
+    let newObj = stateStore.selected;
+    newObj[index] = !newObj[index];
+    stateStore.selected = JSON.parse(JSON.stringify(newObj));
+  },
+  countSelected: 0,
+  setCountSelected: (value) => {
+    stateStore.countSelected = value;
   },
 });

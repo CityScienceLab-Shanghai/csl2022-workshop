@@ -7,6 +7,8 @@ import { styled } from "@mui/material/styles";
 
 import { stateStore } from "../../stores";
 
+import _AMENITIES_DATA from "../../data/sandbox/amenities.json";
+
 const CustomSlider = styled(Slider)(({ theme }) => ({
   color: "#EA4C6F",
   height: 3,
@@ -56,6 +58,7 @@ const CustomSlider = styled(Slider)(({ theme }) => ({
 
 const CusSliders = () => {
   const {
+    selected,
     barCharts,
     updateBarCharts,
     simple_sandbox_slider_value_1,
@@ -72,12 +75,13 @@ const CusSliders = () => {
       (simple_sandbox_slider_value_1 + simple_sandbox_slider_value_2) *
       _PRICE_FLOOR;
 
-    // Object.keys(selected).forEach(function (key) {
-    //   // if (selected[key]) proposal -= parseInt(_AMENITIES_DATA[key]["cost"])
-    //   if (selected[key]) proposal -= parseInt(_AMENITIES_DATA[key]["cost"]) + 1;
-    // });
+    Object.keys(selected).forEach(function (key) {
+      // if (selected[key]) proposal -= parseInt(_AMENITIES_DATA[key]["cost"])
+      if (selected[key]) proposal -= parseInt(_AMENITIES_DATA[key]["cost"]) + 1;
+    });
+
     updateBarCharts("ks", 0, proposal);
-  }, [simple_sandbox_slider_value_1, simple_sandbox_slider_value_2]);
+  }, [selected, simple_sandbox_slider_value_1, simple_sandbox_slider_value_2]);
 
   const valueLabelFormat = (value) => {
     //   console.log(value.toString()+ ((value <= 1) ? "storey" : "stories"));

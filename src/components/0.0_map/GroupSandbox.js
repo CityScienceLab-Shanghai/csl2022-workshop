@@ -40,12 +40,10 @@ const GroupSandbox = () => {
 
   let button_set_1 = [];
   let button_set_2 = [];
-  let selected_status = {};
-  for (var i = 0; i < 24; i++) selected_status[_AMENITIES_DATA[i].id] = false;
 
-  const [selected, setSelected] = useState(selected_status);
-  const [selectedResult, setSelectedResult] = useState(selected_status);
-  const [countSelected, setCountSelected] = useState(0);
+
+//   const [selected, setSelected] = useState(selected_status);
+//   const [countSelected, setCountSelected] = useState(0);
 
 //   useEffect(() => {
 //     let proposal = barCharts["ks"][0]["value"];
@@ -71,10 +69,10 @@ const GroupSandbox = () => {
               colorIndex={parseInt(_AMENITIES_DATA[i].id) + 1}
               largeFont={false}
               selectedColor={_COLOR[parseInt(_AMENITIES_DATA[i].id) + 1]}
-              selected={selected}
-              setSelected={setSelected}
-              countSelected={countSelected}
-              setCountSelected={setCountSelected}
+            //   selected={selected}
+            //   setSelected={setSelected}
+            //   countSelected={countSelected}
+            //   setCountSelected={setCountSelected}
               isVoted={isVoted}
               capacity={3}
             />
@@ -100,10 +98,10 @@ const GroupSandbox = () => {
               colorIndex={parseInt(_AMENITIES_DATA[i].id) + 1}
               largeFont={false}
               selectedColor={_COLOR[parseInt(_AMENITIES_DATA[i].id) + 1]}
-              selected={selected}
-              setSelected={setSelected}
-              countSelected={countSelected}
-              setCountSelected={setCountSelected}
+            //   selected={selected}
+            //   setSelected={setSelected}
+            //   countSelected={countSelected}
+            //   setCountSelected={setCountSelected}
               isVoted={isVoted}
               capacity={3}
             />

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import styles from "./CustomButton.module.css";
 
+import { stateStore } from "../../stores";
+
 const COLOR_STYLE = {
   0: styles.button_0,
   1: styles.button_1,
@@ -36,10 +38,10 @@ const CustomButton = ({
   buttonText,
   buttonOnclick,
   positionStyle,
-  selected = undefined,
-  setSelected = undefined,
-  countSelected = undefined,
-  setCountSelected = undefined,
+  //   selected = undefined,
+  //   setSelected = undefined,
+  //   countSelected = undefined,
+  //   setCountSelected = undefined,
   colorIndex = 0,
   largeFont = true,
   selectedColor = "white",
@@ -50,6 +52,9 @@ const CustomButton = ({
   isVoted = undefined,
   capacity = 3,
 }) => {
+  const { selected, updateSelected, countSelected, setCountSelected } =
+    stateStore;
+
   useEffect(() => {}, []);
   let isSelected = selected && selected[index];
   let toggle =
@@ -59,17 +64,10 @@ const CustomButton = ({
 
       if (selected[index]) {
         setCountSelected(countSelected - 1);
-        setSelected({
-          ...selected,
-          [index]: !selected[index],
-        });
-      }
-      if (!selected[index] && countSelected < capacity) {
+        updateSelected(index);
+      } else if (!selected[index] && countSelected < capacity) {
         setCountSelected(countSelected + 1);
-        setSelected({
-          ...selected,
-          [index]: !selected[index],
-        });
+        updateSelected(index);
       }
     });
 
