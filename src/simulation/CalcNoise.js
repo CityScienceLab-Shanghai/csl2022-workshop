@@ -1,5 +1,5 @@
 import _LOOKUP from "../data/sim/amen_lookup.json";
-import _AMEN_DATA from "../data/amenities.json";
+import _AMEN_DATA from "../data/sandbox/amenities.json";
 
 const getNoise = (count) => {
   let _NORMALIZE = true;

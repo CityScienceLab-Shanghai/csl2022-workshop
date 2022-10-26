@@ -4,7 +4,7 @@ import styles from "./EndowmentVotingPage.module.css";
 import CustomButton from "../0.1_buttons/CustomButton";
 import IndicatorCard from "./IndicatorCard";
 
-import _AMENITIES_DATA from "../../data/amenities.json";
+import _AMENITIES_DATA from "../../data/sandbox/amenities.json";
 import _COLOR from "../../data/color/categorical_color_palette.json";
 
 import { stateStore } from "../../stores";

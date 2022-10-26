@@ -18,7 +18,7 @@ import {
 // import floor_data from "../data/map/bld_floors.json";
 import floor_data from "../../data/map/processed_bld_floors.json";
 import CAT_COLOR from "../../data/color/categorical_color_palette.json";
-import _BUILDINGS from "../../data/explorable_building.json";
+import _BUILDINGS from "../../data/sandbox/explorable_building.json";
 
 import GetCircle from "./GetCircle";
 import GetWalkCircle from "./GetWalkCircle";

@@ -11,13 +11,13 @@ import BarChart from "../0.4_charts/BarCharts";
 import RadarChart from "../0.4_charts/RadarChart";
 import _BAR_DATA from "../../data/charts/bar_chart.json";
 import _RADAR_DATA from "../../data/charts/radar_chart.json";
-import _BUILDINGS from "../../data/explorable_building.json";
-import _AMENITIES_DATA from "../../data/amenities.json";
+import _BUILDINGS from "../../data/sandbox/explorable_building.json";
+import _AMENITIES_DATA from "../../data/sandbox/amenities.json";
 import _COLOR from "../../data/color/categorical_color_palette.json";
 
 import CustomButton from "../0.1_buttons/CustomButton";
 
-import _CONTENT from "../../data/sandbox_card_content.json";
+import _CONTENT from "../../data/sandbox/sandbox_card_content.json";
 
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";

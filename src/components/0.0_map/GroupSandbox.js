@@ -12,13 +12,14 @@ import BarChart from "../0.4_charts/BarCharts";
 import RadarChart from "../0.4_charts/RadarChart";
 import _BAR_DATA from "../../data/charts/bar_chart.json";
 import _RADAR_DATA from "../../data/charts/radar_chart.json";
-import _BUILDINGS from "../../data/explorable_building.json";
-import _AMENITIES_DATA from "../../data/amenities.json";
+import _BUILDINGS from "../../data/sandbox/explorable_building.json";
+import _AMENITIES_DATA from "../../data/sandbox/amenities.json";
 import _COLOR from "../../data/color/categorical_color_palette.json";
+import SELETED_AMEN_IND_LIST from "../../data/sandbox/selected_amen_ind_list.json";
 
 import CustomButton from "../0.1_buttons/CustomButton";
 
-import _CONTENT from "../../data/sandbox_card_content.json";
+import _CONTENT from "../../data/sandbox/sandbox_card_content.json";
 
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
@@ -46,62 +47,64 @@ const GroupSandbox = () => {
   const [countSelected, setCountSelected] = useState(0);
 
   if (_AMENITIES_DATA) {
-    for (var i = 0; i < 12; i++) {
-      button_set_1.push(
-        <div className={styles.rowGroup}>
-          <CustomButton
-            key={_AMENITIES_DATA[i]["id"]}
-            index={_AMENITIES_DATA[i]["id"]}
-            buttonText={_AMENITIES_DATA[i].name}
-            positionStyle={styles.amen_button}
-            buttonOnclick={() => {}}
-            colorIndex={parseInt(_AMENITIES_DATA[i].id) + 1}
-            largeFont={false}
-            selectedColor={_COLOR[parseInt(_AMENITIES_DATA[i].id) + 1]}
-            selected={selected}
-            setSelected={setSelected}
-            countSelected={countSelected}
-            setCountSelected={setCountSelected}
-            isVoted={isVoted}
-            capacity={3}
-          />
-          <div className={styles.costText}>
-            {"Cost $" +
-              _AMENITIES_DATA[i]["cost"] +
-              "\nROI " +
-              _AMENITIES_DATA[i]["ROI"]}{" "}
+    for (var i = 0; i < 12; i++)
+      if (SELETED_AMEN_IND_LIST.includes(i)) {
+        button_set_1.push(
+          <div className={styles.rowGroup}>
+            <CustomButton
+              key={_AMENITIES_DATA[i]["id"]}
+              index={_AMENITIES_DATA[i]["id"]}
+              buttonText={_AMENITIES_DATA[i].name}
+              positionStyle={styles.amen_button}
+              buttonOnclick={() => {}}
+              colorIndex={parseInt(_AMENITIES_DATA[i].id) + 1}
+              largeFont={false}
+              selectedColor={_COLOR[parseInt(_AMENITIES_DATA[i].id) + 1]}
+              selected={selected}
+              setSelected={setSelected}
+              countSelected={countSelected}
+              setCountSelected={setCountSelected}
+              isVoted={isVoted}
+              capacity={3}
+            />
+            <div className={styles.costText}>
+              {"Cost $" +
+                _AMENITIES_DATA[i]["cost"] +
+                "\nROI " +
+                _AMENITIES_DATA[i]["ROI"]}{" "}
+            </div>
           </div>
-        </div>
-      );
-    }
-    for (var i = 12; i < 24; i++) {
-      button_set_2.push(
-        <div className={styles.rowGroup}>
-          <CustomButton
-            key={_AMENITIES_DATA[i]["id"]}
-            index={_AMENITIES_DATA[i]["id"]}
-            buttonText={_AMENITIES_DATA[i].name}
-            positionStyle={styles.amen_button}
-            buttonOnclick={() => {}}
-            colorIndex={parseInt(_AMENITIES_DATA[i].id) + 1}
-            largeFont={false}
-            selectedColor={_COLOR[parseInt(_AMENITIES_DATA[i].id) + 1]}
-            selected={selected}
-            setSelected={setSelected}
-            countSelected={countSelected}
-            setCountSelected={setCountSelected}
-            isVoted={isVoted}
-            capacity={3}
-          />
-          <div className={styles.costText}>
-            {"Cost $" +
-              _AMENITIES_DATA[i]["cost"] +
-              "  ROI " +
-              _AMENITIES_DATA[i]["ROI"]}{" "}
-          </div>{" "}
-        </div>
-      );
-    }
+        );
+      }
+    for (var i = 12; i < 24; i++)
+      if (SELETED_AMEN_IND_LIST.includes(i)) {
+        button_set_2.push(
+          <div className={styles.rowGroup}>
+            <CustomButton
+              key={_AMENITIES_DATA[i]["id"]}
+              index={_AMENITIES_DATA[i]["id"]}
+              buttonText={_AMENITIES_DATA[i].name}
+              positionStyle={styles.amen_button}
+              buttonOnclick={() => {}}
+              colorIndex={parseInt(_AMENITIES_DATA[i].id) + 1}
+              largeFont={false}
+              selectedColor={_COLOR[parseInt(_AMENITIES_DATA[i].id) + 1]}
+              selected={selected}
+              setSelected={setSelected}
+              countSelected={countSelected}
+              setCountSelected={setCountSelected}
+              isVoted={isVoted}
+              capacity={3}
+            />
+            <div className={styles.costText}>
+              {"Cost $" +
+                _AMENITIES_DATA[i]["cost"] +
+                "  ROI " +
+                _AMENITIES_DATA[i]["ROI"]}{" "}
+            </div>{" "}
+          </div>
+        );
+      }
   }
 
   useEffect(() => {

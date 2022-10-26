@@ -100,7 +100,7 @@
   },
   {
     "id": 9,
-    "name": "supermarket",
+    "name": " grocery store",
     "type": "Amenities",
     "subtype": "Commercial",
     "cost": "15000",
@@ -177,9 +177,9 @@
   },
   {
     "id": 16,
-    "name": "rent-to-earn",
+    "name": "rent-to-own",
     "type": "Prosocial programmes",
-    "subtype": "rent-to-earn",
+    "subtype": "rent-to-own",
     "cost": "15000",
     "ROI": "60%",
     "noise": 1,
@@ -232,7 +232,7 @@
   },
   {
     "id": 21,
-    "name": "recycle",
+    "name": "waste & recycle",
     "type": "Pro-sustainable programmes",
     "subtype": "recycle",
     "cost": "15000",

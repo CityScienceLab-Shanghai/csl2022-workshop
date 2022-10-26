@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styles from "./Navigation.module.css";
 
 import { stateStore } from "../../stores";
-import _NAVIGATION_DATA from "../../data/navigation_text.json";
+import _NAVIGATION_DATA from "../../data/sandbox/navigation_text.json";
 
 // Hide navigation on some pages
 const HIDE_PAGES_INDEX = [1];
