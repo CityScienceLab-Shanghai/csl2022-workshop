@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 // import CityMap from "./CityMap";
-import KendallMap from "./KendallMap"
+import KendallMap from "./KendallMap";
 
 import styles from "./Sandbox.module.css";
 
@@ -12,6 +12,7 @@ import IndicatorCard from "./IndicatorCard";
 
 import BarChart from "../0.4_charts/BarCharts";
 import RadarChart from "../0.4_charts/RadarChart";
+import CusSliders from "../0.5_slider/CusSliders";
 import _BAR_DATA from "../../data/charts/bar_chart.json";
 // import _RADAR_DATA from "../../data/charts/radar_chart.json";
 import _RADAR_DATA from "../../data/charts/radar_chart _simple.json";
@@ -24,61 +25,7 @@ import CustomButton from "../0.1_buttons/CustomButton";
 
 import _CONTENT from "../../data/sandbox/sandbox_card_content.json";
 
-import Slider from "@mui/material/Slider";
-import { styled } from "@mui/material/styles";
-
-import { stateStore } from "../../stores";
-
-const CustomSlider = styled(Slider)(({ theme }) => ({
-  color: "#EA4C6F",
-  height: 3,
-  padding: "13px 0",
-  "& .MuiSlider-thumb": {
-    height: 20,
-    width: 20,
-    backgroundColor: "#2f0f16 ",
-    border: "1px solid #ea4c6f ",
-    "&:hover": {
-      boxShadow: "0 0 0 8px rgba(234, 76, 111, 0.16)",
-    },
-    "& .airbnb-bar": {
-      height: 9,
-      width: 1,
-      backgroundColor: "currentColor",
-      marginLeft: 1,
-      marginRight: 1,
-    },
-  },
-  "& .MuiSlider-valueLabel": {
-    marginTop: "3px",
-    background: "#cecece",
-    borderRadius: "2px",
-
-    fontFamily: "Inter",
-    fontStyle: "normal",
-    fontWeight: "700",
-    fontSize: "10px",
-
-    color: "rgba(0, 0, 0, 0.75)",
-
-    paddingTop: "3px",
-    paddingRight: "6px",
-    paddingBottom: "2px",
-    paddingLeft: "6px",
-  },
-  "& .MuiSlider-track": {
-    height: 3,
-  },
-  "& .MuiSlider-rail": {
-    color: "#2D2D2D",
-    opacity: 1,
-    height: 3,
-  },
-}));
-
 const GroupSandbox = () => {
-  const { barCharts, updateBarCharts } = stateStore;
-
   const [isBuilding, setIsBuilding] = useState(false);
   const [isVoting, setIsVoting] = useState(false);
   const [isVoted, setIsVoted] = useState(false);
@@ -86,8 +33,8 @@ const GroupSandbox = () => {
   const [votePolicy, setVotePolicy] = useState(true);
 
   //   const [sliderIndex, setSliderIndex] = useState(0);
-  const [value1, setValue1] = useState(0);
-  const [value2, setValue2] = useState(0);
+
+  console.log("render");
 
   const [radarCharts, setRadarCharts] = useState(_RADAR_DATA);
 
@@ -99,6 +46,16 @@ const GroupSandbox = () => {
   const [selected, setSelected] = useState(selected_status);
   const [selectedResult, setSelectedResult] = useState(selected_status);
   const [countSelected, setCountSelected] = useState(0);
+
+//   useEffect(() => {
+//     let proposal = barCharts["ks"][0]["value"];
+
+//     Object.keys(selected).forEach(function (key) {
+//       // if (selected[key]) proposal -= parseInt(_AMENITIES_DATA[key]["cost"])
+//       if (selected[key]) proposal -= parseInt(_AMENITIES_DATA[key]["cost"]) + 1;
+//     });
+//     updateBarCharts("ks", 0, proposal);
+//   }, [selected]);
 
   if (_AMENITIES_DATA) {
     for (var i = 0; i < 12; i++)
@@ -161,76 +118,12 @@ const GroupSandbox = () => {
       }
   }
 
-  useEffect(() => {
-    let baseline = barCharts["ks"][1]["value"];
-    let proposal = baseline;
-
-    Object.keys(selected).forEach(function (key) {
-      if (selected[key]) proposal -= parseInt(_AMENITIES_DATA[key]["cost"]);
-    });
-
-    updateBarCharts("ks", 0, proposal);
-    // console.log(proposal);
-    // console.log(barCharts["ks"][0]["value"]);
-  }, [selected]);
-
-  const Sliders = () => {
-    const {
-      simple_sandbox_slider_value_1,
-      simple_sandbox_slider_value_2,
-      set_simple_sandbox_slider_value_1,
-      set_simple_sandbox_slider_value_2,
-    } = stateStore;
-
-    const valueLabelFormat = (value) => {
-      //   console.log(value.toString()+ ((value <= 1) ? "storey" : "stories"));
-      return value.toString() + (value <= 1 ? " storey" : " stories");
-    };
-
-    return (
-      <div>
-        <div className={styles.sliderBox}>
-          <div className={styles.sliderItemText}>Building A</div>
-          <div className={styles.sliderItem}>
-            <CustomSlider
-              min={0}
-              max={10}
-              value={simple_sandbox_slider_value_1}
-              onChange={(event, newValue) => {
-                set_simple_sandbox_slider_value_1(newValue);
-              }}
-              step={1}
-              marks
-              valueLabelDisplay="on"
-              valueLabelFormat={valueLabelFormat}
-            />
-          </div>
-          <div className={styles.sliderItemText}>Building B</div>
-          <div className={styles.sliderItem}>
-            <CustomSlider
-              min={0}
-              max={10}
-              value={simple_sandbox_slider_value_2}
-              onChange={(event, newValue) => {
-                set_simple_sandbox_slider_value_2(newValue);
-              }}
-              step={1}
-              marks
-              valueLabelDisplay="on"
-              valueLabelFormat={valueLabelFormat}
-            />
-          </div>
-        </div>
-      </div>
-    );
-  };
-
   const PolicyVoteCard = () => {
     return (
       <VotingCard
         title="Incentive for Developers"
         subTitle="Voting Panel"
-        content={<Sliders />}
+        content={<CusSliders />}
       />
     );
   };
@@ -276,7 +169,7 @@ const GroupSandbox = () => {
             subTitle="Community Endowment"
             content={
               <div className={styles.bar}>
-                <BarChart data={barCharts["ks"]} horizontal="true" />
+                <BarChart dataKey="ks" horizontal="true" />
               </div>
             }
           />

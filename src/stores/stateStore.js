@@ -137,8 +137,8 @@ export const stateStore = resso({
 
     stateStore.radarCharts = JSON.parse(JSON.stringify(newObj));
   },
-  simple_sandbox_slider_value_1: 0,
-  simple_sandbox_slider_value_2: 0,
+  simple_sandbox_slider_value_1: 5,
+  simple_sandbox_slider_value_2: 5,
   set_simple_sandbox_slider_value_1: (value) => {
     stateStore.simple_sandbox_slider_value_1 = value;
   },

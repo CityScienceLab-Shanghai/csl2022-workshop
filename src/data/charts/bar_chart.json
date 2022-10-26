@@ -1,10 +1,10 @@
 [
   {
     "type": "Proposal",
-    "value": 200000
+    "value": 100000
   },
   {
     "type": "Baseline",
-    "value": 300000
+    "value": 100000
   }
 ]
