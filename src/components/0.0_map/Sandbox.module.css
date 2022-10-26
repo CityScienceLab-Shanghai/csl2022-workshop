@@ -388,7 +388,7 @@
 .sliderBox {
   margin-left: 5%;
   width: 300px;
-  margin-top: 20px;
+  /* margin-top: 20px; */
 
   text-align: justify;
 
@@ -396,7 +396,28 @@
 }
 
 .sliderItem {
-  height: 290px;
+  margin-top: 15px;
+  margin-left: 5%;
+  width: 90%;
+  margin-bottom: 10px;
+}
+
+.sliderItemText {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 0.75rem;
+
+  display: flex;
+  align-items: center;
+
+  color: #ffffff;
+
+  margin-top: 20px;
+}
+
+.sliderItemText:hover {
+  text-decoration: underline;
 }
 
 .amen_button {

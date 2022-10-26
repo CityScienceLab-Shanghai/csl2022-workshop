@@ -186,8 +186,9 @@ const GroupSandbox = () => {
     };
 
     return (
-      <div className={styles.buttonGroup}>
+      <div >
         <div className={styles.sliderBox}>
+          <div className={styles.sliderItemText}>Building A</div>
           <div className={styles.sliderItem}>
             <CustomSlider
               min={0}
@@ -202,19 +203,21 @@ const GroupSandbox = () => {
               valueLabelFormat={valueLabelFormat}
             />
           </div>
-
-          <CustomSlider
-            min={0}
-            max={10}
-            value={simple_sandbox_slider_value_2}
-            onChange={(event, newValue) => {
-              set_simple_sandbox_slider_value_2(newValue);
-            }}
-            step={1}
-            marks
-            valueLabelDisplay="on"
-            valueLabelFormat={valueLabelFormat}
-          />
+          <div className={styles.sliderItemText}>Building B</div>
+          <div className={styles.sliderItem}>
+            <CustomSlider
+              min={0}
+              max={10}
+              value={simple_sandbox_slider_value_2}
+              onChange={(event, newValue) => {
+                set_simple_sandbox_slider_value_2(newValue);
+              }}
+              step={1}
+              marks
+              valueLabelDisplay="on"
+              valueLabelFormat={valueLabelFormat}
+            />
+          </div>
         </div>
       </div>
     );
