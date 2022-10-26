@@ -51,6 +51,7 @@
 
   padding-left: 16px;
   padding-right: 16px;
+  pointer-events: auto;
 }
 
 .outputCol {
@@ -384,21 +385,18 @@
   color: #888888;
 }
 
-.slider {
+.sliderBox {
   margin-left: 5%;
   width: 300px;
   margin-top: 20px;
 
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 25px;
-  /* or 125% */
-
   text-align: justify;
 
   color: #ffffff;
+}
+
+.sliderItem {
+  height: 290px;
 }
 
 .amen_button {
@@ -426,6 +424,10 @@
 /* Scrollbar */
 /* width */
 ::-webkit-scrollbar {
+  width: 0px;
+}
+
+.panelCol ::-webkit-scrollbar {
   width: 9px;
 }
 
@@ -440,31 +442,4 @@
   /* background: rgb(127, 255, 0); */
   background: black;
   outline: 2px solid white;
-}
-
-.valueLabel {
-  margin-top: 3px;
-  background: #cecece !important;
-  border-radius: 2px !important;
-
-  font-family: "Inter" !important;
-  font-style: normal !important;
-  font-weight: 700 !important;
-  font-size: 10px !important;
-
-  color: rgba(0, 0, 0, 0.75) !important;
-
-  padding-top: 3px !important;
-  padding-right: 6px !important;
-  padding-bottom: 2px !important;
-  padding-left: 6px !important;
-}
-
-.sliderThumb {
-  background: #2f0f16 !important;
-  border: 1px solid #ea4c6f !important;
-  boxShadow: "#ebebeb 0 2px 2px",
-        "&:focus, &:hover, &$active": {
-            boxShadow: "#ccc 0 2px 3px 1px",
-        },
 }
