@@ -48,6 +48,7 @@ const CustomButton = ({
   setBuildingID = undefined,
   setIsVoting = undefined,
   isVoted = undefined,
+  capacity = 3,
 }) => {
   useEffect(() => {}, []);
   let isSelected = selected && selected[index];
@@ -55,7 +56,7 @@ const CustomButton = ({
     selected &&
     (() => {
       if (isVoted) return;
-      
+
       if (selected[index]) {
         setCountSelected(countSelected - 1);
         setSelected({
@@ -63,7 +64,7 @@ const CustomButton = ({
           [index]: !selected[index],
         });
       }
-      if (!selected[index] && countSelected < 3) {
+      if (!selected[index] && countSelected < capacity) {
         setCountSelected(countSelected + 1);
         setSelected({
           ...selected,

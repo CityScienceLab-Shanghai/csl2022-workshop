@@ -3,7 +3,7 @@ import { ResponsiveBar } from "@nivo/bar";
 import styles from "./BarCharts.module.css";
 import * as d3 from "d3";
 
-const BarChart = ({ data, maxValue = 1, horizontal = false }) => {
+const BarChart = ({ data, maxValue = 500000, horizontal = false }) => {
   const ref = useRef();
   let svg = d3.select(ref.current);
 
@@ -29,7 +29,7 @@ const BarChart = ({ data, maxValue = 1, horizontal = false }) => {
         maxValue={maxValue}
         valueScale={{ type: "linear" }}
         indexScale={{ type: "band", round: true }}
-        valueFormat=" >-$.4~"
+        valueFormat=" >-$.2s"
         colors={["rgb(234, 76, 111, 0.2)", "rgb(36, 83, 255, 0.2)"]}
         colorBy="indexValue"
         isInteractive={false}

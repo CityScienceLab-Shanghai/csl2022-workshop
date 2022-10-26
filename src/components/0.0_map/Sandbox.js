@@ -22,7 +22,11 @@ import _CONTENT from "../../data/sandbox_card_content.json";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 
+import { stateStore } from "../../stores";
+
 const Sandbox = () => {
+  const { radarCharts, barCharts, updateBarCharts } = stateStore;
+
   const [isBuilding, setIsBuilding] = useState(false);
   const [isVoting, setIsVoting] = useState(false);
   const [isVoted, setIsVoted] = useState(false);
@@ -42,43 +46,73 @@ const Sandbox = () => {
   if (_AMENITIES_DATA) {
     for (var i = 0; i < 12; i++) {
       button_set_1.push(
-        <CustomButton
-          key={_AMENITIES_DATA[i]["id"]}
-          index={_AMENITIES_DATA[i]["id"]}
-          buttonText={_AMENITIES_DATA[i].name}
-          positionStyle={styles.amen_button}
-          buttonOnclick={() => {}}
-          colorIndex={parseInt(_AMENITIES_DATA[i].id) + 1}
-          largeFont={false}
-          selectedColor={_COLOR[parseInt(_AMENITIES_DATA[i].id) + 1]}
-          selected={selected}
-          setSelected={setSelected}
-          countSelected={countSelected}
-          setCountSelected={setCountSelected}
-          isVoted={isVoted}
-        />
+        <div className={styles.rowGroup}>
+          <CustomButton
+            key={_AMENITIES_DATA[i]["id"]}
+            index={_AMENITIES_DATA[i]["id"]}
+            buttonText={_AMENITIES_DATA[i].name}
+            positionStyle={styles.amen_button}
+            buttonOnclick={() => {}}
+            colorIndex={parseInt(_AMENITIES_DATA[i].id) + 1}
+            largeFont={false}
+            selectedColor={_COLOR[parseInt(_AMENITIES_DATA[i].id) + 1]}
+            selected={selected}
+            setSelected={setSelected}
+            countSelected={countSelected}
+            setCountSelected={setCountSelected}
+            isVoted={isVoted}
+            capacity={3}
+          />
+          <div className={styles.costText}>
+            {"Cost $" +
+              _AMENITIES_DATA[i]["cost"] +
+              "  ROI " +
+              _AMENITIES_DATA[i]["ROI"]}{" "}
+          </div>
+        </div>
       );
     }
     for (var i = 12; i < 24; i++) {
       button_set_2.push(
-        <CustomButton
-          key={_AMENITIES_DATA[i]["id"]}
-          index={_AMENITIES_DATA[i]["id"]}
-          buttonText={_AMENITIES_DATA[i].name}
-          positionStyle={styles.amen_button}
-          buttonOnclick={() => {}}
-          colorIndex={parseInt(_AMENITIES_DATA[i].id) + 1}
-          largeFont={false}
-          selectedColor={_COLOR[parseInt(_AMENITIES_DATA[i].id) + 1]}
-          selected={selected}
-          setSelected={setSelected}
-          countSelected={countSelected}
-          setCountSelected={setCountSelected}
-          isVoted={isVoted}
-        />
+        <div className={styles.rowGroup}>
+          <CustomButton
+            key={_AMENITIES_DATA[i]["id"]}
+            index={_AMENITIES_DATA[i]["id"]}
+            buttonText={_AMENITIES_DATA[i].name}
+            positionStyle={styles.amen_button}
+            buttonOnclick={() => {}}
+            colorIndex={parseInt(_AMENITIES_DATA[i].id) + 1}
+            largeFont={false}
+            selectedColor={_COLOR[parseInt(_AMENITIES_DATA[i].id) + 1]}
+            selected={selected}
+            setSelected={setSelected}
+            countSelected={countSelected}
+            setCountSelected={setCountSelected}
+            isVoted={isVoted}
+            capacity={3}
+          />
+          <div className={styles.costText}>
+            {"Cost $" +
+              _AMENITIES_DATA[i]["cost"] +
+              "  ROI " +
+              _AMENITIES_DATA[i]["ROI"]}{" "}
+          </div>{" "}
+        </div>
       );
     }
   }
+
+  useEffect(() => {
+    let baseline = barCharts["ks"][1]["value"];
+    let proposal = baseline;
+
+    Object.keys(selected).forEach(function (key) {
+      if (selected[key]) proposal -= parseInt(_AMENITIES_DATA[key]["cost"]);
+    });
+
+    updateBarCharts("ks", 0, proposal);
+    console.log(barCharts);
+  }, [selected]);
 
   const KendallInfoCard = () => (
     <PanelCard
@@ -292,7 +326,7 @@ const Sandbox = () => {
             subTitle="Community Endowment"
             content={
               <div className={styles.bar}>
-                <BarChart data={_BAR_DATA} horizontal="true" />
+                <BarChart data={barCharts["ks"]} horizontal="true" />
               </div>
             }
           />
@@ -301,7 +335,11 @@ const Sandbox = () => {
             subTitle="Urban Performance"
             content={
               <div className={styles.radar}>
-                <RadarChart data={_RADAR_DATA} />
+                <RadarChart
+                  data={
+                    isBuilding ? radarCharts[buildingID] : radarCharts["ks"]
+                  }
+                />
               </div>
             }
           />

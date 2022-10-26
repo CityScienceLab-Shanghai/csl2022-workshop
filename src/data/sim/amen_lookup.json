@@ -1,0 +1,11 @@
+{
+  "public open space": 0,
+  "Education": 1,
+  "Utility": 4,
+  "Commercial": 8,
+  "Office/R&D": 11,
+  "Health": 14,
+  "religious": 15,
+  "Industry": 24,
+  "Residential": 25
+}

@@ -18,6 +18,14 @@
   flex-direction: row;
 }
 
+.rowGroup {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
 .flexCol {
   display: flex;
   flex-direction: column;
@@ -282,6 +290,14 @@
   margin-top: 30px;
 }
 
+.costText {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 11px;
+  margin-left: 7px;
+}
+
 .legend_1 {
   position: absolute;
   margin-left: 83px;
@@ -360,10 +376,10 @@
 }
 
 .amen_button {
-  margin-bottom: 20px;
-  min-width: 190px;
-  min-height: 32px;
-  margin-left: 20px;
+  /* margin-bottom: 20px; */
+  min-width: 200px;
+  min-height: 40px;
+  margin-left: 15px;
 }
 
 .amen_list {

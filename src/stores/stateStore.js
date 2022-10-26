@@ -1,5 +1,92 @@
 import resso from "resso";
 
+import _INIT_BAR_DATA from "../data/charts/bar_chart.json";
+import _INIT_RADAR_DATA from "../data/charts/radar_chart.json";
+import _INIT_BLD from "../data/map/processed_metric_init.json";
+
+import CalcNoise from "../simulation/CalcNoise";
+
+const getBarCharts = (stateStore) => {
+  let bar_init = {};
+
+  let tutorial_keys = ["t22", "t24", "t42", "t44"];
+  let sandbox_keys = ["ks"];
+  let tracked_list = [...tutorial_keys, ...sandbox_keys];
+  //   console.log(tracked_list);
+
+  for (let i = 0; i < tracked_list.length; ++i) {
+    // deepcopy
+    bar_init[tracked_list[i]] = JSON.parse(JSON.stringify(_INIT_BAR_DATA));
+  }
+
+  console.log(bar_init);
+  return bar_init;
+};
+
+const getRadarCharts = (stateStore) => {
+  let radar_init = {};
+
+  let tutorial_keys = ["t22", "t24", "t42", "t44"];
+  let sandbox_keys = ["ks", ...Object.keys(_INIT_BLD)];
+  let tracked_list = [...tutorial_keys, ...sandbox_keys];
+  //   console.log(tracked_list);
+
+  let amenCount = getAmenCount();
+  for (let i = 0; i < tracked_list.length; ++i) {
+    // deepcopy
+    radar_init[tracked_list[i]] = JSON.parse(JSON.stringify(_INIT_RADAR_DATA));
+    radar_init[tracked_list[i]][0]["Baseline"] = CalcNoise(
+      amenCount[tracked_list[i]]
+    );
+    radar_init[tracked_list[i]][1]["Baseline"] = CalcNoise(
+      amenCount[tracked_list[i]]
+    );
+    radar_init[tracked_list[i]][2]["Baseline"] = CalcNoise(
+      amenCount[tracked_list[i]]
+    );
+    radar_init[tracked_list[i]][3]["Baseline"] = CalcNoise(
+      amenCount[tracked_list[i]]
+    );
+    radar_init[tracked_list[i]][4]["Baseline"] = CalcNoise(
+      amenCount[tracked_list[i]]
+    );
+    radar_init[tracked_list[i]][5]["Baseline"] = CalcNoise(
+      amenCount[tracked_list[i]]
+    );
+    for (let j = 0; j < 6; ++j)
+      radar_init[tracked_list[i]][j]["Proposal"] =
+        radar_init[tracked_list[i]][j]["Baseline"];
+  }
+
+  console.log(radar_init);
+  return radar_init;
+};
+
+const getAmenCount = () => {
+  let amen_count_init = {};
+
+  let tutorial_keys = ["t22", "t24", "t42", "t44"];
+  let sandbox_keys = ["ks"];
+  let tracked_list = Object.keys(_INIT_BLD);
+
+  // customize for special count
+  amen_count_init["t22"] = { ..._INIT_BLD[tracked_list[0]] };
+  amen_count_init["t24"] = { ..._INIT_BLD[tracked_list[0]] };
+  amen_count_init["t42"] = { ..._INIT_BLD[tracked_list[0]] };
+  amen_count_init["t44"] = { ..._INIT_BLD[tracked_list[0]] };
+  amen_count_init["ks"] = { ..._INIT_BLD[tracked_list[0]] };
+
+  for (let i = 0; i < tracked_list.length; ++i) {
+    // deepcopy
+    amen_count_init[tracked_list[i]] = JSON.parse(
+      JSON.stringify(_INIT_BLD[tracked_list[i]])
+    );
+  }
+
+  //   console.log(amen_count_init);
+  return amen_count_init;
+};
+
 export const stateStore = resso({
   page: 1,
   maxPage: 1,
@@ -13,5 +100,38 @@ export const stateStore = resso({
     stateStore.page = pageIndex;
     if (stateStore.page > stateStore.maxPage)
       stateStore.maxPage = stateStore.page;
+  },
+  amenCount: getAmenCount(),
+  barCharts: getBarCharts(),
+  radarCharts: getRadarCharts(),
+  setBarCharts: (key, value) => {
+    stateStore.barCharts[key] = value;
+  },
+  setRadarCharts: (key, value) => {
+    stateStore.radarCharts[key] = value;
+  },
+  updateBarCharts: (key, type, value) => {
+    stateStore.barCharts[key][type]["value"] = value;
+  },
+  updateAmenCount: (key, range, type, variation) => {
+    stateStore.amenCount[key][range][type] += variation;
+    stateStore.radarCharts[key][0]["Proposal"] = CalcNoise(
+      stateStore.amenCount[key]
+    );
+    stateStore.radarCharts[key][1]["Proposal"] = CalcNoise(
+      stateStore.amenCount[key]
+    );
+    stateStore.radarCharts[key][2]["Proposal"] = CalcNoise(
+      stateStore.amenCount[key]
+    );
+    stateStore.radarCharts[key][3]["Proposal"] = CalcNoise(
+      stateStore.amenCount[key]
+    );
+    stateStore.radarCharts[key][4]["Proposal"] = CalcNoise(
+      stateStore.amenCount[key]
+    );
+    stateStore.radarCharts[key][5]["Proposal"] = CalcNoise(
+      stateStore.amenCount[key]
+    );
   },
 });
