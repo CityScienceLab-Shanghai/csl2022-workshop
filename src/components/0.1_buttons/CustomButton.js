@@ -78,8 +78,8 @@ const CustomButton = ({
       setBuildingID(building);
     });
 
-  buttonOnclick = selected ? toggle : buttonOnclick;
-  buttonOnclick = building ? enterBuilding : buttonOnclick;
+  buttonOnclick = (selected && !buttonOnclick) ? toggle : buttonOnclick;
+  buttonOnclick = (building && !buttonOnclick) ? enterBuilding : buttonOnclick;
 
   return (
     <button

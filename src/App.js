@@ -81,6 +81,7 @@ const App = () => {
     12: <EndowmentResultPage />,
     13: <EndowmentPerformancePage />,
     14: <TransitionPage />,
+    15: <GroupSandbox />,
     16: <Sandbox />,
     17: <CityMap />,
   };

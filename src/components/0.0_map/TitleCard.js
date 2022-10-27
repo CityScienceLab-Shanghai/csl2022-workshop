@@ -1,12 +1,15 @@
 import styles from "./Sandbox.module.css";
+import { stateStore } from "../../stores";
 
 const TitleCard = () => {
+  const { setPage } = stateStore;
+
   return (
     <div className={styles.titleBox}>
       <div className={`${styles.titleTextSmall}`}>SoCity Community DAO</div>
       <div className={`${styles.titleTextLarge}`}>Kendall Square</div>
       <div className={`${styles.backBox}`}>
-        <div className={`${styles.backButton}`}>
+        <div className={`${styles.backButton}`} onClick={() => setPage(2)}>
           <svg
             width="14"
             height="14"
@@ -27,7 +30,9 @@ const TitleCard = () => {
             />
           </svg>
         </div>
-        <div className={`${styles.backText}`}>Go back to tutorial</div>
+        <div className={`${styles.backText}`} onClick={() => setPage(2)}>
+          Go back to tutorial
+        </div>
       </div>
     </div>
   );

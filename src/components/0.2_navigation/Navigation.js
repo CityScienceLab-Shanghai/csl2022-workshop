@@ -5,7 +5,7 @@ import { stateStore } from "../../stores";
 import _NAVIGATION_DATA from "../../data/sandbox/navigation_text.json";
 
 // Hide navigation on some pages
-const HIDE_PAGES_INDEX = [1];
+const HIDE_PAGES_INDEX = [1, 15];
 
 const LargeCircle = ({ isActive, isSelected }) => (
   <svg

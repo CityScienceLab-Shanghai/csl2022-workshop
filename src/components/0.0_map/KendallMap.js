@@ -149,16 +149,16 @@ export default function KendallMap({ isVoting, isBuilding, buildingID }) {
       let dao_line =
         current_h_A + Math.ceil(0.3 * simple_sandbox_slider_value_1);
       let dev_line = current_h_A;
-      if (data.properties.floor > dao_line) return [234, 76, 111];
-      if (data.properties.floor > dev_line) return [36, 83, 255];
-      return [0, 0, 0];
+    //   if (data.properties.floor > dao_line) return [234, 76, 111, 0.5 * 255];
+      if (data.properties.floor > dev_line) return [234, 76, 111, 0.5 * 255];
+      return[0, 0, 0];
     }
     if (data.properties.ind.toString().indexOf("591-21") == 0) {
       let dao_line =
         current_h_B + Math.ceil(0.3 * simple_sandbox_slider_value_2);
       let dev_line = current_h_B;
-      if (data.properties.floor > dao_line) return [234, 76, 111];
-      if (data.properties.floor > dev_line) return [36, 83, 255];
+    //   if (data.properties.floor > dao_line) return [234, 76, 111, 0.5 * 255];
+      if (data.properties.floor > dev_line) return [234, 76, 111, 0.5 * 255];
       return [0, 0, 0];
     }
     return [0, 0, 0];
@@ -169,16 +169,16 @@ export default function KendallMap({ isVoting, isBuilding, buildingID }) {
       let dao_line =
         current_h_A + Math.ceil(0.3 * simple_sandbox_slider_value_1);
       let dev_line = current_h_A;
-      if (data.properties.floor > dao_line) return [234, 76, 111, 0.5 * 255];
-      if (data.properties.floor > dev_line) return [36, 83, 255, 0.5 * 255];
+    //   if (data.properties.floor > dao_line) return [234, 76, 111, 0.5 * 255];
+      if (data.properties.floor > dev_line) return [234, 76, 111, 0.5 * 255];
       return [255, 255, 255];
     }
     if (data.properties.ind.toString().indexOf("591-21") == 0) {
       let dao_line =
         current_h_B + Math.ceil(0.3 * simple_sandbox_slider_value_2);
       let dev_line = current_h_B;
-      if (data.properties.floor > dao_line) return [234, 76, 111, 0.5 * 255];
-      if (data.properties.floor > dev_line) return [36, 83, 255, 0.5 * 255];
+    //   if (data.properties.floor > dao_line) return [234, 76, 111, 0.5 * 255];
+      if (data.properties.floor > dev_line) return [234, 76, 111, 0.5 * 255];
       return [255, 255, 255];
     }
     // grey
