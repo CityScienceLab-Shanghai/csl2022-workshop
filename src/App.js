@@ -29,6 +29,10 @@ import TransitionPage from "./components/5.0_transition_page/TransitionPage";
 
 import InfoBox from "./components/0.6_popup/InfoBox";
 
+import loadImage from "./utils/loadImg";
+import _IMG_LIST from "./data/pre_load_img_list.json"
+
+
 const App = () => {
   const { page } = stateStore;
 
@@ -59,6 +63,15 @@ const App = () => {
     window.addEventListener("resize", handleResize);
     handleResize();
     return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // preload img
+  useEffect(() => {
+    _IMG_LIST.forEach((v, _, __) => {
+      loadImage(v, (img) => {
+        console.log(img);
+      });
+    });
   }, []);
 
   useEffect(() => {
