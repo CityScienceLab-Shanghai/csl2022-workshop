@@ -58,7 +58,7 @@ const BarChart = ({
     proposal += tutorial_sandbox_slider_value * _PRICE_FLOOR;
 
     updateBarCharts("t22", 0, proposal);
-  }, [tutorial_selected, tutorial_sandbox_slider_value]);
+  }, [selected, tutorial_sandbox_slider_value]);
 
   return (
     <div ref={ref} style={{ width: "100%", height: "100%" }}>

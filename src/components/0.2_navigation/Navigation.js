@@ -22,6 +22,7 @@ const LargeCircle = ({ isActive, isSelected }) => (
       //   fill={isActive ? "white" : "#5B5B5B"}
       fill={isSelected ? "white" : "#121212"}
       stroke={isActive ? "white" : "#5B5B5B"}
+      className={styles.circle_transition}
     />
   </svg>
 );
@@ -40,6 +41,7 @@ const SmallCircle = ({ isActive, isSelected }) => (
       r="3.5"
       fill={isSelected ? "white" : "#121212"}
       stroke={isActive ? "white" : "#5B5B5B"}
+      className={styles.circle_transition}
     />
   </svg>
 );
