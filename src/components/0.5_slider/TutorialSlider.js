@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 
-import styles from "./CusSliders.module.css";
+import styles from "./TutorialSlider.module.css";
 
 import Slider from "@mui/material/Slider";
 import { styled } from "@mui/material/styles";
@@ -16,11 +16,16 @@ const CustomSlider = styled(Slider)(({ theme }) => ({
   "& .MuiSlider-thumb": {
     height: 20,
     width: 20,
-    backgroundColor: "#2f0f16 ",
-    border: "1px solid #ea4c6f ",
-    "&:hover": {
-      boxShadow: "0 0 0 8px rgba(234, 76, 111, 0.16)",
+    backgroundColor: "transparent",
+    // border: "1px solid #ea4c6f ",
+    border: "4px solid #FFFFFF",
+    "&:focus, &:hover, &.Mui-active, &.Mui-focusVisible": {
+      boxShadow: "inherit",
     },
+    "&:hover": {
+      boxShadow: "0 0 0 8px rgba(255, 255, 255, 0.16)",
+    },
+
     "& .airbnb-bar": {
       height: 9,
       width: 1,
@@ -30,6 +35,7 @@ const CustomSlider = styled(Slider)(({ theme }) => ({
     },
   },
   "& .MuiSlider-valueLabel": {
+    marginBottom: "5px",
     marginTop: "3px",
     background: "#cecece",
     borderRadius: "2px",
@@ -37,26 +43,30 @@ const CustomSlider = styled(Slider)(({ theme }) => ({
     fontFamily: "Inter",
     fontStyle: "normal",
     fontWeight: "700",
-    fontSize: "10px",
+    fontSize: "14px",
 
     color: "rgba(0, 0, 0, 0.75)",
 
-    paddingTop: "3px",
-    paddingRight: "6px",
-    paddingBottom: "2px",
-    paddingLeft: "6px",
+    paddingTop: "8px",
+    paddingRight: "8px",
+    paddingBottom: "8px",
+    paddingLeft: "8px",
   },
   "& .MuiSlider-track": {
-    height: 3,
+    // height: 0,
+    display: "none",
   },
   "& .MuiSlider-rail": {
-    color: "#2D2D2D",
+    // color: "#2D2D2D",
     opacity: 1,
-    height: 3,
+    height: 12,
+    background: "linear-gradient(270deg, #EA4C6F 0%, #1C3EBF 100%)",
+    mixBlendMode: "lighten",
+    borderRadius: "8px",
   },
 }));
 
-const CusSliders = ({ dataKey = "ks" }) => {
+const TutorialSlider = ({ dataKey = "ks" }) => {
   const { tutorial_sandbox_slider_value, set_tutorial_sandbox_slider_value } =
     stateStore;
 
@@ -87,4 +97,4 @@ const CusSliders = ({ dataKey = "ks" }) => {
   );
 };
 
-export default CusSliders;
+export default TutorialSlider;

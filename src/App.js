@@ -20,13 +20,14 @@ import IncentiveVotingPage from "./components/2.2_voting/IncentiveVotingPage";
 import IncentiveResultPage from "./components/2.3_results/IncentiveResultPage";
 import IncentivePerformancePage from "./components/2.4_performance/IncentivePerformancePage";
 
-
 import EndowmentIntroPage from "./components/4.1_intro_page/EndowmentIntroPage";
 import EndowmentVotingPage from "./components/4.2_voting/EndowmentVotingPage";
 import EndowmentResultPage from "./components/4.3_results/EndowmentResultPage";
 import EndowmentPerformancePage from "./components/4.4_performance/EndowmentPerformancePage";
 
 import TransitionPage from "./components/5.0_transition_page/TransitionPage";
+
+import InfoBox from "./components/0.6_popup/InfoBox";
 
 const App = () => {
   const { page } = stateStore;
@@ -90,6 +91,7 @@ const App = () => {
     <ResPage />
   ) : (
     <>
+      <InfoBox />
       <Navigation />
       {content[page]}
     </>

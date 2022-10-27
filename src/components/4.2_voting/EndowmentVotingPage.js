@@ -35,11 +35,7 @@ const EndowmentVotingPage = () => {
               colorIndex={parseInt(_AMENITIES_DATA[i].id) + 1}
               largeFont={false}
               selectedColor={_COLOR[parseInt(_AMENITIES_DATA[i].id) + 1]}
-              //   selected={selected}
-              //   setSelected={setSelected}
-              //   countSelected={countSelected}
-              //   setCountSelected={setCountSelected}
-              capacity={3}
+              dataKey="t42"
             />
             <div className={styles.costText}>
               {"Cost $" +
@@ -63,11 +59,7 @@ const EndowmentVotingPage = () => {
               colorIndex={parseInt(_AMENITIES_DATA[i].id) + 1}
               largeFont={false}
               selectedColor={_COLOR[parseInt(_AMENITIES_DATA[i].id) + 1]}
-              //   selected={selected}
-              //   setSelected={setSelected}
-              //   countSelected={countSelected}
-              //   setCountSelected={setCountSelected}
-              capacity={3}
+              dataKey="t42"
             />
             <div className={styles.costText}>
               {"Cost $" +

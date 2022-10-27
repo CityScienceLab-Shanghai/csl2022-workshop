@@ -7,9 +7,8 @@ import { stateStore } from "../../stores";
 const RadarChart = ({ data, dataKey = "ks" }) => {
   const {
     selected,
-    barCharts,
+    tutorial_selected,
     radarCharts,
-    updateBarCharts,
     setRadarCharts,
     simple_sandbox_slider_value_1,
     simple_sandbox_slider_value_2,
@@ -30,7 +29,7 @@ const RadarChart = ({ data, dataKey = "ks" }) => {
   });
 
   useEffect(() => {
-    let newObj = JSON.parse(JSON.stringify(radarCharts[dataKey]));
+    let newObj = JSON.parse(JSON.stringify(radarCharts["ks"]));
 
     for (let i = 0; i < 5; ++i) {
       newObj[i]["Proposal"] = newObj[i]["Baseline"];
@@ -51,7 +50,7 @@ const RadarChart = ({ data, dataKey = "ks" }) => {
       }
     });
 
-    setRadarCharts(dataKey, newObj);
+    setRadarCharts("ks", newObj);
   }, [selected, simple_sandbox_slider_value_1, simple_sandbox_slider_value_2]);
 
   useEffect(() => {
@@ -65,8 +64,18 @@ const RadarChart = ({ data, dataKey = "ks" }) => {
     newObj[0]["Proposal"] = newObj[0]["Proposal"] - sunlightRedu;
     newObj[1]["Proposal"] = newObj[1]["Proposal"] - sunlightRedu / 2;
 
-    Object.keys(selected).forEach(function (key) {
-      if (selected[key]) {
+    setRadarCharts("t22", newObj);
+  }, [tutorial_sandbox_slider_value]);
+
+  useEffect(() => {
+    let newObj = JSON.parse(JSON.stringify(radarCharts["t42"]));
+
+    for (let i = 0; i < 5; ++i) {
+      newObj[i]["Proposal"] = newObj[i]["Baseline"];
+    }
+
+    Object.keys(tutorial_selected).forEach(function (key) {
+      if (tutorial_selected[key]) {
         newObj[1]["Proposal"] = newObj[1]["Proposal"] + 10;
         newObj[2]["Proposal"] = newObj[2]["Proposal"] + 5;
         newObj[3]["Proposal"] = newObj[3]["Proposal"] + 3;
@@ -74,8 +83,8 @@ const RadarChart = ({ data, dataKey = "ks" }) => {
       }
     });
 
-    setRadarCharts("t22", newObj);
-  }, [tutorial_sandbox_slider_value]);
+    setRadarCharts("t42", newObj);
+  }, [tutorial_selected]);
 
   return (
     <div ref={ref} style={{ width: "100%", height: "100%" }}>

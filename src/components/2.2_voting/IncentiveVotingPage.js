@@ -4,8 +4,7 @@ import styles from "./IncentiveVotingPage.module.css";
 import CustomButton from "../0.1_buttons/CustomButton";
 import IndicatorCard from "./IndicatorCard";
 
-import Slider from "rc-slider";
-import "rc-slider/assets/index.css";
+import TutorialSlider from "../0.5_slider/TutorialSlider";
 
 import { stateStore } from "../../stores";
 
@@ -30,7 +29,7 @@ const IncentiveVotingPage = () => {
             appropriate as an incentive for the developer.
           </div>
           <div className={styles.slider}>
-            <Slider
+            <TutorialSlider
               min={0}
               max={10}
               onChange={(value) => {

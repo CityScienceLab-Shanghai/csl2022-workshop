@@ -184,6 +184,14 @@ export const stateStore = resso({
   update_tutorial_selected: (index, value) => {
     let newObj = stateStore.selected;
     newObj[index] = !newObj[index];
-    stateStore.selected = JSON.parse(JSON.stringify(newObj));
+    stateStore.tutorial_selected = JSON.parse(JSON.stringify(newObj));
   },
+  warning: false,
+  setWarning: (value) => {
+    stateStore.warning = value;
+  },
+  checkValid: (dataKey, value) => {
+    return stateStore.barCharts[dataKey][0]["value"] - value >= 0;
+  },
+  _PRICE_FLOOR: 20000,
 });

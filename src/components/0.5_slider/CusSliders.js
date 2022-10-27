@@ -62,6 +62,9 @@ const CusSliders = ({ dataKey = "ks" }) => {
     simple_sandbox_slider_value_2,
     set_simple_sandbox_slider_value_1,
     set_simple_sandbox_slider_value_2,
+    checkValid,
+    setWarning,
+    _PRICE_FLOOR,
   } = stateStore;
 
   const valueLabelFormat = (value) => {
@@ -79,7 +82,12 @@ const CusSliders = ({ dataKey = "ks" }) => {
             max={10}
             value={simple_sandbox_slider_value_1}
             onChange={(event, newValue) => {
-              set_simple_sandbox_slider_value_1(newValue);
+              if (
+                newValue < simple_sandbox_slider_value_1 &&
+                !checkValid("ks", _PRICE_FLOOR)
+              )
+                setWarning(true);
+              else set_simple_sandbox_slider_value_1(newValue);
             }}
             step={1}
             marks
@@ -94,7 +102,12 @@ const CusSliders = ({ dataKey = "ks" }) => {
             max={10}
             value={simple_sandbox_slider_value_2}
             onChange={(event, newValue) => {
-              set_simple_sandbox_slider_value_2(newValue);
+              if (
+                newValue < simple_sandbox_slider_value_2 &&
+                !checkValid("ks", _PRICE_FLOOR)
+              )
+                setWarning(true);
+              else set_simple_sandbox_slider_value_2(newValue);
             }}
             step={1}
             marks

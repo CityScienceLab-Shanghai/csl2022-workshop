@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from "./CustomButton.module.css";
+import _AMENITIES_DATA from "../../data/sandbox/amenities.json";
 
 import { stateStore } from "../../stores";
 
@@ -53,24 +54,48 @@ const ToggleButton = ({
   capacity = 3,
   dataKey = "ks",
 }) => {
-  const { selected, updateSelected, countSelected, setCountSelected } =
-    stateStore;
+  const {
+    barCharts,
+    selected,
+    updateSelected,
+    tutorial_selected,
+    update_tutorial_selected,
+    countSelected,
+    setCountSelected,
+    setWarning,
+    checkValid,
+  } = stateStore;
 
   useEffect(() => {}, []);
   let isSelected = selected && selected[index];
   let toggle =
-    selected &&
-    (() => {
-      if (isVoted) return;
+    dataKey == "ks"
+      ? () => {
+          if (isVoted) return;
 
-      if (selected[index]) {
-        setCountSelected(countSelected - 1);
-        updateSelected(index);
-      } else if (!selected[index] && countSelected < capacity) {
-        setCountSelected(countSelected + 1);
-        updateSelected(index);
-      }
-    });
+          if (selected[index]) {
+            updateSelected(index);
+          } else if (!selected[index]) {
+            let cost = parseInt(_AMENITIES_DATA[index]["cost"]);
+            if (checkValid("ks", cost)) {
+              updateSelected(index);
+            }
+          }
+        }
+      : () => {
+          if (isVoted) return;
+
+          if (tutorial_selected[index]) {
+            update_tutorial_selected(index);
+          } else if (!tutorial_selected[index]) {
+            let cost = parseInt(_AMENITIES_DATA[index]["cost"]);
+            if (checkValid(dataKey, cost)) {
+              update_tutorial_selected(index);
+            } else {
+              setWarning(true);
+            }
+          }
+        };
 
   let enterBuilding =
     building &&

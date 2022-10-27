@@ -21,6 +21,7 @@ const BarChart = ({
     simple_sandbox_slider_value_1,
     simple_sandbox_slider_value_2,
     tutorial_sandbox_slider_value,
+    _PRICE_FLOOR
   } = stateStore;
 
   const ref = useRef();
@@ -35,10 +36,8 @@ const BarChart = ({
       .style("fill", "#EBEBEB");
   });
 
-
   // listen to kendall square simulation
   useEffect(() => {
-    let _PRICE_FLOOR = 20000;
     let proposal = barCharts["ks"][1]["value"];
 
     proposal +=
@@ -46,8 +45,8 @@ const BarChart = ({
       _PRICE_FLOOR;
 
     Object.keys(selected).forEach(function (key) {
-      // if (selected[key]) proposal -= parseInt(_AMENITIES_DATA[key]["cost"])
-      if (selected[key]) proposal -= parseInt(_AMENITIES_DATA[key]["cost"]) + 1;
+      if (selected[key]) proposal -= parseInt(_AMENITIES_DATA[key]["cost"]);
+      //   if (selected[key]) proposal -= parseInt(_AMENITIES_DATA[key]["cost"]) + 1;
     });
 
     updateBarCharts("ks", 0, proposal);
@@ -55,7 +54,6 @@ const BarChart = ({
 
   // listen to tutorial 2.2
   useEffect(() => {
-    let _PRICE_FLOOR = 20000;
     let proposal = barCharts["t22"][1]["value"];
 
     proposal += tutorial_sandbox_slider_value * _PRICE_FLOOR;
@@ -68,9 +66,10 @@ const BarChart = ({
     let proposal = barCharts["t42"][1]["value"];
 
     Object.keys(tutorial_selected).forEach(function (key) {
-        // if (selected[key]) proposal -= parseInt(_AMENITIES_DATA[key]["cost"])
-        if (tutorial_selected[key]) proposal -= parseInt(_AMENITIES_DATA[key]["cost"]) + 1;
-      });
+      if (tutorial_selected[key])
+        proposal -= parseInt(_AMENITIES_DATA[key]["cost"]);
+      // if (tutorial_selected[key]) proposal -= parseInt(_AMENITIES_DATA[key]["cost"]) + 1;
+    });
 
     updateBarCharts("t42", 0, proposal);
   }, [tutorial_selected]);
@@ -82,7 +81,11 @@ const BarChart = ({
         data={barCharts[dataKey]}
         keys={["value"]}
         indexBy="type"
-        margin={{ top: 30, right: 30, bottom: 30, left: 30 }}
+        margin={
+          horizontal
+            ? { top: 30, right: 30, bottom: 30, left: 30 }
+            : { top: 10, right: 0, bottom: 40, left: 0 }
+        }
         padding={0.3}
         minValue={0}
         maxValue={maxValue}
@@ -96,18 +99,21 @@ const BarChart = ({
         borderColor={{ from: "color" }}
         axisTop={null}
         axisRight={null}
-        axisBottom={null}
         axisLeft={null}
         // enableGridY={true}
         enableGridY={false}
-        // axisBottom={{
-        //   tickSize: 5,
-        //   tickPadding: 5,
-        //   tickRotation: 0,
-        //   // legend: "country",
-        //   // legendPosition: "middle",
-        //   legendOffset: 32,
-        // }}
+        axisBottom={
+          horizontal
+            ? null
+            : {
+                tickSize: 5,
+                tickPadding: 5,
+                tickRotation: 0,
+                // legend: "country",
+                // legendPosition: "middle",
+                legendOffset: 32,
+              }
+        }
         // axisLeft={{
         //   tickSize: 5,
         //   tickPadding: 5,
@@ -119,7 +125,7 @@ const BarChart = ({
         labelSkipWidth={12}
         labelSkipHeight={12}
         labelTextColor="#ffffff"
-        motionConfig="stiff"
+        motionConfig="slow"
       />
     </div>
   );
