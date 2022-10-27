@@ -10,9 +10,13 @@ import "rc-slider/assets/index.css";
 import { stateStore } from "../../stores";
 
 const IncentiveVotingPage = () => {
-  const { page, nextPage } = stateStore;
+  const {
+    page,
+    nextPage,
+    tutorial_sandbox_slider_value,
+    set_tutorial_sandbox_slider_value
+  } = stateStore;
 
-  const [index, setIndex] = useState(0);
 
   return (
     <>
@@ -31,13 +35,13 @@ const IncentiveVotingPage = () => {
               max={10}
               onChange={(value) => {
                 // console.log(value);
-                setIndex(value)
+                set_tutorial_sandbox_slider_value(value);
               }}
             />
           </div>
         </div>
         <div style={{ marginTop: "62px", marginBottom: "92px" }}>
-          <IndicatorCard index={index} />
+          <IndicatorCard index={tutorial_sandbox_slider_value} />
         </div>
       </div>
       <div className={styles.hint}>

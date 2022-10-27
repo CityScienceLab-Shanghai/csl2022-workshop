@@ -3,6 +3,8 @@ import { ResponsiveBar } from "@nivo/bar";
 import styles from "./BarCharts.module.css";
 import * as d3 from "d3";
 
+import _AMENITIES_DATA from "../../data/sandbox/amenities.json";
+
 import { stateStore } from "../../stores";
 
 const BarChart = ({
@@ -12,7 +14,13 @@ const BarChart = ({
   dataKey = "ks",
 }) => {
   const {
+    selected,
     barCharts,
+    updateBarCharts,
+    setRadarCharts,
+    simple_sandbox_slider_value_1,
+    simple_sandbox_slider_value_2,
+    tutorial_sandbox_slider_value,
   } = stateStore;
 
   const ref = useRef();
@@ -26,6 +34,31 @@ const BarChart = ({
       .style("font-weight", "400")
       .style("fill", "#EBEBEB");
   });
+
+  useEffect(() => {
+    let _PRICE_FLOOR = 20000;
+    let proposal = barCharts["ks"][1]["value"];
+
+    proposal +=
+      (simple_sandbox_slider_value_1 + simple_sandbox_slider_value_2) *
+      _PRICE_FLOOR;
+
+    Object.keys(selected).forEach(function (key) {
+      // if (selected[key]) proposal -= parseInt(_AMENITIES_DATA[key]["cost"])
+      if (selected[key]) proposal -= parseInt(_AMENITIES_DATA[key]["cost"]) + 1;
+    });
+
+    updateBarCharts("ks", 0, proposal);
+  }, [selected, simple_sandbox_slider_value_1, simple_sandbox_slider_value_2]);
+
+  useEffect(() => {
+    let _PRICE_FLOOR = 20000;
+    let proposal = barCharts["t22"][1]["value"];
+
+    proposal += tutorial_sandbox_slider_value * _PRICE_FLOOR;
+
+    updateBarCharts("t22", 0, proposal);
+  }, [tutorial_sandbox_slider_value]);
 
   return (
     <div ref={ref} style={{ width: "100%", height: "100%" }}>

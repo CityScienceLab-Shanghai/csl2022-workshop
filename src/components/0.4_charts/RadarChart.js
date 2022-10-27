@@ -5,7 +5,16 @@ import * as d3 from "d3";
 import { stateStore } from "../../stores";
 
 const RadarChart = ({ data, dataKey }) => {
-  const { radarCharts } = stateStore;
+  const {
+    selected,
+    barCharts,
+    radarCharts,
+    updateBarCharts,
+    setRadarCharts,
+    simple_sandbox_slider_value_1,
+    simple_sandbox_slider_value_2,
+    tutorial_sandbox_slider_value,
+  } = stateStore;
 
   const ref = useRef();
   let svg = d3.select(ref.current);
@@ -20,10 +29,58 @@ const RadarChart = ({ data, dataKey }) => {
       .style("fill", "#EBEBEB");
   });
 
+  useEffect(() => {
+    let newObj = JSON.parse(JSON.stringify(radarCharts["ks"]));
+
+    for (let i = 0; i < 5; ++i) {
+      newObj[i]["Proposal"] = newObj[i]["Baseline"];
+    }
+
+    let sunlightRedu =
+      (simple_sandbox_slider_value_1 + simple_sandbox_slider_value_2) * 2;
+
+    newObj[0]["Proposal"] = newObj[0]["Proposal"] - sunlightRedu;
+    newObj[1]["Proposal"] = newObj[1]["Proposal"] - sunlightRedu / 2;
+
+    Object.keys(selected).forEach(function (key) {
+      if (selected[key]) {
+        newObj[1]["Proposal"] = newObj[1]["Proposal"] + 10;
+        newObj[2]["Proposal"] = newObj[2]["Proposal"] + 5;
+        newObj[3]["Proposal"] = newObj[3]["Proposal"] + 3;
+        newObj[4]["Proposal"] = newObj[4]["Proposal"] + 7;
+      }
+    });
+
+    setRadarCharts("ks", newObj);
+  }, [selected, simple_sandbox_slider_value_1, simple_sandbox_slider_value_2]);
+
+  useEffect(() => {
+    let newObj = JSON.parse(JSON.stringify(radarCharts["t22"]));
+
+    for (let i = 0; i < 5; ++i) {
+      newObj[i]["Proposal"] = newObj[i]["Baseline"];
+    }
+
+    let sunlightRedu = tutorial_sandbox_slider_value * 4;
+    newObj[0]["Proposal"] = newObj[0]["Proposal"] - sunlightRedu;
+    newObj[1]["Proposal"] = newObj[1]["Proposal"] - sunlightRedu / 2;
+
+    Object.keys(selected).forEach(function (key) {
+      if (selected[key]) {
+        newObj[1]["Proposal"] = newObj[1]["Proposal"] + 10;
+        newObj[2]["Proposal"] = newObj[2]["Proposal"] + 5;
+        newObj[3]["Proposal"] = newObj[3]["Proposal"] + 3;
+        newObj[4]["Proposal"] = newObj[4]["Proposal"] + 7;
+      }
+    });
+
+    setRadarCharts("t22", newObj);
+  }, [tutorial_sandbox_slider_value]);
+
   return (
     <div ref={ref} style={{ width: "100%", height: "100%" }}>
       <ResponsiveRadar
-        data={radarCharts["ks"]}
+        data={radarCharts[dataKey]}
         keys={["Proposal", "Baseline"]}
         indexBy="IndicatorType"
         valueFormat=">-.2f"

@@ -152,8 +152,12 @@ export const stateStore = resso({
 
     stateStore.radarCharts = JSON.parse(JSON.stringify(newObj));
   },
+  tutorial_sandbox_slider_value: 0,
   simple_sandbox_slider_value_1: 5,
   simple_sandbox_slider_value_2: 5,
+  set_tutorial_sandbox_slider_value: (value) => {
+    stateStore.tutorial_sandbox_slider_value = value;
+  },
   set_simple_sandbox_slider_value_1: (value) => {
     stateStore.simple_sandbox_slider_value_1 = value;
   },
@@ -161,6 +165,9 @@ export const stateStore = resso({
     stateStore.simple_sandbox_slider_value_2 = value;
   },
   selected: getSelected(),
+  resetSeleted: (value) => {
+    stateStore.selected = getSelected();
+  },
   setSelected: (value) => {
     stateStore.selected = value;
   },

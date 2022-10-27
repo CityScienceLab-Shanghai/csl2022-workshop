@@ -57,12 +57,8 @@ const CustomSlider = styled(Slider)(({ theme }) => ({
 }));
 
 const CusSliders = ({ dataKey = "ks" }) => {
-  const {
-    simple_sandbox_slider_value_1,
-    simple_sandbox_slider_value_2,
-    set_simple_sandbox_slider_value_1,
-    set_simple_sandbox_slider_value_2,
-  } = stateStore;
+  const { tutorial_sandbox_slider_value, set_tutorial_sandbox_slider_value } =
+    stateStore;
 
   const valueLabelFormat = (value) => {
     //   console.log(value.toString()+ ((value <= 1) ? "storey" : "stories"));
@@ -72,29 +68,13 @@ const CusSliders = ({ dataKey = "ks" }) => {
   return (
     <div>
       <div className={styles.sliderBox}>
-        <div className={styles.sliderItemText}>Building A</div>
         <div className={styles.sliderItem}>
           <CustomSlider
             min={0}
             max={10}
-            value={simple_sandbox_slider_value_1}
+            value={tutorial_sandbox_slider_value}
             onChange={(event, newValue) => {
-              set_simple_sandbox_slider_value_1(newValue);
-            }}
-            step={1}
-            marks
-            valueLabelDisplay="on"
-            valueLabelFormat={valueLabelFormat}
-          />
-        </div>
-        <div className={styles.sliderItemText}>Building B</div>
-        <div className={styles.sliderItem}>
-          <CustomSlider
-            min={0}
-            max={10}
-            value={simple_sandbox_slider_value_2}
-            onChange={(event, newValue) => {
-              set_simple_sandbox_slider_value_2(newValue);
+              set_tutorial_sandbox_slider_value(newValue);
             }}
             step={1}
             marks
