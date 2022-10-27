@@ -81,6 +81,8 @@ const ToggleButton = ({
             let cost = parseInt(_AMENITIES_DATA[index]["cost"]);
             if (checkValid("ks", cost)) {
               updateSelected(index);
+            } else {
+              setWarning(true);
             }
           }
         }

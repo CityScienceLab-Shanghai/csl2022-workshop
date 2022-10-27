@@ -20,7 +20,6 @@ import CustomButton from "../0.1_buttons/CustomButton";
 import _CONTENT from "../../data/sandbox/sandbox_card_content.json";
 
 import Slider from "rc-slider";
-import "rc-slider/assets/index.css";
 
 import { stateStore } from "../../stores";
 

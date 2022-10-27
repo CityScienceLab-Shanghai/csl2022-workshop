@@ -30,11 +30,23 @@ import TransitionPage from "./components/5.0_transition_page/TransitionPage";
 import InfoBox from "./components/0.6_popup/InfoBox";
 
 import loadImage from "./utils/loadImg";
-import _IMG_LIST from "./data/pre_load_img_list.json"
+import _IMG_LIST from "./data/pre_load_img_list.json";
 
+import Protect from "./components/0.7_protect/protect";
 
 const App = () => {
   const { page } = stateStore;
+
+  let siteProtection =
+    process.env.REACT_APP_SITE_PROTECTION == "false"
+      ? false
+      : process.env.REACT_APP_SITE_PROTECTION == "true"
+      ? true
+      : undefined;
+
+  siteProtection = true;
+  let sha512 =
+  "d370d262a7e11e19ee8c9cae492d09d8d5b4b70054e75f96527c6e028974af2dbefdae18e59be765dd4e12d1b7d9f8b0167cb2f73250312561bc753f8ea35ef6";
 
   // disable right click
   //   useEffect(() => {
@@ -67,9 +79,9 @@ const App = () => {
 
   // preload img
   useEffect(() => {
-    _IMG_LIST.forEach((v, _, __) => {
+    _IMG_LIST.forEach((v, i, _) => {
       loadImage(v, (img) => {
-        console.log(img);
+        console.log(`Loading... ${i}/${_IMG_LIST.length}`);
       });
     });
   }, []);
@@ -103,11 +115,13 @@ const App = () => {
   return isMobile ? (
     <ResPage />
   ) : (
-    <>
-      <InfoBox />
-      <Navigation />
-      {content[page]}
-    </>
+    <Protect isEnabled={(page > 1) && siteProtection} sha512={sha512}>
+      <div>
+        <InfoBox />
+        <Navigation />
+        {content[page]}
+      </div>
+    </Protect>
   );
 };
 

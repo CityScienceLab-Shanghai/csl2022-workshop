@@ -106,6 +106,7 @@
 }
 
 .rowGroup {
+  height: 21.6px;
   margin-top: 22px;
   display: flex;
   flex-direction: row;
@@ -131,7 +132,8 @@
   width: 450px;
   overflow: auto;
   overflow-x: hidden;
-  pointer-events: none;
+  /* pointer-events: none; */
+  pointer-events: auto;
 }
 
 .decoLine_1 {
