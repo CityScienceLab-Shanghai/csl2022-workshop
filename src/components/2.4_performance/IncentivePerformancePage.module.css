@@ -26,6 +26,13 @@
   /* margin-top: 92px; */
 }
 
+.colGroup {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  /* margin-top: 92px; */
+}
+
 .hint {
   position: absolute;
   right: 294px;
@@ -69,6 +76,50 @@
   color: #ffffff;
 }
 
+.title_current {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 25px;
+  /* identical to box height, or 125% */
+
+  text-align: justify;
+
+  color: #2453ff;
+
+  margin-top: 40px;
+}
+
+.title_DAO {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 25px;
+  /* identical to box height, or 125% */
+
+  text-align: justify;
+
+  color: #d54666;
+
+  margin-top: 40px;
+}
+
+.resultContent {
+  margin-top: 5px;
+  margin-left: 5px;
+
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 21px;
+  /* or 150% */
+
+  color: #ffffff;
+}
+
 .slider {
   margin-left: 5%;
   width: 55%;
@@ -88,4 +139,8 @@
 .amen_button {
   min-width: 190px;
   min-height: 32px;
+}
+
+.img {
+  width: 50%;
 }
