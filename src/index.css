@@ -30,3 +30,32 @@ code {
 .mapboxgl-ctrl-bottom-right {
   display: none;
 }
+
+@media screen and (max-width: 1400px) {
+  html {
+    zoom: 0.8;
+  }
+}
+@media screen and (max-width: 1100px) {
+  html {
+    zoom: 0.6;
+  }
+}
+
+@media screen and (max-height: 900px) {
+  html {
+    zoom: 0.8;
+  }
+}
+
+@media screen and (max-height: 800px) {
+  html {
+    zoom: 0.7;
+  }
+}
+
+@media screen and (max-height: 700px) {
+  html {
+    zoom: 0.5;
+  }
+}
