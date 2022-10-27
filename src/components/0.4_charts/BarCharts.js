@@ -4,6 +4,7 @@ import styles from "./BarCharts.module.css";
 import * as d3 from "d3";
 
 import _AMENITIES_DATA from "../../data/sandbox/amenities.json";
+import SELETED_AMEN_IND_LIST from "../../data/tutorial/tutorial_amen_result.json";
 
 import { stateStore } from "../../stores";
 
@@ -21,7 +22,7 @@ const BarChart = ({
     simple_sandbox_slider_value_1,
     simple_sandbox_slider_value_2,
     tutorial_sandbox_slider_value,
-    _PRICE_FLOOR
+    _PRICE_FLOOR,
   } = stateStore;
 
   const ref = useRef();
@@ -73,6 +74,27 @@ const BarChart = ({
 
     updateBarCharts("t42", 0, proposal);
   }, [tutorial_selected]);
+
+  // listen to tutorial 2.4
+  useEffect(() => {
+    let proposal = barCharts["t24"][1]["value"];
+
+    proposal += 5 * _PRICE_FLOOR;
+
+    updateBarCharts("t24", 0, proposal);
+  }, []);
+
+  // listen to tutorial 4.4
+  useEffect(() => {
+    let proposal = barCharts["t44"][1]["value"];
+
+    for (let i = 0; i < SELETED_AMEN_IND_LIST.length; ++i) {
+      let key = SELETED_AMEN_IND_LIST[i];
+      proposal -= parseInt(_AMENITIES_DATA[key]["cost"]);
+    }
+
+    updateBarCharts("t44", 0, proposal);
+  }, []);
 
   return (
     <div ref={ref} style={{ width: "100%", height: "100%" }}>

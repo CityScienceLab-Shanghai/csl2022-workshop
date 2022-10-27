@@ -2,6 +2,8 @@ import React, { useEffect, useRef, useState } from "react";
 import { ResponsiveRadar } from "@nivo/radar";
 import * as d3 from "d3";
 
+import SELETED_AMEN_IND_LIST from "../../data/tutorial/tutorial_amen_result.json";
+
 import { stateStore } from "../../stores";
 
 const RadarChart = ({ data, dataKey = "ks" }) => {
@@ -53,6 +55,7 @@ const RadarChart = ({ data, dataKey = "ks" }) => {
     setRadarCharts("ks", newObj);
   }, [selected, simple_sandbox_slider_value_1, simple_sandbox_slider_value_2]);
 
+  // listen to tutorial 2.2
   useEffect(() => {
     let newObj = JSON.parse(JSON.stringify(radarCharts["t22"]));
 
@@ -67,6 +70,7 @@ const RadarChart = ({ data, dataKey = "ks" }) => {
     setRadarCharts("t22", newObj);
   }, [tutorial_sandbox_slider_value]);
 
+  // listen to tutorial 4.2
   useEffect(() => {
     let newObj = JSON.parse(JSON.stringify(radarCharts["t42"]));
 
@@ -85,6 +89,40 @@ const RadarChart = ({ data, dataKey = "ks" }) => {
 
     setRadarCharts("t42", newObj);
   }, [tutorial_selected]);
+
+  // listen to tutorial 2.4
+  useEffect(() => {
+    let newObj = JSON.parse(JSON.stringify(radarCharts["t24"]));
+
+    for (let i = 0; i < 5; ++i) {
+      newObj[i]["Proposal"] = newObj[i]["Baseline"];
+    }
+
+    let sunlightRedu = 5 * 4;
+    newObj[0]["Proposal"] = newObj[0]["Proposal"] - sunlightRedu;
+    newObj[1]["Proposal"] = newObj[1]["Proposal"] - sunlightRedu / 2;
+
+    setRadarCharts("t24", newObj);
+  }, []);
+
+  // listen to tutorial 4.4
+  useEffect(() => {
+    let newObj = JSON.parse(JSON.stringify(radarCharts["t44"]));
+
+    for (let i = 0; i < 5; ++i) {
+      newObj[i]["Proposal"] = newObj[i]["Baseline"];
+    }
+
+    for (let i = 0; i < SELETED_AMEN_IND_LIST.length; ++i) {
+      let key = SELETED_AMEN_IND_LIST[i];
+      newObj[1]["Proposal"] = newObj[1]["Proposal"] + 6;
+      newObj[2]["Proposal"] = newObj[2]["Proposal"] + 4;
+      newObj[3]["Proposal"] = newObj[3]["Proposal"] + 3;
+      newObj[4]["Proposal"] = newObj[4]["Proposal"] + 5;
+    }
+
+    setRadarCharts("t44", newObj);
+  }, []);
 
   return (
     <div ref={ref} style={{ width: "100%", height: "100%" }}>
