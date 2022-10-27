@@ -4,7 +4,7 @@ import * as d3 from "d3";
 
 import { stateStore } from "../../stores";
 
-const RadarChart = ({ data, dataKey }) => {
+const RadarChart = ({ data, dataKey = "ks" }) => {
   const {
     selected,
     barCharts,
@@ -30,7 +30,7 @@ const RadarChart = ({ data, dataKey }) => {
   });
 
   useEffect(() => {
-    let newObj = JSON.parse(JSON.stringify(radarCharts["ks"]));
+    let newObj = JSON.parse(JSON.stringify(radarCharts[dataKey]));
 
     for (let i = 0; i < 5; ++i) {
       newObj[i]["Proposal"] = newObj[i]["Baseline"];
@@ -51,7 +51,7 @@ const RadarChart = ({ data, dataKey }) => {
       }
     });
 
-    setRadarCharts("ks", newObj);
+    setRadarCharts(dataKey, newObj);
   }, [selected, simple_sandbox_slider_value_1, simple_sandbox_slider_value_2]);
 
   useEffect(() => {

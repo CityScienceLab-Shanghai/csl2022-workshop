@@ -51,6 +51,7 @@ const ToggleButton = ({
   setIsVoting = undefined,
   isVoted = undefined,
   capacity = 3,
+  dataKey = "ks",
 }) => {
   const { selected, updateSelected, countSelected, setCountSelected } =
     stateStore;
