@@ -21,7 +21,7 @@ import _AMENITIES_DATA from "../../data/sandbox/amenities.json";
 import _COLOR from "../../data/color/categorical_color_palette.json";
 import SELETED_AMEN_IND_LIST from "../../data/sandbox/selected_amen_ind_list.json";
 
-import CustomButton from "../0.1_buttons/CustomButton";
+import ToggleButton from "../0.1_buttons/ToggleButton";
 
 import _CONTENT from "../../data/sandbox/sandbox_card_content.json";
 
@@ -60,7 +60,7 @@ const GroupSandbox = () => {
       if (SELETED_AMEN_IND_LIST.includes(i)) {
         button_set_1.push(
           <div className={styles.rowGroup}>
-            <CustomButton
+            <ToggleButton
               key={_AMENITIES_DATA[i]["id"]}
               index={_AMENITIES_DATA[i]["id"]}
               buttonText={_AMENITIES_DATA[i].name}
@@ -89,7 +89,7 @@ const GroupSandbox = () => {
       if (SELETED_AMEN_IND_LIST.includes(i)) {
         button_set_2.push(
           <div className={styles.rowGroup}>
-            <CustomButton
+            <ToggleButton
               key={_AMENITIES_DATA[i]["id"]}
               index={_AMENITIES_DATA[i]["id"]}
               buttonText={_AMENITIES_DATA[i].name}

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "./EndowmentVotingPage.module.css";
 
+import ToggleButton from "../0.1_buttons/ToggleButton";
 import CustomButton from "../0.1_buttons/CustomButton";
 import IndicatorCard from "./IndicatorCard";
 
@@ -25,7 +26,7 @@ const EndowmentVotingPage = () => {
       if (SELETED_AMEN_IND_LIST.includes(i)) {
         button_set_1.push(
           <div className={styles.buttonRow}>
-            <CustomButton
+            <ToggleButton
               key={_AMENITIES_DATA[i]["id"]}
               index={_AMENITIES_DATA[i]["id"]}
               buttonText={_AMENITIES_DATA[i].name}
@@ -53,7 +54,7 @@ const EndowmentVotingPage = () => {
       if (SELETED_AMEN_IND_LIST.includes(i)) {
         button_set_2.push(
           <div className={styles.buttonRow}>
-            <CustomButton
+            <ToggleButton
               key={_AMENITIES_DATA[i]["id"]}
               index={_AMENITIES_DATA[i]["id"]}
               buttonText={_AMENITIES_DATA[i].name}
