@@ -31,6 +31,46 @@ code {
   display: none;
 }
 
+/* zoom out */
+@media screen and (min-height: 1300px) {
+  html {
+    zoom: 1.1;
+  }
+}
+
+@media screen and (min-width: 2000px) {
+  html {
+    zoom: 1.1;
+  }
+}
+
+@media screen and (min-height: 1500px) {
+  html {
+    zoom: 1.2;
+  }
+}
+
+@media screen and (min-width: 2400px) {
+  html {
+    zoom: 1.2;
+  }
+}
+
+
+@media screen and (min-height: 1700px) {
+    html {
+      zoom: 1.33;
+    }
+  }
+  
+  @media screen and (min-width: 2550px) {
+    html {
+      zoom: 1.33;
+    }
+  }
+  
+
+/* zoom in */
 @media screen and (max-width: 1400px) {
   html {
     zoom: 0.8;
