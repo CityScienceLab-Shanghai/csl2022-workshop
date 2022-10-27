@@ -162,3 +162,17 @@
 
   color: #888888;
 }
+
+.rowButtonGroup {
+  display: flex;
+  flex-direction: row;
+  width: 50%;
+}
+
+.amen_list {
+  margin-right: 40px;
+  /* margin-left: 20px; */
+  margin-top: 15px;
+  width: 50%;
+  height: 100%;
+}

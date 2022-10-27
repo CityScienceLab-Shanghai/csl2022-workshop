@@ -53,6 +53,7 @@ const ToggleButton = ({
   isVoted = undefined,
   capacity = 3,
   dataKey = "ks",
+  isSelected = undefined,
 }) => {
   const {
     barCharts,
@@ -67,7 +68,8 @@ const ToggleButton = ({
   } = stateStore;
 
   useEffect(() => {}, []);
-  let isSelected = dataKey == "ks" ? selected[index] : tutorial_selected[index];
+  if (isSelected === undefined)
+    isSelected = dataKey == "ks" ? selected[index] : tutorial_selected[index];
   let toggle =
     dataKey == "ks"
       ? () => {

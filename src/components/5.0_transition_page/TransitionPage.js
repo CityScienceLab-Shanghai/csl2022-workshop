@@ -37,13 +37,13 @@ const TransitionPage = () => {
             colorIndex={0}
             largeFont={true}
           />
-          <CustomButton
+          {/* <CustomButton
             buttonText="Learn More"
             positionStyle={styles.button_right}
             buttonOnclick={nextPage}
             colorIndex={0}
             largeFont={true}
-          />
+          /> */}
         </div>
       </div>
     </>
