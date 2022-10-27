@@ -182,7 +182,7 @@ export const stateStore = resso({
   },
   tutorial_selected: getSelected(),
   update_tutorial_selected: (index, value) => {
-    let newObj = stateStore.selected;
+    let newObj = stateStore.tutorial_selected;
     newObj[index] = !newObj[index];
     stateStore.tutorial_selected = JSON.parse(JSON.stringify(newObj));
   },

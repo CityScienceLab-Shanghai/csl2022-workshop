@@ -67,7 +67,7 @@ const ToggleButton = ({
   } = stateStore;
 
   useEffect(() => {}, []);
-  let isSelected = selected && selected[index];
+  let isSelected = dataKey == "ks" ? selected[index] : tutorial_selected[index];
   let toggle =
     dataKey == "ks"
       ? () => {
