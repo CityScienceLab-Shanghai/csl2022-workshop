@@ -14,10 +14,10 @@ const BarChart = ({
   dataKey = "ks",
 }) => {
   const {
-    selected,
     barCharts,
     updateBarCharts,
-    setRadarCharts,
+    selected,
+    tutorial_selected,
     simple_sandbox_slider_value_1,
     simple_sandbox_slider_value_2,
     tutorial_sandbox_slider_value,
@@ -35,9 +35,11 @@ const BarChart = ({
       .style("fill", "#EBEBEB");
   });
 
+
+  // listen to kendall square simulation
   useEffect(() => {
     let _PRICE_FLOOR = 20000;
-    let proposal = barCharts[dataKey][1]["value"];
+    let proposal = barCharts["ks"][1]["value"];
 
     proposal +=
       (simple_sandbox_slider_value_1 + simple_sandbox_slider_value_2) *
@@ -48,9 +50,10 @@ const BarChart = ({
       if (selected[key]) proposal -= parseInt(_AMENITIES_DATA[key]["cost"]) + 1;
     });
 
-    updateBarCharts(dataKey, 0, proposal);
+    updateBarCharts("ks", 0, proposal);
   }, [selected, simple_sandbox_slider_value_1, simple_sandbox_slider_value_2]);
 
+  // listen to tutorial 2.2
   useEffect(() => {
     let _PRICE_FLOOR = 20000;
     let proposal = barCharts["t22"][1]["value"];
@@ -58,7 +61,19 @@ const BarChart = ({
     proposal += tutorial_sandbox_slider_value * _PRICE_FLOOR;
 
     updateBarCharts("t22", 0, proposal);
-  }, [selected, tutorial_sandbox_slider_value]);
+  }, [tutorial_sandbox_slider_value]);
+
+  // listen to tutorial 4.2
+  useEffect(() => {
+    let proposal = barCharts["t42"][1]["value"];
+
+    Object.keys(tutorial_selected).forEach(function (key) {
+        // if (selected[key]) proposal -= parseInt(_AMENITIES_DATA[key]["cost"])
+        if (tutorial_selected[key]) proposal -= parseInt(_AMENITIES_DATA[key]["cost"]) + 1;
+      });
+
+    updateBarCharts("t42", 0, proposal);
+  }, [tutorial_selected]);
 
   return (
     <div ref={ref} style={{ width: "100%", height: "100%" }}>

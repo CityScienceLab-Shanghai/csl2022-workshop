@@ -180,4 +180,10 @@ export const stateStore = resso({
   setCountSelected: (value) => {
     stateStore.countSelected = value;
   },
+  tutorial_selected: getSelected(),
+  update_tutorial_selected: (index, value) => {
+    let newObj = stateStore.selected;
+    newObj[index] = !newObj[index];
+    stateStore.selected = JSON.parse(JSON.stringify(newObj));
+  },
 });
