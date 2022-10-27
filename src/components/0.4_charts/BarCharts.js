@@ -37,7 +37,7 @@ const BarChart = ({
 
   useEffect(() => {
     let _PRICE_FLOOR = 20000;
-    let proposal = barCharts["ks"][1]["value"];
+    let proposal = barCharts[dataKey][1]["value"];
 
     proposal +=
       (simple_sandbox_slider_value_1 + simple_sandbox_slider_value_2) *
@@ -48,7 +48,7 @@ const BarChart = ({
       if (selected[key]) proposal -= parseInt(_AMENITIES_DATA[key]["cost"]) + 1;
     });
 
-    updateBarCharts("ks", 0, proposal);
+    updateBarCharts(dataKey, 0, proposal);
   }, [selected, simple_sandbox_slider_value_1, simple_sandbox_slider_value_2]);
 
   useEffect(() => {
