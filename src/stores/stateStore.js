@@ -27,7 +27,7 @@ const getBarCharts = (stateStore) => {
     bar_init[tracked_list[i]] = JSON.parse(JSON.stringify(_INIT_BAR_DATA));
   }
 
-//   console.log(bar_init);
+  //   console.log(bar_init);
   return bar_init;
 };
 
@@ -36,13 +36,22 @@ const getRadarCharts = (stateStore) => {
 
   let tutorial_keys = ["t22", "t24", "t42", "t44"];
   let sandbox_keys = ["ks", ...Object.keys(_INIT_BLD)];
-  let tracked_list = [...tutorial_keys, ...sandbox_keys];
+
+  let tracked_list = [...sandbox_keys];
+  //   let tracked_list = [...tutorial_keys, ...sandbox_keys];
   //   console.log(tracked_list);
+
+  radar_init["t22"] = JSON.parse(JSON.stringify(_INIT_RADAR_DATA_SIMPLE));
+  radar_init["t24"] = JSON.parse(JSON.stringify(_INIT_RADAR_DATA_SIMPLE));
+  radar_init["t42"] = JSON.parse(JSON.stringify(_INIT_RADAR_DATA_SIMPLE));
+  radar_init["t44"] = JSON.parse(JSON.stringify(_INIT_RADAR_DATA_SIMPLE));
 
   let amenCount = getAmenCount();
   for (let i = 0; i < tracked_list.length; ++i) {
     // deepcopy
-    radar_init[tracked_list[i]] = JSON.parse(JSON.stringify(_INIT_RADAR_DATA_SIMPLE));
+    radar_init[tracked_list[i]] = JSON.parse(
+      JSON.stringify(_INIT_RADAR_DATA_SIMPLE)
+    );
     radar_init[tracked_list[i]][0]["Baseline"] = CalcNoise(
       amenCount[tracked_list[i]]
     );
@@ -64,7 +73,7 @@ const getRadarCharts = (stateStore) => {
         radar_init[tracked_list[i]][j]["Baseline"];
   }
 
-//   console.log(radar_init);
+  //   console.log(radar_init);
   return radar_init;
 };
 

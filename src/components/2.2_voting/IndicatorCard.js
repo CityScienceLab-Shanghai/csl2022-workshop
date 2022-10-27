@@ -45,13 +45,13 @@ const IndicatorCard = ({ index }) => {
       </div>
       <div className={styles.radar}>
         <div className={styles.h80}>
-          <RadarChart data={_RADAR_DATA} />
+          <RadarChart dataKey={"t22"} />
         </div>
         <div className={styles.chartName}>urban performance</div>
       </div>
       <div className={styles.bar}>
         <div className={styles.h80}>
-          <BarChart data={_BAR_DATA} />
+          <BarChart dataKey={"t22"} />
         </div>
         <div className={styles.chartName}>community endowment</div>
       </div>

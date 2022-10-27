@@ -66,8 +66,8 @@ const App = () => {
   }, [windowSize.width, windowSize.height]);
 
   const content = {
-    1: <GroupSandbox />,
-    // 1: <CoverPage />,
+    // 1: <GroupSandbox />,
+    1: <CoverPage />,
     2: <CurrentPracticePage />,
     3: <StructurePage />,
     4: <StakeholderPage />,
