@@ -472,6 +472,7 @@
 }
 
 .scroll_layer {
+  min-width: 380px;
   overflow-x: hidden;
   overflow-y: auto;
   pointer-events: auto;

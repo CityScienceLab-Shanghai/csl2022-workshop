@@ -32,6 +32,7 @@ const RadarChart = ({ data, dataKey = "ks" }) => {
 
   useEffect(() => {
     let newObj = JSON.parse(JSON.stringify(radarCharts["ks"]));
+    // console.log(newObj)
 
     for (let i = 0; i < 5; ++i) {
       newObj[i]["Proposal"] = newObj[i]["Baseline"];

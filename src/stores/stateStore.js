@@ -56,21 +56,21 @@ const getRadarCharts = (stateStore) => {
     radar_init[tracked_list[i]] = JSON.parse(
       JSON.stringify(_INIT_RADAR_DATA_SIMPLE)
     );
-    radar_init[tracked_list[i]][0]["Baseline"] = CalcNoise(
-      amenCount[tracked_list[i]]
-    );
-    radar_init[tracked_list[i]][1]["Baseline"] = CalcNoise(
-      amenCount[tracked_list[i]]
-    );
-    radar_init[tracked_list[i]][2]["Baseline"] = CalcNoise(
-      amenCount[tracked_list[i]]
-    );
-    radar_init[tracked_list[i]][3]["Baseline"] = CalcNoise(
-      amenCount[tracked_list[i]]
-    );
-    radar_init[tracked_list[i]][4]["Baseline"] = CalcNoise(
-      amenCount[tracked_list[i]]
-    );
+    // radar_init[tracked_list[i]][0]["Baseline"] = CalcNoise(
+    //   amenCount[tracked_list[i]]
+    // );
+    // radar_init[tracked_list[i]][1]["Baseline"] = CalcNoise(
+    //   amenCount[tracked_list[i]]
+    // );
+    // radar_init[tracked_list[i]][2]["Baseline"] = CalcNoise(
+    //   amenCount[tracked_list[i]]
+    // );
+    // radar_init[tracked_list[i]][3]["Baseline"] = CalcNoise(
+    //   amenCount[tracked_list[i]]
+    // );
+    // radar_init[tracked_list[i]][4]["Baseline"] = CalcNoise(
+    //   amenCount[tracked_list[i]]
+    // );
 
     for (let j = 0; j < 5; ++j)
       radar_init[tracked_list[i]][j]["Proposal"] =

@@ -166,7 +166,10 @@ const GroupSandbox = () => {
         </div>
 
         <div className={`${styles.col}`}></div>
-        <div className={`${styles.outputCol} ${styles.col3} ${styles.flexCol}`}>
+        <div
+          className={`${styles.outputCol} ${styles.col3} ${styles.flexCol}`}
+          id="protected_ur"
+        >
           <IndicatorCard
             title="Indicators"
             subTitle="Community Endowment"
