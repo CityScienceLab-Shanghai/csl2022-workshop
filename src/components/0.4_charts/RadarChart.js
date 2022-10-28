@@ -3,6 +3,7 @@ import { ResponsiveRadar } from "@nivo/radar";
 import * as d3 from "d3";
 
 import SELETED_AMEN_IND_LIST from "../../data/tutorial/tutorial_amen_result.json";
+import _AMENITIES_DATA from "../../data/sandbox/amenities.json";
 
 import { stateStore } from "../../stores";
 
@@ -46,10 +47,11 @@ const RadarChart = ({ data, dataKey = "ks" }) => {
 
     Object.keys(selected).forEach(function (key) {
       if (selected[key]) {
-        newObj[1]["Proposal"] = newObj[1]["Proposal"] + 10;
-        newObj[2]["Proposal"] = newObj[2]["Proposal"] + 5;
-        newObj[3]["Proposal"] = newObj[3]["Proposal"] + 3;
-        newObj[4]["Proposal"] = newObj[4]["Proposal"] + 7;
+        newObj[0]["Proposal"] = newObj[0]["Proposal"] + _AMENITIES_DATA[key]['traffic'];
+        newObj[1]["Proposal"] = newObj[1]["Proposal"] + _AMENITIES_DATA[key]['sunlight'];
+        newObj[2]["Proposal"] = newObj[2]["Proposal"] + _AMENITIES_DATA[key]['carbon'];
+        newObj[3]["Proposal"] = newObj[3]["Proposal"] + 5;
+        newObj[4]["Proposal"] = newObj[4]["Proposal"] + _AMENITIES_DATA[key]['equity'];
       }
     });
 
@@ -81,10 +83,11 @@ const RadarChart = ({ data, dataKey = "ks" }) => {
 
     Object.keys(tutorial_selected).forEach(function (key) {
       if (tutorial_selected[key]) {
-        newObj[1]["Proposal"] = newObj[1]["Proposal"] + 10;
-        newObj[2]["Proposal"] = newObj[2]["Proposal"] + 5;
-        newObj[3]["Proposal"] = newObj[3]["Proposal"] + 3;
-        newObj[4]["Proposal"] = newObj[4]["Proposal"] + 7;
+        newObj[0]["Proposal"] = newObj[0]["Proposal"] + _AMENITIES_DATA[key]['traffic'];
+        newObj[1]["Proposal"] = newObj[1]["Proposal"] + _AMENITIES_DATA[key]['sunlight'];
+        newObj[2]["Proposal"] = newObj[2]["Proposal"] + _AMENITIES_DATA[key]['carbon'];
+        newObj[3]["Proposal"] = newObj[3]["Proposal"] + 5;
+        newObj[4]["Proposal"] = newObj[4]["Proposal"] + _AMENITIES_DATA[key]['equity'];
       }
     });
 
