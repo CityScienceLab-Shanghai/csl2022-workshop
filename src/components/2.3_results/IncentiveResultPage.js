@@ -6,18 +6,19 @@ import "react-toggle/style.css";
 
 import CustomButton from "../0.1_buttons/CustomButton";
 import TreeMap from "../0.4_charts/TreeMap";
+import Histogram from "../0.4_charts/Histogram";
 
 import _TREE_DATA from "../../data/sim/votes_incentive.json";
 import SEQ_COLOR from "../../data/color/sequential_color_palette.json";
+
+import _DATA from "../../data/tutorial/incentive_vote_result.json";
 
 import { stateStore } from "../../stores";
 
 const IncentiveVotingPage = () => {
   const { page, nextPage } = stateStore;
   const [weighted, setWeighted] = useState(false);
-
-  let data = _TREE_DATA;
-
+  
   return (
     <>
       <div className={styles.container} id="protected_c">
@@ -50,13 +51,26 @@ const IncentiveVotingPage = () => {
         </div>
         <div
           style={{ marginTop: "62px", marginBottom: "92px" }}
-          className={styles.tree}
+          className={styles.histogram}
         >
-          <TreeMap
+          {/* <TreeMap
             className={styles.tree}
             data={data}
             colors={Object.values(SEQ_COLOR)}
             weighted={weighted}
+          /> */}
+          <Histogram
+            data={
+              weighted
+                ? _DATA["weighted"]["data"]
+                : _DATA["not_weighted"]["data"]
+            }
+            weight={
+              weighted
+                ? _DATA["weighted"]["weight"]
+                : _DATA["not_weighted"]["weight"]
+            }
+            isWeighted={weighted}
           />
         </div>
       </div>

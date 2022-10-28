@@ -32,6 +32,7 @@
     "react-map-gl": "^7.0.19",
     "react-scripts": "5.0.1",
     "react-toggle": "^4.1.3",
+    "resize-observer-polyfill": "^1.5.1",
     "resso": "^0.7.0",
     "styled-components": "^5.3.6",
     "web-vitals": "^2.1.4",
