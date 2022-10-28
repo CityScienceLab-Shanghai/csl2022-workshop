@@ -1,3 +1,7 @@
+:root {
+  --zoom-factor: 1;
+}
+
 /* Definitions */
 @font-face {
   font-family: "Inter";
@@ -32,96 +36,105 @@ code {
 }
 
 /* zoom out */
-/* @media screen and (min-height: 1300px) {
-    html {
-      zoom: 1.1;
-    }
+@media screen and (min-height: 1300px) {
+  :root {
+    --zoom-factor: 1.1;
   }
-  
-  @media screen and (min-width: 2000px) {
-    html {
-      zoom: 1.1;
-    }
+}
+
+@media screen and (min-width: 2200px) {
+  :root {
+    --zoom-factor: 1.1;
   }
-  
-  @media screen and (min-height: 1500px) {
-    html {
-      zoom: 1.2;
-    }
+}
+
+@media screen and (min-height: 1500px) {
+  :root {
+    --zoom-factor: 1.2;
   }
-  
-  @media screen and (min-width: 2400px) {
-    html {
-      zoom: 1.2;
-    }
+}
+
+@media screen and (min-width: 2400px) {
+  :root {
+    --zoom-factor: 1.2;
   }
-  
-  @media screen and (min-height: 1700px) {
-    html {
-      zoom: 1.33;
-    }
+}
+
+@media screen and (min-height: 1700px) {
+  :root {
+    --zoom-factor: 1.33;
   }
-  
-  @media screen and (min-width: 2550px) {
-    html {
-      zoom: 1.33;
-    }
+}
+
+@media screen and (min-width: 2550px) {
+  :root {
+    --zoom-factor: 1.33;
   }
-  
-  @media screen and (min-height: 1900px) {
-    html {
-      zoom: 1.6;
-    }
+}
+
+@media screen and (min-height: 1900px) {
+  :root {
+    --zoom-factor: 1.6;
   }
-  
-  @media screen and (min-width: 3000px) {
-    html {
-      zoom: 1.6;
-    }
-  } */
+}
+
+@media screen and (min-width: 3000px) {
+  :root {
+    --zoom-factor: 1.6;
+  }
+}
 
 /* zoom in */
-/* @media screen and (max-width: 1400px) {
-    html {
-      zoom: 0.8;
-    }
+@media screen and (max-width: 1400px) {
+  :root {
+    --zoom-factor: 0.8;
   }
-  @media screen and (max-width: 1100px) {
-    html {
-      zoom: 0.6;
-    }
+}
+@media screen and (max-width: 1100px) {
+  :root {
+    --zoom-factor: 0.6;
   }
-  
-  @media screen and (max-height: 900px) {
-    html {
-      zoom: 0.8;
-    }
-  }
-  
-  @media screen and (max-height: 800px) {
-    html {
-      zoom: 0.7;
-    }
-  }
-  
-  @media screen and (max-height: 700px) {
-    html {
-      zoom: 0.5;
-      transform:scale(0.8)
-    }
-  } */
+}
 
-@media screen and (max-height: 2700px) {
-  html {
-    zoom: 0.5;
+@media screen and (max-height: 900px) {
+  :root {
+    --zoom-factor: 0.8;
   }
-  #protected_ul {
-    zoom: 2;
-    transform: scale(0.5);
-    transform-origin: 0 0;
+}
+
+@media screen and (max-height: 800px) {
+  :root {
+    --zoom-factor: 0.7;
   }
-  #protected_c {
-    zoom: 2;
-    transform: translate(-50%, -50%) scale(0.5);
+}
+
+@media screen and (max-height: 700px) {
+  :root {
+    --zoom-factor: 0.5;
   }
+}
+
+@media screen and (max-height: 600px) {
+  :root {
+    --zoom-factor: 0.4;
+  }
+}
+
+@media screen and (max-height: 500px) {
+  :root {
+    --zoom-factor: 0.3;
+  }
+}
+
+html {
+  zoom: var(--zoom-factor);
+}
+#protected_ul {
+  zoom: calc(1 / var(--zoom-factor));
+  transform: scale(var(--zoom-factor));
+  transform-origin: 0 0;
+}
+#protected_c {
+  zoom: calc(1 / var(--zoom-factor));
+  transform: translate(-50%, -50%) scale(var(--zoom-factor));
 }

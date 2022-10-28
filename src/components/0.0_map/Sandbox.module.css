@@ -54,6 +54,8 @@
   pointer-events: auto;
 
   padding-bottom: 45px;
+
+  overflow: inherit;
 }
 
 .outputCol {
@@ -467,4 +469,10 @@
   /* background: rgb(127, 255, 0); */
   background: black;
   outline: 2px solid white;
+}
+
+.scroll_layer {
+  overflow-x: hidden;
+  overflow-y: auto;
+  pointer-events: auto;
 }

@@ -36,24 +36,23 @@ const GroupSandbox = () => {
 
   console.log("render");
 
-//   const [radarCharts, setRadarCharts] = useState(_RADAR_DATA);
+  //   const [radarCharts, setRadarCharts] = useState(_RADAR_DATA);
 
   let button_set_1 = [];
   let button_set_2 = [];
 
+  //   const [selected, setSelected] = useState(selected_status);
+  //   const [countSelected, setCountSelected] = useState(0);
 
-//   const [selected, setSelected] = useState(selected_status);
-//   const [countSelected, setCountSelected] = useState(0);
+  //   useEffect(() => {
+  //     let proposal = barCharts["ks"][0]["value"];
 
-//   useEffect(() => {
-//     let proposal = barCharts["ks"][0]["value"];
-
-//     Object.keys(selected).forEach(function (key) {
-//       // if (selected[key]) proposal -= parseInt(_AMENITIES_DATA[key]["cost"])
-//       if (selected[key]) proposal -= parseInt(_AMENITIES_DATA[key]["cost"]) + 1;
-//     });
-//     updateBarCharts("ks", 0, proposal);
-//   }, [selected]);
+  //     Object.keys(selected).forEach(function (key) {
+  //       // if (selected[key]) proposal -= parseInt(_AMENITIES_DATA[key]["cost"])
+  //       if (selected[key]) proposal -= parseInt(_AMENITIES_DATA[key]["cost"]) + 1;
+  //     });
+  //     updateBarCharts("ks", 0, proposal);
+  //   }, [selected]);
 
   if (_AMENITIES_DATA) {
     for (var i = 0; i < 12; i++)
@@ -69,10 +68,10 @@ const GroupSandbox = () => {
               colorIndex={parseInt(_AMENITIES_DATA[i].id) + 1}
               largeFont={false}
               selectedColor={_COLOR[parseInt(_AMENITIES_DATA[i].id) + 1]}
-            //   selected={selected}
-            //   setSelected={setSelected}
-            //   countSelected={countSelected}
-            //   setCountSelected={setCountSelected}
+              //   selected={selected}
+              //   setSelected={setSelected}
+              //   countSelected={countSelected}
+              //   setCountSelected={setCountSelected}
               isVoted={isVoted}
               capacity={3}
             />
@@ -98,10 +97,10 @@ const GroupSandbox = () => {
               colorIndex={parseInt(_AMENITIES_DATA[i].id) + 1}
               largeFont={false}
               selectedColor={_COLOR[parseInt(_AMENITIES_DATA[i].id) + 1]}
-            //   selected={selected}
-            //   setSelected={setSelected}
-            //   countSelected={countSelected}
-            //   setCountSelected={setCountSelected}
+              //   selected={selected}
+              //   setSelected={setSelected}
+              //   countSelected={countSelected}
+              //   setCountSelected={setCountSelected}
               isVoted={isVoted}
               capacity={3}
             />
@@ -155,11 +154,17 @@ const GroupSandbox = () => {
       <div
         className={`${styles.containerFluid} ${styles.h100} ${styles.w100} ${styles.flexRow}`}
       >
-        <div className={`${styles.panelCol} ${styles.col3} ${styles.flexCol}`} id="protected_ul">
-          <TitleCard />
-          <PolicyVoteCard />
-          <EndowmentVoteCard />
+        <div className={`${styles.scroll_layer}`}>
+          <div
+            className={`${styles.panelCol} ${styles.col3} ${styles.flexCol}`}
+            id="protected_ul"
+          >
+            <TitleCard />
+            <PolicyVoteCard />
+            <EndowmentVoteCard />
+          </div>
         </div>
+
         <div className={`${styles.col}`}></div>
         <div className={`${styles.outputCol} ${styles.col3} ${styles.flexCol}`}>
           <IndicatorCard

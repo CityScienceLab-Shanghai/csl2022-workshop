@@ -88,7 +88,7 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    if (windowSize.width < 1400 || windowSize.height < 900 ) setIsMobile(true);
+    if (windowSize.width < 1100 || windowSize.height < 400 ) setIsMobile(true);
     else setIsMobile("ontouchstart" in document.documentElement);
   }, [windowSize.width, windowSize.height]);
 
