@@ -46,16 +46,16 @@ const App = () => {
 
   siteProtection = false;
   let sha512 =
-  "d370d262a7e11e19ee8c9cae492d09d8d5b4b70054e75f96527c6e028974af2dbefdae18e59be765dd4e12d1b7d9f8b0167cb2f73250312561bc753f8ea35ef6";
+    "d370d262a7e11e19ee8c9cae492d09d8d5b4b70054e75f96527c6e028974af2dbefdae18e59be765dd4e12d1b7d9f8b0167cb2f73250312561bc753f8ea35ef6";
 
-  disable right click
-    useEffect(() => {
-      document.oncontextmenu = function (e) {
-        // block right-click context menu
-        e = e || window.event;
-        return false;
-      };
-    }, []);
+  // disable right click
+  useEffect(() => {
+    document.oncontextmenu = function (e) {
+      // block right-click context menu
+      e = e || window.event;
+      return false;
+    };
+  }, []);
 
   // responsive design
   const [windowSize, setWindowSize] = useState({
@@ -64,7 +64,6 @@ const App = () => {
   });
   const [isMobile, setIsMobile] = useState(false);
 
-  
   useEffect(() => {
     function handleResize() {
       setWindowSize({
@@ -88,7 +87,7 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    if (windowSize.width < 1100 || windowSize.height < 400 ) setIsMobile(true);
+    if (windowSize.width < 1100 || windowSize.height < 400) setIsMobile(true);
     else setIsMobile("ontouchstart" in document.documentElement);
   }, [windowSize.width, windowSize.height]);
 
@@ -116,7 +115,7 @@ const App = () => {
   return isMobile ? (
     <ResPage />
   ) : (
-    <Protect isEnabled={(page > 1) && siteProtection} sha512={sha512}>
+    <Protect isEnabled={page > 1 && siteProtection} sha512={sha512}>
       <div>
         <InfoBox />
         <Navigation />
