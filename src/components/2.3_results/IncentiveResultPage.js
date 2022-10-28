@@ -16,7 +16,7 @@ import _DATA from "../../data/tutorial/incentive_vote_result.json";
 import { stateStore } from "../../stores";
 
 const IncentiveVotingPage = () => {
-  const { page, nextPage } = stateStore;
+  const { page, nextPage, tutorial_sandbox_slider_value } = stateStore;
   const [weighted, setWeighted] = useState(false);
   
   return (
@@ -60,17 +60,19 @@ const IncentiveVotingPage = () => {
             weighted={weighted}
           /> */}
           <Histogram
-            data={
+            agent_value={
               weighted
                 ? _DATA["weighted"]["data"]
                 : _DATA["not_weighted"]["data"]
             }
-            weight={
+            agent_weight={
               weighted
                 ? _DATA["weighted"]["weight"]
                 : _DATA["not_weighted"]["weight"]
             }
             isWeighted={weighted}
+            userValue={tutorial_sandbox_slider_value}
+            userWeight={1}
           />
         </div>
       </div>

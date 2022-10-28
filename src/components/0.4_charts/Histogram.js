@@ -20,7 +20,6 @@ const unique = (arr) => {
 const colorInterpolate = (colorA, colorB, intval) => {
   const rgbA = getRgb(colorA);
   const rgbB = getRgb(colorB);
-  console.log(rgbA);
   const colorVal = (prop) =>
     Math.round(rgbA[prop] * (1 - intval) + rgbB[prop] * intval);
   return [colorVal("r"), colorVal("g"), colorVal("b")];
@@ -94,6 +93,18 @@ const sum = (arr) => {
   });
 };
 
+const getAvg = (arr, weight) => {
+  let s = 0;
+  for (var i = 0; i < arr.length; i++) {
+    s += arr[i] * weight[i];
+  }
+
+  s = s / sum(weight);
+  s = Math.round(s);
+
+  return s;
+};
+
 const getIndex = (arr) => {
   let s = 0;
   let res = [];
@@ -104,20 +115,42 @@ const getIndex = (arr) => {
   return res;
 };
 
-const Histogram = ({ data, weight, isWeighted = false }) => {
+const Histogram = ({
+  agent_value,
+  agent_weight,
+  userValue,
+  userWeight,
+  isWeighted = false,
+}) => {
   const ref = useRef();
   const containerRef = useRef();
 
   const textWidth = 50;
   const margin = {
-    top: 0,
+    top: 40,
     left: 0,
-    bottom: 0,
+    bottom: 40,
     right: 0,
   };
   const [containerWidth, containerHeight] = useResizeObserver(containerRef);
 
+  let sort_list = [{ value: userValue, weight: userWeight }];
+  for (let i = 0; i < agent_value.length - 1; i++) {
+    sort_list.push({ value: agent_value[i], weight: agent_weight[i] });
+  }
+  sort_list.sort((a, b) => {
+    return a.value - b.value;
+  });
+
+  let data = [];
+  let weight = [];
+  for (let i = 0; i < sort_list.length - 1; i++) {
+    data.push(sort_list[i].value);
+    weight.push(sort_list[i].weight);
+  }
+
   let xIndex = getIndex(weight);
+  let userIndex = data.indexOf(userValue);
 
   useEffect(() => {
     const height = containerHeight ? containerHeight : 0;
@@ -129,8 +162,8 @@ const Histogram = ({ data, weight, isWeighted = false }) => {
     let minValueMargin = 0.05 * (d3.max(data) - d3.min(data));
     let longestBarPadding = 0;
 
-    console.log(sum(weight));
-    console.log(barWdith);
+    // console.log(sum(weight));
+    // console.log(barWdith);
 
     let xscale = d3
       .scaleLinear()
@@ -148,6 +181,8 @@ const Histogram = ({ data, weight, isWeighted = false }) => {
       .range([0, yrange]);
 
     let yUnit = yscale(1) - yscale(0);
+
+    let avgFloor = getAvg(data, weight);
 
     // build SVG
     let svg = d3
@@ -188,6 +223,12 @@ const Histogram = ({ data, weight, isWeighted = false }) => {
       .attr("fill", (d, i) =>
         d3.rgb(...colorInterpolate([22, 48, 145], [132, 43, 64], data[i] / 10))
       )
+
+      .attr("class", (d, i) => {
+        // console.log(i, userIndex)
+        if (i == userIndex) return "userbar";
+        else return "agentbar";
+      })
       .attr("value", (d) => d);
 
     // clear Chart
@@ -198,6 +239,93 @@ const Histogram = ({ data, weight, isWeighted = false }) => {
       .data(data)
       .exit()
       .remove();
+
+    // draw Lines
+    svg
+      .select("#xAxis")
+      .attr("y1", height - margin.bottom)
+      .attr("x1", xscale(0))
+      .attr("y2", height - margin.bottom)
+      .attr("x2", xscale(sum(weight)))
+      .style("stroke", "white")
+      .style("stroke-width", 2)
+      .attr("index", 0);
+    svg
+      .select("#yAxis")
+      .attr("y1", height - margin.bottom)
+      .attr("x1", xscale(0))
+      .attr("y2", margin.top)
+      .attr("x2", xscale(0))
+      .style("stroke", "white")
+      .style("stroke-width", 2)
+      .attr("index", 0);
+
+    svg
+      .select("#AxisTextUp")
+      .attr("x", xscale(0))
+      .attr("y", margin.top - 5)
+      .attr("class", "small-font")
+      .attr("style", "font-family:Inter")
+      .attr("font-size", "14")
+      .attr("fill", "white")
+      .attr("text-anchor", "Start")
+      .text("10 Floors");
+
+    svg
+      .select("#AxisTextRight")
+      .attr("x", xscale(sum(weight)))
+      .attr("y", height - margin.bottom + 20)
+      .attr("class", "small-font")
+      .attr("style", "font-family:Inter")
+      .attr("font-size", "14")
+      .attr("fill", "white")
+      .attr("text-anchor", "End")
+      .text("Participants");
+
+    svg
+      .select("#AxisTextZero")
+      .attr("x", xscale(0))
+      .attr("y", height - margin.bottom + 20)
+      .attr("class", "small-font")
+      .attr("style", "font-family:Inter")
+      .attr("font-size", "14")
+      .attr("fill", "white")
+      .attr("text-anchor", "Start")
+      .text("0");
+
+    // avg line
+    svg
+      .select("#avgLine")
+      .attr("y1", height - margin.bottom - yscale(avgFloor))
+      .attr("x1", xscale(0))
+      .attr("y2", height - margin.bottom - yscale(avgFloor))
+      .attr("x2", xscale(sum(weight)))
+      .style("stroke", "#EA4C6F")
+      .style("stroke-width", 2)
+      .style("stroke-dasharray", "3 2")
+      .attr("index", 0);
+
+    svg
+      .select("#avgText")
+      .attr("x", xscale(0) + 10)
+      .attr("y", height - margin.bottom - yscale(avgFloor) - 5)
+      .attr("class", "small-font")
+      .attr("style", "font-family:Inter")
+      .attr("font-size", "14")
+      .attr("fill", "#EA4C6F")
+      .attr("text-anchor", "Start")
+      .text(`Result: ${avgFloor} floors`);
+
+    svg
+      .select("#userText")
+      .attr("x", svg.select(".userbar").attr("x"))
+      .attr("y", svg.select(".userbar").attr("y") - 10)
+      .attr("class", "small-font")
+      .attr("style", "font-family:Inter")
+      .attr("font-size", "16")
+      .attr("fill", "white")
+      .attr("text-anchor", "Start")
+      .text(`You↓`);
   }, [data, weight, containerWidth, containerHeight]);
 
   return (
@@ -213,10 +341,16 @@ const Histogram = ({ data, weight, isWeighted = false }) => {
         <g />
         <line id="xAxis" />
         <line id="yAxis" />
+        <text id="AxisTextRight" />
+        <text id="AxisTextZero" />
+        <text id="AxisTextUp" />
+
         {/* Avg Line */}
         <line id="avgLine" />
-        <text id="avgTextUp" />
-        <text id="avgTextDown" />
+        <text id="avgText" />
+
+        {/* User Arrow */}
+        <text id="userText" />
       </svg>
     </div>
   );
