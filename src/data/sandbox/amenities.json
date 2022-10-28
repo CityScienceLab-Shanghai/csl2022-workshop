@@ -4,22 +4,26 @@
     "name": "public open space",
     "type": "Amenities",
     "subtype": "public open space",
-    "cost": "5000",
-    "ROI": "60%",
-    "noise": 2,
-    "density": 2,
-    "traffic": 2
+    "cost": "283500",
+    "ROI": "0%",
+    "sunlight": 9,
+    "traffic": 7,
+    "walkability": 6,
+    "carbon": 9,
+    "equity": 9
   },
   {
     "id": 1,
     "name": "daycare",
     "type": "Amenities",
     "subtype": "Education",
-    "cost": "10000",
-    "ROI": "60%",
-    "noise": 1,
-    "density": 1,
-    "traffic": 1
+    "cost": "252000",
+    "ROI": "10%",
+    "sunlight": 7,
+    "traffic": 5,
+    "walkability": 6,
+    "carbon": 5,
+    "equity": 7
   },
   {
     "id": 2,
@@ -37,11 +41,13 @@
     "name": "library",
     "type": "Amenities",
     "subtype": "Education",
-    "cost": "60000",
-    "ROI": "60%",
-    "noise": 1,
-    "density": 3,
-    "traffic": 3
+    "cost": "189000",
+    "ROI": "6%",
+    "sunlight": 5,
+    "traffic": 7,
+    "walkability": 8,
+    "carbon": 7,
+    "equity": 8
   },
   {
     "id": 4,
@@ -70,11 +76,13 @@
     "name": "laundry",
     "type": "Amenities",
     "subtype": "Utility",
-    "cost": "20000",
-    "ROI": "60%",
-    "noise": 1,
-    "density": 3,
-    "traffic": 3
+    "cost": "150000",
+    "ROI": "10%",
+    "sunlight": 8,
+    "traffic": 8,
+    "walkability": 7,
+    "carbon": 4,
+    "equity": 5
   },
   {
     "id": 7,
@@ -92,22 +100,26 @@
     "name": "beauty/hair salon",
     "type": "Amenities",
     "subtype": "Commercial",
-    "cost": "15000",
-    "ROI": "60%",
-    "noise": 2,
-    "density": 3,
-    "traffic": 3
+    "cost": "120000",
+    "ROI": "8%",
+    "sunlight": 6,
+    "traffic": 7,
+    "walkability": 5,
+    "carbon": 4,
+    "equity": 6
   },
   {
     "id": 9,
-    "name": " grocery store",
+    "name": "grocery store",
     "type": "Amenities",
     "subtype": "Commercial",
-    "cost": "15000",
-    "ROI": "60%",
-    "noise": 1,
-    "density": 3,
-    "traffic": 3
+    "cost": "252000",
+    "ROI": "9%",
+    "sunlight": 6,
+    "traffic": 6,
+    "walkability": 8,
+    "carbon": 4,
+    "equity": 6
   },
   {
     "id": 10,
@@ -180,11 +192,12 @@
     "name": "rent-to-own",
     "type": "Prosocial programmes",
     "subtype": "rent-to-own",
-    "cost": "15000",
-    "ROI": "60%",
-    "noise": 1,
-    "density": 3,
-    "traffic": 3
+    "cost": "800000",
+    "ROI": "10%",
+    "sunlight": 6,
+    "traffic": 6,
+    "carbon": 6,
+    "equity": 8
   },
   {
     "id": 17,
@@ -202,22 +215,25 @@
     "name": "job training",
     "type": "Prosocial programmes",
     "subtype": "job training",
-    "cost": "15000",
-    "ROI": "60%",
-    "noise": 1,
-    "density": 3,
-    "traffic": 3
+    "cost": "180000",
+    "ROI": "5%",
+    "sunlight": 6,
+    "traffic": 7,
+    "walkability": 8,
+    "carbon": 6,
+    "equity": 9
   },
   {
     "id": 19,
     "name": "green commute",
     "type": "Pro-sustainable programmes",
     "subtype": "green commute",
-    "cost": "15000",
-    "ROI": "60%",
-    "noise": 1,
-    "density": 3,
-    "traffic": 3
+    "cost": "900000",
+    "ROI": "0%",
+    "sunlight": 7,
+    "traffic": 9,
+    "carbon": 9,
+    "equity": 7
   },
   {
     "id": 20,
@@ -235,11 +251,12 @@
     "name": "waste & recycle",
     "type": "Pro-sustainable programmes",
     "subtype": "recycle",
-    "cost": "15000",
-    "ROI": "60%",
-    "noise": 1,
-    "density": 3,
-    "traffic": 3
+    "cost": "900000",
+    "ROI": "0%",
+    "sunlight": 0,
+    "traffic": 0,
+    "carbon": 10,
+    "equity": 7
   },
   {
     "id": 22,

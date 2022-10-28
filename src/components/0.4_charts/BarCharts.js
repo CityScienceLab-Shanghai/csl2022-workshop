@@ -10,7 +10,7 @@ import { stateStore } from "../../stores";
 
 const BarChart = ({
   data,
-  maxValue = 500000,
+  maxValue = 2500000,
   horizontal = false,
   dataKey = "ks",
 }) => {

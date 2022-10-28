@@ -99,8 +99,11 @@ const getAvg = (arr, weight) => {
     s += arr[i] * weight[i];
   }
 
+  console.log(s)
+  console.log(sum(weight))
+
   s = s / sum(weight);
-  s = Math.round(s);
+  s = Math.floor(s);
 
   return s;
 };
@@ -183,6 +186,7 @@ const Histogram = ({
     let yUnit = yscale(1) - yscale(0);
 
     let avgFloor = getAvg(data, weight);
+    console.log(avgFloor)
 
     // build SVG
     let svg = d3

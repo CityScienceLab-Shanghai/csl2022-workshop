@@ -1,6 +1,7 @@
 import resso from "resso";
 
 import _INIT_BAR_DATA from "../data/charts/bar_chart.json";
+import _INIT_BAR_DATA_42 from "../data/charts/bar_4.2_chart.json";
 import _INIT_RADAR_DATA from "../data/charts/radar_chart.json";
 import _INIT_RADAR_DATA_SIMPLE from "../data/charts/radar_chart _simple.json";
 import _INIT_BLD from "../data/map/processed_metric_init.json";
@@ -26,6 +27,9 @@ const getBarCharts = (stateStore) => {
     // deepcopy
     bar_init[tracked_list[i]] = JSON.parse(JSON.stringify(_INIT_BAR_DATA));
   }
+
+  bar_init["t42"] = JSON.parse(JSON.stringify(_INIT_BAR_DATA_42));
+  bar_init["t44"] = JSON.parse(JSON.stringify(_INIT_BAR_DATA_42));
 
   //   console.log(bar_init);
   return bar_init;
@@ -193,5 +197,5 @@ export const stateStore = resso({
   checkValid: (dataKey, value) => {
     return stateStore.barCharts[dataKey][0]["value"] - value >= 0;
   },
-  _PRICE_FLOOR: 20000,
+  _PRICE_FLOOR: 124000,
 });
