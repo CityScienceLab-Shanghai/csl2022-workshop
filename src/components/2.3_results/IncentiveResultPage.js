@@ -20,7 +20,7 @@ const IncentiveVotingPage = () => {
 
   return (
     <>
-      <div className={styles.container}>
+      <div className={styles.container} id="protected_c">
         <label className={styles.toggle}>
           <Toggle
             defaultChecked={weighted}

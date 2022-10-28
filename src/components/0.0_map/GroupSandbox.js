@@ -155,7 +155,7 @@ const GroupSandbox = () => {
       <div
         className={`${styles.containerFluid} ${styles.h100} ${styles.w100} ${styles.flexRow}`}
       >
-        <div className={`${styles.panelCol} ${styles.col3} ${styles.flexCol}`}>
+        <div className={`${styles.panelCol} ${styles.col3} ${styles.flexCol}`} id="protected_ul">
           <TitleCard />
           <PolicyVoteCard />
           <EndowmentVoteCard />

@@ -11,7 +11,7 @@ const IncentivePerformancePage = () => {
 
   return (
     <>
-      <div className={styles.container}>
+      <div className={styles.container} id="protected_c">
         <div className={styles.rowGroup} style={{ marginTop: "0px" }}>
           <div className={styles.title}>Incentive for Developers</div>
         </div>

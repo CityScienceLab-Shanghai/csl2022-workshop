@@ -107,5 +107,21 @@ code {
   @media screen and (max-height: 700px) {
     html {
       zoom: 0.5;
+      transform:scale(0.8)
     }
   } */
+
+@media screen and (max-height: 2700px) {
+  html {
+    zoom: 0.5;
+  }
+  #protected_ul {
+    zoom: 2;
+    transform: scale(0.5);
+    transform-origin: 0 0;
+  }
+  #protected_c {
+    zoom: 2;
+    transform: translate(-50%, -50%) scale(0.5);
+  }
+}

@@ -64,6 +64,7 @@ const App = () => {
   });
   const [isMobile, setIsMobile] = useState(false);
 
+  
   useEffect(() => {
     function handleResize() {
       setWindowSize({
