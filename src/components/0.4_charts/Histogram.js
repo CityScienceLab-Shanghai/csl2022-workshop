@@ -99,9 +99,6 @@ const getAvg = (arr, weight) => {
     s += arr[i] * weight[i];
   }
 
-  console.log(s)
-  console.log(sum(weight))
-
   s = s / sum(weight);
   s = Math.floor(s);
 

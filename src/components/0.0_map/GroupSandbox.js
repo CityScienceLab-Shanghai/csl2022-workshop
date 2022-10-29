@@ -145,12 +145,15 @@ const GroupSandbox = () => {
 
   return (
     <div>
-      <KendallMap
-        className={styles.visualization}
-        isBuilding={isBuilding}
-        isVoting={isVoting}
-        buildingID={buildingID}
-      />
+      <div id="protected_map" className={styles.mapProtectionWrapper}>
+        <KendallMap
+          className={styles.visualization}
+          isBuilding={isBuilding}
+          isVoting={isVoting}
+          buildingID={buildingID}
+        />
+      </div>
+
       <div
         className={`${styles.containerFluid} ${styles.h100} ${styles.w100} ${styles.flexRow}`}
       >
