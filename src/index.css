@@ -135,11 +135,15 @@ html {
   transform-origin: 0 0;
 }
 #protected_ur {
-    zoom: calc(1 / var(--zoom-factor));
-    transform: scale(var(--zoom-factor));
-    transform-origin: 100% 0 ;
-  }
+  zoom: calc(1 / var(--zoom-factor));
+  transform: scale(var(--zoom-factor));
+  transform-origin: 100% 0;
+}
 #protected_c {
   zoom: calc(1 / var(--zoom-factor));
   transform: translate(-50%, -50%) scale(var(--zoom-factor));
+}
+#protected_map {
+  zoom: calc(1 / var(--zoom-factor));
+  transform: scale(var(--zoom-factor));
 }

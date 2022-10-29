@@ -5,6 +5,14 @@
   z-index: -1;
 }
 
+.mapProtectionWrapper {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
 .containerFluid {
   height: 100%;
   position: absolute;
