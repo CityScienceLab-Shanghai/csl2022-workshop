@@ -145,5 +145,5 @@ html {
 }
 #protected_map {
   zoom: calc(1 / var(--zoom-factor));
-  transform: scale(var(--zoom-factor));
+  transform: scale(1);
 }
