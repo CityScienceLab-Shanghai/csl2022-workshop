@@ -1,6 +1,5 @@
 [
   "/lablogo.png",
-  "/bg.gif",
   "/lablogo.png",
   "/content/1.1.png",
   "/content/1.2.png",
@@ -21,5 +20,6 @@
   "/building_rendered/9.png",
   "/building_rendered/10.png",
   "/building_rendered/result_1.png",
-  "/building_rendered/result_2.png"
+  "/building_rendered/result_2.png",
+  "/bg.gif"
 ]
