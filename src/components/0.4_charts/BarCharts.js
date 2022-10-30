@@ -28,14 +28,14 @@ const BarChart = ({
   const ref = useRef();
   let svg = d3.select(ref.current);
 
-  useEffect(() => {
-    svg.selectAll("line").attr("stroke", "rgba(69, 69, 69, 1)");
-    svg
-      .selectAll("text")
-      .style("font-family", "Inter")
-      .style("font-weight", "400")
-      .style("fill", "#EBEBEB");
-  });
+  //   useEffect(() => {
+  //     svg.selectAll("line").attr("stroke", "rgba(69, 69, 69, 1)");
+  //     svg
+  //       .selectAll("text")
+  //       .style("font-family", "Inter")
+  //       .style("font-weight", "400")
+  //       .style("fill", "#EBEBEB !important");
+  //   });
 
   // listen to kendall square simulation
   useEffect(() => {

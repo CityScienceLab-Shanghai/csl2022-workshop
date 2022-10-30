@@ -81,7 +81,7 @@ const App = () => {
   useEffect(() => {
     _IMG_LIST.forEach((v, i, _) => {
       loadImage(v, (img) => {
-        console.log(`Loading... ${i}/${_IMG_LIST.length}`);
+        console.log(`Loading... ${i + 1}/${_IMG_LIST.length}`);
       });
     });
   }, []);
