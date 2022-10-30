@@ -208,7 +208,7 @@ const Histogram = ({
           ? yscale(d) - yscale(0)
           : yscale(0) - yscale(d)
       )
-      .attr("x", (d, i) => xscale(xIndex[i]))
+      .attr("x", (d, i) => xscale(xIndex[i]) + barPadding)
       .attr("y", (d) =>
         d3.min(data) >= 0
           ? height - yscale(d) - margin.bottom
@@ -313,16 +313,36 @@ const Histogram = ({
       .attr("text-anchor", "Start")
       .text(`Result: ${avgFloor} floors`);
 
+    let userHintX =
+      parseInt(svg.select(".userbar").attr("x")) +
+      parseInt(svg.select(".userbar").attr("width")) / 2;
     svg
       .select("#userText")
-      .attr("x", svg.select(".userbar").attr("x"))
-      .attr("y", svg.select(".userbar").attr("y") - 10)
+      .attr("x", userHintX)
+      .attr("y", svg.select(".userbar").attr("y") - 20)
       .attr("class", "small-font")
       .attr("style", "font-family:Inter")
       .attr("font-size", "16")
       .attr("fill", "white")
-      .attr("text-anchor", "Start")
-      .text(`You↓`);
+      .attr("text-anchor", "middle")
+      .text(`You`);
+
+    svg
+      .select("#userArrow")
+      .attr("x", userHintX)
+      .attr("y", svg.select(".userbar").attr("y") - 5)
+      .attr("class", "small-font")
+      .attr("style", "font-family:Inter")
+      .attr("font-size", "16")
+      .attr("fill", "white")
+      .attr("text-anchor", "middle")
+      .text(`↓`);
+
+    svg
+      .select(".userbar")
+      .attr("stroke", "white")
+      .attr("stroke-width", "2px")
+      .style("stroke-dasharray", "5 5");
   }, [data, weight, containerWidth, containerHeight]);
 
   return (
@@ -348,6 +368,7 @@ const Histogram = ({
 
         {/* User Arrow */}
         <text id="userText" />
+        <text id="userArrow" />
       </svg>
     </div>
   );
