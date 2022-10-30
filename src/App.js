@@ -49,13 +49,13 @@ const App = () => {
     "d370d262a7e11e19ee8c9cae492d09d8d5b4b70054e75f96527c6e028974af2dbefdae18e59be765dd4e12d1b7d9f8b0167cb2f73250312561bc753f8ea35ef6";
 
   // disable right click
-//   useEffect(() => {
-//     document.oncontextmenu = function (e) {
-//       // block right-click context menu
-//       e = e || window.event;
-//       return false;
-//     };
-//   }, []);
+  //   useEffect(() => {
+  //     document.oncontextmenu = function (e) {
+  //       // block right-click context menu
+  //       e = e || window.event;
+  //       return false;
+  //     };
+  //   }, []);
 
   // responsive design
   const [windowSize, setWindowSize] = useState({
@@ -81,7 +81,7 @@ const App = () => {
   useEffect(() => {
     _IMG_LIST.forEach((v, i, _) => {
       loadImage(v, (img) => {
-        console.log(`Loading... ${i}/${_IMG_LIST.length}`);
+        console.log(`Loading... ${i + 1}/${_IMG_LIST.length}`);
       });
     });
   }, []);
