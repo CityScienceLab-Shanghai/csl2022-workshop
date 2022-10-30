@@ -162,9 +162,6 @@ const Histogram = ({
     let minValueMargin = 0.05 * (d3.max(data) - d3.min(data));
     let longestBarPadding = 0;
 
-    // console.log(sum(weight));
-    // console.log(barWdith);
-
     let xscale = d3
       .scaleLinear()
       .domain([0, sum(weight)])
@@ -183,7 +180,6 @@ const Histogram = ({
     let yUnit = yscale(1) - yscale(0);
 
     let avgFloor = getAvg(data, weight);
-    console.log(avgFloor)
 
     // build SVG
     let svg = d3

@@ -21,15 +21,15 @@ const RadarChart = ({ data, dataKey = "ks" }) => {
   const ref = useRef();
   let svg = d3.select(ref.current);
 
-  useEffect(() => {
-    svg.selectAll("circle").attr("stroke", "rgba(69, 69, 69, 1)");
-    svg.selectAll("line").attr("stroke", "rgba(69, 69, 69, 1)");
-    svg
-      .selectAll("text")
-      .style("font-family", "Inter")
-      .style("font-weight", "400")
-      .style("fill", "#EBEBEB");
-  });
+  //   useEffect(() => {
+  //     svg.selectAll("circle").attr("stroke", "rgba(69, 69, 69, 1)");
+  //     svg.selectAll("line").attr("stroke", "rgba(69, 69, 69, 1)");
+  //     svg
+  //       .selectAll("text")
+  //       .style("font-family", "Inter")
+  //       .style("font-weight", "400")
+  //       .style("fill", "#EBEBEB");
+  //   });
 
   useEffect(() => {
     let newObj = JSON.parse(JSON.stringify(radarCharts["ks"]));
@@ -47,11 +47,15 @@ const RadarChart = ({ data, dataKey = "ks" }) => {
 
     Object.keys(selected).forEach(function (key) {
       if (selected[key]) {
-        newObj[0]["Proposal"] = newObj[0]["Proposal"] + _AMENITIES_DATA[key]['traffic'];
-        newObj[1]["Proposal"] = newObj[1]["Proposal"] + _AMENITIES_DATA[key]['sunlight'];
-        newObj[2]["Proposal"] = newObj[2]["Proposal"] + _AMENITIES_DATA[key]['carbon'];
+        newObj[0]["Proposal"] =
+          newObj[0]["Proposal"] + _AMENITIES_DATA[key]["traffic"];
+        newObj[1]["Proposal"] =
+          newObj[1]["Proposal"] + _AMENITIES_DATA[key]["sunlight"];
+        newObj[2]["Proposal"] =
+          newObj[2]["Proposal"] + _AMENITIES_DATA[key]["carbon"];
         newObj[3]["Proposal"] = newObj[3]["Proposal"] + 5;
-        newObj[4]["Proposal"] = newObj[4]["Proposal"] + _AMENITIES_DATA[key]['equity'];
+        newObj[4]["Proposal"] =
+          newObj[4]["Proposal"] + _AMENITIES_DATA[key]["equity"];
       }
     });
 
@@ -83,11 +87,15 @@ const RadarChart = ({ data, dataKey = "ks" }) => {
 
     Object.keys(tutorial_selected).forEach(function (key) {
       if (tutorial_selected[key]) {
-        newObj[0]["Proposal"] = newObj[0]["Proposal"] + _AMENITIES_DATA[key]['traffic'];
-        newObj[1]["Proposal"] = newObj[1]["Proposal"] + _AMENITIES_DATA[key]['sunlight'];
-        newObj[2]["Proposal"] = newObj[2]["Proposal"] + _AMENITIES_DATA[key]['carbon'];
+        newObj[0]["Proposal"] =
+          newObj[0]["Proposal"] + _AMENITIES_DATA[key]["traffic"];
+        newObj[1]["Proposal"] =
+          newObj[1]["Proposal"] + _AMENITIES_DATA[key]["sunlight"];
+        newObj[2]["Proposal"] =
+          newObj[2]["Proposal"] + _AMENITIES_DATA[key]["carbon"];
         newObj[3]["Proposal"] = newObj[3]["Proposal"] + 5;
-        newObj[4]["Proposal"] = newObj[4]["Proposal"] + _AMENITIES_DATA[key]['equity'];
+        newObj[4]["Proposal"] =
+          newObj[4]["Proposal"] + _AMENITIES_DATA[key]["equity"];
       }
     });
 
@@ -131,6 +139,7 @@ const RadarChart = ({ data, dataKey = "ks" }) => {
   return (
     <div ref={ref} style={{ width: "100%", height: "100%" }}>
       <ResponsiveRadar
+        isInteractive={false}
         data={radarCharts[dataKey]}
         keys={["Proposal", "Baseline"]}
         indexBy="IndicatorType"
@@ -138,14 +147,16 @@ const RadarChart = ({ data, dataKey = "ks" }) => {
         margin={{ top: 40, right: 40, bottom: 40, left: 40 }}
         borderColor={{ from: "color" }}
         gridLabelOffset={18}
-        dotSize={3}
-        dotColor={{ theme: "background" }}
-        dotBorderWidth={2}
+        dotSize={5}
+        dotColor={{ from: "color", modifiers: [] }}
+        dotBorderWidth={0}
+        dotBorderColor={{ from: "color", modifiers: [] }}
         colors={["rgb(234, 76, 111, 0.5)", "rgb(36, 83, 255, 0.5)"]}
         // blendMode="multiply"
         motionConfig="wobbly"
         maxValue={100}
         gridLevels={9}
+
         // legends={[
         //   {
         //     anchor: "bottom-right",

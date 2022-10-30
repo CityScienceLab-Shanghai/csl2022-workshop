@@ -159,18 +159,6 @@
   margin-left: 14px;
   margin-top: 20px;
   margin-bottom: 0px;
-
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 500;
-  font-size: 0.8rem;
-
-  display: flex;
-  align-items: center;
-
-  color: #ffffff;
-
-  word-break: break-word;
 }
 
 .ind_titleTextSmall {
@@ -319,7 +307,7 @@
 .radar {
   width: 100%;
   height: 300px;
-  margin-top: 35px;
+  margin-top: 55px;
   margin-bottom: 20px;
 }
 

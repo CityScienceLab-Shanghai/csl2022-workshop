@@ -147,3 +147,15 @@ html {
   zoom: calc(1 / var(--zoom-factor));
   transform: scale(1);
 }
+
+text {
+  fill: #ebebeb !important;
+}
+
+line {
+  stroke: rgba(69, 69, 69, 1);
+}
+
+circle {
+    stroke: rgba(69, 69, 69, 1);
+}
