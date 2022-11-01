@@ -55,7 +55,6 @@ const Histogram = ({
   userValue,
   userWeight,
   isWeighted = false,
-  transition = false,
 }) => {
   const ref = useRef();
   const containerRef = useRef();
@@ -70,7 +69,7 @@ const Histogram = ({
   const [containerWidth, containerHeight] = useResizeObserver(containerRef);
 
   let sort_list = [{ value: userValue, weight: userWeight }];
-  for (let i = 0; i < agent_value.length - 1; i++) {
+  for (let i = 0; i < agent_value.length; i++) {
     sort_list.push({ value: agent_value[i], weight: agent_weight[i] });
   }
   sort_list.sort((a, b) => {
@@ -79,7 +78,7 @@ const Histogram = ({
 
   let data = [];
   let weight = [];
-  for (let i = 0; i < sort_list.length - 1; i++) {
+  for (let i = 0; i < sort_list.length; i++) {
     data.push(sort_list[i].value);
     weight.push(sort_list[i].weight);
   }
