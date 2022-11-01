@@ -34,7 +34,7 @@ const getAvg = (arr, weight) => {
   }
 
   s = s / sum(weight);
-  s = Math.floor(s);
+  s = Math.ceil(s);
 
   return s;
 };
@@ -354,6 +354,7 @@ const Histogram = ({
         <text id="userText" />
         <text id="userArrow" />
       </svg>
+      <img src={`weighting/person_a.png`} alt={""} />
     </div>
   );
 };
