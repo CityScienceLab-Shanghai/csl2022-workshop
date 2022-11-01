@@ -18,7 +18,7 @@ import { stateStore } from "../../stores";
 const IncentiveVotingPage = () => {
   const { page, nextPage, tutorial_sandbox_slider_value } = stateStore;
   const [weighted, setWeighted] = useState(false);
-  
+
   return (
     <>
       <div className={styles.container} id="protected_c">
