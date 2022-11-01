@@ -18,7 +18,11 @@ import { stateStore } from "../../stores";
 const IncentiveVotingPage = () => {
   const { page, nextPage, tutorial_sandbox_slider_value } = stateStore;
   const [weighted, setWeighted] = useState(false);
-  
+  const [transition, setTransition] = useState(false);
+
+  useEffect(()=>{if (weighted) setTransition(true)}, [weighted]);
+
+
   return (
     <>
       <div className={styles.container} id="protected_c">
@@ -73,6 +77,7 @@ const IncentiveVotingPage = () => {
             isWeighted={weighted}
             userValue={tutorial_sandbox_slider_value}
             userWeight={1}
+            transition={transition}
           />
         </div>
       </div>

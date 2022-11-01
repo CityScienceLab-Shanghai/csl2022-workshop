@@ -13,78 +13,12 @@ const getRgb = (color) => {
   };
 };
 
-const unique = (arr) => {
-  return Array.from(new Set(arr));
-};
-
 const colorInterpolate = (colorA, colorB, intval) => {
   const rgbA = getRgb(colorA);
   const rgbB = getRgb(colorB);
   const colorVal = (prop) =>
     Math.round(rgbA[prop] * (1 - intval) + rgbB[prop] * intval);
   return [colorVal("r"), colorVal("g"), colorVal("b")];
-};
-
-const getDataToVis = (
-  rawIssueData,
-  selectedSpecificIssue,
-  issues,
-  rawIssueGoodBad
-) => {
-  let valueArray = [];
-  let nameArray = [];
-  let ascending;
-  let lookupArray = [];
-
-  rawIssueData.sort((a, b) => a.rank - b.rank);
-
-  for (let [index, value] of Object.entries(rawIssueData)) {
-    valueArray.push(Number(Number(value.data).toFixed(3)));
-    nameArray.push(value.community);
-    lookupArray.push(value.community_ID);
-  }
-
-  const isTemperature =
-    issues.specific_issues_data[selectedSpecificIssue].json_id == "F14_TmpDev"
-      ? true
-      : false;
-
-  // get the corresponding index of average value
-  let sum = valueArray.reduce((a, b) => a + b, 0);
-  // let avg = Number(sum / valueArray.length);
-  let avg = isTemperature ? 0 : Number(sum / valueArray.length);
-  let avgIndex;
-
-  for (let i = 0; i < valueArray.length - 1; i++) {
-    if (valueArray[i] < avg && valueArray[i + 1] > avg) {
-      avgIndex =
-        i + (avg - valueArray[i]) / (valueArray[i + 1] - valueArray[i]);
-      ascending = true;
-      break;
-    }
-
-    if (valueArray[i] > avg && valueArray[i + 1] < avg) {
-      avgIndex =
-        i + 1 - (avg - valueArray[i + 1]) / (valueArray[i] - valueArray[i + 1]);
-      ascending = false;
-      break;
-    }
-  }
-
-  if (rawIssueGoodBad == 0) {
-    valueArray.reverse();
-    avgIndex = valueArray.length - avgIndex;
-  }
-
-  return [
-    valueArray,
-    nameArray,
-    avg,
-    avgIndex,
-    ascending,
-    lookupArray,
-    isTemperature,
-  ];
 };
 
 const sum = (arr) => {
@@ -121,6 +55,7 @@ const Histogram = ({
   userValue,
   userWeight,
   isWeighted = false,
+  transition = false,
 }) => {
   const ref = useRef();
   const containerRef = useRef();
@@ -155,6 +90,8 @@ const Histogram = ({
   useEffect(() => {
     const height = containerHeight ? containerHeight : 0;
     const width = containerWidth ? containerWidth : 500;
+
+    if (!containerWidth) return;
 
     // histogram bars attr
     let barPadding = 2;
@@ -193,48 +130,88 @@ const Histogram = ({
       .attr("class", "rect")
       .selectAll("rect")
       .data(data)
-      .join("rect")
-      .attr("height", (d) =>
-        d3.min(data) >= 0
-          ? yscale(d)
-          : d > 0
-          ? yscale(d) - yscale(0)
-          : yscale(0) - yscale(d)
-      )
-      .attr("y", (d) =>
-        d3.min(data) >= 0
-          ? height - yscale(d) - margin.bottom
-          : d > 0
-          ? margin.bottom + yscale(0)
-          : margin.bottom + yscale(d)
-      )
-      .transition()
-      .attr("width", (d, i) =>
-        barWdith * weight[i] - barPadding >= 0
-          ? barWdith * weight[i] - barPadding
-          : 0
-      )
-      .attr("x", (d, i) => xscale(xIndex[i]) + barPadding)
-      //   .attr("fill", (d, i) => SEQ_COLOR[data[i]])
-      .attr("fill", (d, i) =>
-        d3.rgb(...colorInterpolate([22, 48, 145], [132, 43, 64], data[i] / 10))
-      )
+      .join(
+        (enter) =>
+          enter
+            .append("rect")
+            .attr("height", (d) =>
+              d3.min(data) >= 0
+                ? yscale(d)
+                : d > 0
+                ? yscale(d) - yscale(0)
+                : yscale(0) - yscale(d)
+            )
+            .attr("y", (d) =>
+              d3.min(data) >= 0
+                ? height - yscale(d) - margin.bottom
+                : d > 0
+                ? margin.bottom + yscale(0)
+                : margin.bottom + yscale(d)
+            )
+            .attr("x", (d, i) => xscale(xIndex[i]) + barPadding)
+            .attr("width", (d, i) =>
+              barWdith * weight[i] - barPadding >= 0
+                ? barWdith * weight[i] - barPadding
+                : 0
+            )
+            .attr("fill", (d, i) =>
+              d3.rgb(
+                ...colorInterpolate([22, 48, 145], [132, 43, 64], data[i] / 10)
+              )
+            )
+            .attr("class", (d, i) => {
+              // console.log(i, userIndex)
+              if (i == userIndex) return "userbar";
+              else return "agentbar";
+            })
+            .attr("value", (d) => d)
+            .selection(),
+        (update) =>
+          update
+            .attr("height", (d) =>
+              d3.min(data) >= 0
+                ? yscale(d)
+                : d > 0
+                ? yscale(d) - yscale(0)
+                : yscale(0) - yscale(d)
+            )
+            .attr("y", (d) =>
+              d3.min(data) >= 0
+                ? height - yscale(d) - margin.bottom
+                : d > 0
+                ? margin.bottom + yscale(0)
+                : margin.bottom + yscale(d)
+            )
+            .transition()
+            .duration(700)
+            .attr("x", (d, i) => xscale(xIndex[i]) + barPadding)
+            .attr("width", (d, i) =>
+              barWdith * weight[i] - barPadding >= 0
+                ? barWdith * weight[i] - barPadding
+                : 0
+            )
+            .attr("fill", (d, i) =>
+              d3.rgb(
+                ...colorInterpolate([22, 48, 145], [132, 43, 64], data[i] / 10)
+              )
+            )
+            .attr("class", (d, i) => {
+              // console.log(i, userIndex)
+              if (i == userIndex) return "userbar";
+              else return "agentbar";
+            })
+            .attr("value", (d) => d)
+            .selection()
+      );
 
-      .attr("class", (d, i) => {
-        // console.log(i, userIndex)
-        if (i == userIndex) return "userbar";
-        else return "agentbar";
-      })
-      .attr("value", (d) => d);
-
-    // clear Chart
-    svg
-      .select("g")
-      .attr("class", "rect")
-      .selectAll("rect")
-      .data(data)
-      .exit()
-      .remove();
+    // // clear Chart
+    // svg
+    //   .select("g")
+    //   .attr("class", "rect")
+    //   .selectAll("rect")
+    //   .data(data)
+    //   .exit()
+    //   .remove();
 
     // draw Lines
     svg
@@ -293,6 +270,7 @@ const Histogram = ({
     svg
       .select("#avgLine")
       .transition()
+      .duration(700)
       .attr("y1", height - margin.bottom - yscale(avgFloor))
       .attr("x1", xscale(0))
       .attr("y2", height - margin.bottom - yscale(avgFloor))
@@ -305,6 +283,7 @@ const Histogram = ({
     svg
       .select("#avgText")
       .transition()
+      .duration(700)
       .attr("x", xscale(0) + 10)
       .attr("y", height - margin.bottom - yscale(avgFloor) - 5)
       .attr("class", "small-font")
@@ -321,6 +300,7 @@ const Histogram = ({
     svg
       .select("#userText")
       .transition()
+      .duration(700)
       .attr("x", userHintX)
       .attr("y", userHintY - 20)
       .attr("class", "small-font")
@@ -333,6 +313,7 @@ const Histogram = ({
     svg
       .select("#userArrow")
       .transition()
+      .duration(700)
       .attr("x", userHintX)
       .attr("y", userHintY - 5)
       .attr("class", "small-font")
