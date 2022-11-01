@@ -354,7 +354,38 @@ const Histogram = ({
         <text id="userText" />
         <text id="userArrow" />
       </svg>
-      <img src={`weighting/person_a.png`} alt={""} />
+      <>
+        <img
+          style={{
+            position: "absolute",
+            top: "708px",
+            left: "65px",
+            opacity: isWeighted ? 1 : 0,
+            transition: "opacity 0.7s",
+          }}
+          src={`weighting/person_a.png`}
+        />
+        <img
+          style={{
+            position: "absolute",
+            top: "702px",
+            left: "368px",
+            opacity: isWeighted ? 1 : 0,
+            transition: "opacity 0.7s",
+          }}
+          src={`weighting/person_b.png`}
+        />
+        <img
+          style={{
+            position: "absolute",
+            top: "708px",
+            left: "687px",
+            opacity: isWeighted ? 1 : 0,
+            transition: "opacity 0.7s",
+          }}
+          src={`weighting/person_c.png`}
+        />
+      </>
     </div>
   );
 };
