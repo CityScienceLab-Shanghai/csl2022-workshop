@@ -193,9 +193,8 @@ const Histogram = ({
       .attr("class", "rect")
       .selectAll("rect")
       .data(data)
-      .enter()
-      .append("rect")
-      .merge(svg.select("g").attr("class", "rect").selectAll("rect").data(data))
+      .join("rect")
+      .transition()
       .attr("width", (d, i) =>
         barWdith * weight[i] - barPadding >= 0
           ? barWdith * weight[i] - barPadding
@@ -293,6 +292,7 @@ const Histogram = ({
     // avg line
     svg
       .select("#avgLine")
+      .transition()
       .attr("y1", height - margin.bottom - yscale(avgFloor))
       .attr("x1", xscale(0))
       .attr("y2", height - margin.bottom - yscale(avgFloor))
@@ -304,6 +304,7 @@ const Histogram = ({
 
     svg
       .select("#avgText")
+      .transition()
       .attr("x", xscale(0) + 10)
       .attr("y", height - margin.bottom - yscale(avgFloor) - 5)
       .attr("class", "small-font")
@@ -313,11 +314,10 @@ const Histogram = ({
       .attr("text-anchor", "Start")
       .text(`Result: ${avgFloor} floors`);
 
-    let userHintX =
-      parseInt(svg.select(".userbar").attr("x")) +
-      parseInt(svg.select(".userbar").attr("width")) / 2;
+    let userHintX = xscale(xIndex[userIndex]) + barPadding + barWdith / 2;
     svg
       .select("#userText")
+      .transition()
       .attr("x", userHintX)
       .attr("y", svg.select(".userbar").attr("y") - 20)
       .attr("class", "small-font")
@@ -329,6 +329,7 @@ const Histogram = ({
 
     svg
       .select("#userArrow")
+      .transition()
       .attr("x", userHintX)
       .attr("y", svg.select(".userbar").attr("y") - 5)
       .attr("class", "small-font")
