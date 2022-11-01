@@ -194,12 +194,6 @@ const Histogram = ({
       .selectAll("rect")
       .data(data)
       .join("rect")
-      .transition()
-      .attr("width", (d, i) =>
-        barWdith * weight[i] - barPadding >= 0
-          ? barWdith * weight[i] - barPadding
-          : 0
-      )
       .attr("height", (d) =>
         d3.min(data) >= 0
           ? yscale(d)
@@ -207,7 +201,6 @@ const Histogram = ({
           ? yscale(d) - yscale(0)
           : yscale(0) - yscale(d)
       )
-      .attr("x", (d, i) => xscale(xIndex[i]) + barPadding)
       .attr("y", (d) =>
         d3.min(data) >= 0
           ? height - yscale(d) - margin.bottom
@@ -215,6 +208,13 @@ const Histogram = ({
           ? margin.bottom + yscale(0)
           : margin.bottom + yscale(d)
       )
+      .transition()
+      .attr("width", (d, i) =>
+        barWdith * weight[i] - barPadding >= 0
+          ? barWdith * weight[i] - barPadding
+          : 0
+      )
+      .attr("x", (d, i) => xscale(xIndex[i]) + barPadding)
       //   .attr("fill", (d, i) => SEQ_COLOR[data[i]])
       .attr("fill", (d, i) =>
         d3.rgb(...colorInterpolate([22, 48, 145], [132, 43, 64], data[i] / 10))
@@ -315,11 +315,14 @@ const Histogram = ({
       .text(`Result: ${avgFloor} floors`);
 
     let userHintX = xscale(xIndex[userIndex]) + barPadding + barWdith / 2;
+    let userHintY = svg.select(".userbar").empty()
+      ? 0
+      : svg.select(".userbar").attr("y");
     svg
       .select("#userText")
       .transition()
       .attr("x", userHintX)
-      .attr("y", svg.select(".userbar").attr("y") - 20)
+      .attr("y", userHintY - 20)
       .attr("class", "small-font")
       .attr("style", "font-family:Inter")
       .attr("font-size", "16")
@@ -331,7 +334,7 @@ const Histogram = ({
       .select("#userArrow")
       .transition()
       .attr("x", userHintX)
-      .attr("y", svg.select(".userbar").attr("y") - 5)
+      .attr("y", userHintY - 5)
       .attr("class", "small-font")
       .attr("style", "font-family:Inter")
       .attr("font-size", "16")
