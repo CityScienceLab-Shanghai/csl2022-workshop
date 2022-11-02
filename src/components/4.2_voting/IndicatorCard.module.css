@@ -37,30 +37,6 @@
   justify-content: center;
 }
 
-.radar text {
-  fill: white !important;
-}
-
-.radar line {
-  stroke: rgba(69, 69, 69, 1);
-}
-
-.radar circle {
-  stroke: rgba(69, 69, 69, 1);
-}
-
-.bar text {
-  fill: white !important;
-}
-
-.bar line {
-  stroke: rgba(69, 69, 69, 1);
-}
-
-.bar circle {
-  stroke: rgba(69, 69, 69, 1);
-}
-
 .img {
   width: 100%;
   margin-top: 8%;
