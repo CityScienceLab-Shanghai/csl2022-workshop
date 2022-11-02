@@ -347,3 +347,11 @@
 
   cursor: not-allowed;
 }
+
+.button_disable {
+  color: #4d4d4d;
+  background: transparent;
+  border: 3px solid #4d4d4d;
+
+  cursor: not-allowed;
+}

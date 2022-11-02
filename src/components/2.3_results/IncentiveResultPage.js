@@ -18,6 +18,11 @@ import { stateStore } from "../../stores";
 const IncentiveVotingPage = () => {
   const { page, nextPage, tutorial_sandbox_slider_value } = stateStore;
   const [weighted, setWeighted] = useState(false);
+  const [isUsed, setIsUsed] = useState(false);
+
+  useEffect(() => {
+    if (weighted) setIsUsed(true);
+  }, [weighted]);
 
   return (
     <>
@@ -53,12 +58,6 @@ const IncentiveVotingPage = () => {
           style={{ marginTop: "62px", marginBottom: "92px" }}
           className={styles.histogram}
         >
-          {/* <TreeMap
-            className={styles.tree}
-            data={data}
-            colors={Object.values(SEQ_COLOR)}
-            weighted={weighted}
-          /> */}
           <Histogram
             agent_value={
               weighted
@@ -76,13 +75,22 @@ const IncentiveVotingPage = () => {
           />
         </div>
       </div>
-
+      {isUsed ? (
+        ""
+      ) : (
+        <div className={styles.hint}>
+          {
+            "Compare the results before and after weighting, then hit the button ->"
+          }
+        </div>
+      )}
       <CustomButton
         buttonText="Performance"
         positionStyle={styles.button}
         buttonOnclick={nextPage}
         colorIndex={0}
         largeFont={true}
+        // disable={!isUsed}
       />
     </>
   );
