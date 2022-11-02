@@ -35,7 +35,7 @@ const CustomSlider = styled(Slider)(({ theme }) => ({
     },
   },
   "& .MuiSlider-valueLabel": {
-    marginBottom: "5px",
+    marginBottom: "-12px",
     marginTop: "3px",
     background: "#cecece",
     borderRadius: "2px",
@@ -51,6 +51,8 @@ const CustomSlider = styled(Slider)(({ theme }) => ({
     paddingRight: "8px",
     paddingBottom: "8px",
     paddingLeft: "8px",
+
+    position: "relative"
   },
   "& .MuiSlider-track": {
     // height: 0,
