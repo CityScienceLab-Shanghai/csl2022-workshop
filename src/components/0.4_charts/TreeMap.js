@@ -11,7 +11,7 @@ const TreeMap = ({
   agent_value,
   agent_weight,
   isWeighted = false,
-  userValue,
+  userValue = undefined,
   userWeight,
 }) => {
   const margin = {
@@ -47,6 +47,22 @@ const TreeMap = ({
       data.children[amen_id].children.push(newObj);
       data.children[amen_id].total += newObj["weight"];
     }
+  }
+
+  // Add user input if available
+  if (userValue) {
+    console.log(userValue);
+    Object.keys(userValue).forEach(function (key) {
+      if (userValue[key]) {
+        let newObj = {
+          name: "You",
+          weight: isWeighted ? userWeight : 1,
+        };
+        let amen_id = key;
+        data.children[amen_id].children.push(newObj);
+        data.children[amen_id].total += newObj["weight"];
+      }
+    });
   }
 
   // filter empty keys
@@ -102,7 +118,7 @@ const TreeMap = ({
             .attr("y", (d) => d.y0)
             .attr("width", (d) => d.x1 - d.x0)
             .attr("height", (d) => d.y1 - d.y0)
-            .style("stroke", "black")
+            .style("stroke", (d) => (d.data.name == "You" ? "white" : "black"))
             .style("fill", (d) => d.parent.data.color)
             .style("opacity", (d) => 1),
         (update) =>
@@ -113,7 +129,7 @@ const TreeMap = ({
             .attr("y", (d) => d.y0)
             .attr("width", (d) => d.x1 - d.x0)
             .attr("height", (d) => d.y1 - d.y0)
-            .style("stroke", "black")
+            .style("stroke", (d) => (d.data.name == "You" ? "white" : "black"))
             .style("fill", (d) => d.parent.data.color)
             .style("opacity", (d) => 1)
       );
@@ -130,7 +146,7 @@ const TreeMap = ({
             .attr("class", "ids")
             .attr("x", (d) => d.x0 + 5)
             .attr("y", (d) => d.y0 + 20)
-            .text((d) => d.data.name)
+            .text((d) => (d.x1 - d.x0 > 30 ? d.data.name : ""))
             .attr("font-size", "17px")
             .attr("fill", "white")
             .attr("font-family", "Inter"),
@@ -140,7 +156,7 @@ const TreeMap = ({
             .duration(700)
             .attr("x", (d) => d.x0 + 5)
             .attr("y", (d) => d.y0 + 20)
-            .text((d) => d.data.name)
+            .text((d) => (d.x1 - d.x0 > 30 ? d.data.name : ""))
             .attr("font-size", "17px")
             .attr("fill", "white")
             .attr("font-family", "Inter")
@@ -158,12 +174,12 @@ const TreeMap = ({
             .attr("class", "vals")
             .attr("x", (d) => d.x0 + 5) // +10 to adjust position (more right)
             .attr("y", (d) => d.y0 + 35) // +20 to adjust position (lower)
-            .text((d) => d.data.weight)
+            .text((d) => (d.x1 - d.x0 > 30 ? d.data.weight : ""))
             .attr("font-size", "11px")
             .attr("fill", "white"),
         (update) =>
           update
-            .text((d) => d.data.weight)
+            .text((d) => (d.x1 - d.x0 > 30 ? d.data.weight : ""))
             .transition()
             .duration(700)
             .attr("x", (d) => d.x0 + 5) // +10 to adjust position (more right)

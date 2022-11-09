@@ -62,7 +62,7 @@ const EndowmentResultPage = () => {
             agent_value={_DATA["data"]}
             agent_weight={_DATA["weight"]}
             isWeighted={weighted}
-            // userValue={tutorial_sandbox_slider_value}
+            userValue={tutorial_selected}
             userWeight={1}
           />
         </div>
