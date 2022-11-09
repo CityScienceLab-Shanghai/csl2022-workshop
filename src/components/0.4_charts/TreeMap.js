@@ -154,7 +154,9 @@ const TreeMap = ({
             .attr("class", "ids")
             .attr("x", (d) => d.x0 + 5)
             .attr("y", (d) => d.y0 + 20)
-            .text((d) => (d.x1 - d.x0 > 30 ? d.data.name : ""))
+            .text((d) =>
+              d.x1 - d.x0 > 30 && d.y1 - d.y0 > 25 ? d.data.name : ""
+            )
             .attr("font-size", (d) => (d.data.name == "You" ? "14px" : "17px"))
             .attr("fill", "white")
             .attr("font-family", "Inter"),
@@ -164,7 +166,9 @@ const TreeMap = ({
             .duration(700)
             .attr("x", (d) => d.x0 + 5)
             .attr("y", (d) => d.y0 + 20)
-            .text((d) => (d.x1 - d.x0 > 30 ? d.data.name : ""))
+            .text((d) =>
+              d.x1 - d.x0 > 30 && d.y1 - d.y0 > 25 ? d.data.name : ""
+            )
             .attr("font-size", (d) => (d.data.name == "You" ? "14px" : "17px"))
             .attr("fill", "white")
             .attr("font-family", "Inter")
@@ -182,12 +186,16 @@ const TreeMap = ({
             .attr("class", "vals")
             .attr("x", (d) => d.x0 + 5) // +10 to adjust position (more right)
             .attr("y", (d) => d.y0 + 35) // +20 to adjust position (lower)
-            .text((d) => (d.x1 - d.x0 > 30 ? d.data.weight : ""))
+            .text((d) =>
+              d.x1 - d.x0 > 30 && d.y1 - d.y0 > 40 ? d.data.weight : ""
+            )
             .attr("font-size", "11px")
             .attr("fill", "white"),
         (update) =>
           update
-            .text((d) => (d.x1 - d.x0 > 30 ? d.data.weight : ""))
+            .text((d) =>
+              d.x1 - d.x0 > 30 && d.y1 - d.y0 > 40 ? d.data.weight : ""
+            )
             .transition()
             .duration(700)
             .attr("x", (d) => d.x0 + 5) // +10 to adjust position (more right)
@@ -213,7 +221,7 @@ const TreeMap = ({
             .attr("x", (d) => d.x0)
             .attr("y", (d) => d.y0 + 21)
             .text((d) => d.data.name + ":" + d.data.total)
-            .attr("font-size", "19px")
+            .attr("font-size", "16px")
             .attr("fill", (d) => d.data.color)
             .attr("font-family", "Inter"),
         (update) =>
@@ -223,7 +231,7 @@ const TreeMap = ({
             .duration(700)
             .attr("x", (d) => d.x0)
             .attr("y", (d) => d.y0 + 21)
-            .attr("font-size", "19px")
+            .attr("font-size", "16px")
             .attr("fill", (d) => d.data.color)
             .attr("font-family", "Inter")
       );
