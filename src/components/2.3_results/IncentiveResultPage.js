@@ -58,16 +58,8 @@ const IncentiveVotingPage = () => {
           className={styles.histogram}
         >
           <Histogram
-            agent_value={
-              weighted
-                ? _DATA["weighted"]["data"]
-                : _DATA["not_weighted"]["data"]
-            }
-            agent_weight={
-              weighted
-                ? _DATA["weighted"]["weight"]
-                : _DATA["not_weighted"]["weight"]
-            }
+            agent_value={_DATA["data"]}
+            agent_weight={_DATA["weight"]}
             isWeighted={weighted}
             userValue={tutorial_sandbox_slider_value}
             userWeight={1}

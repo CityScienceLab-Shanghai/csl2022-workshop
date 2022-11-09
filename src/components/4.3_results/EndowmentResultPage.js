@@ -8,6 +8,7 @@ import CustomButton from "../0.1_buttons/CustomButton";
 import TreeMap from "../0.4_charts/TreeMap";
 
 // import _TREE_DATA from "../../data/tutorial/deprecated_voting_json/votes_endowment.json";
+import _DATA from "../../data/tutorial/endowment_vote_result.json";
 import CAT_COLOR from "../../data/color/categorical_color_palette.json";
 
 import { stateStore } from "../../stores";
@@ -21,7 +22,7 @@ const EndowmentResultPage = () => {
     if (weighted) setIsUsed(true);
   }, [weighted]);
 
-  let data = _TREE_DATA;
+  let data = _DATA;
 
   return (
     <>
@@ -60,7 +61,7 @@ const EndowmentResultPage = () => {
             className={styles.tree}
             data={data}
             colors={Object.values(CAT_COLOR)}
-            weighted={weighted}
+            isWeighted={weighted}
           />
         </div>
       </div>

@@ -23,9 +23,8 @@ const EndowmentPerformancePage = () => {
     for (var i = 0; i < 12; i++)
       if (SELETED_AMEN_IND_LIST.includes(i)) {
         button_set_1.push(
-          <div className={styles.buttonRow}>
+          <div className={styles.buttonRow} key={_AMENITIES_DATA[i]["id"]}>
             <ToggleButton
-              key={_AMENITIES_DATA[i]["id"]}
               index={_AMENITIES_DATA[i]["id"]}
               buttonText={_AMENITIES_DATA[i].name}
               positionStyle={styles.amen_button}
@@ -48,9 +47,8 @@ const EndowmentPerformancePage = () => {
     for (var i = 12; i < 24; i++)
       if (SELETED_AMEN_IND_LIST.includes(i)) {
         button_set_2.push(
-          <div className={styles.buttonRow}>
+          <div className={styles.buttonRow} key={_AMENITIES_DATA[i]["id"]}>
             <ToggleButton
-              key={_AMENITIES_DATA[i]["id"]}
               index={_AMENITIES_DATA[i]["id"]}
               buttonText={_AMENITIES_DATA[i].name}
               positionStyle={styles.amen_button}
@@ -85,12 +83,8 @@ const EndowmentPerformancePage = () => {
           </div>
         </div>
         <div className={styles.rowGroup}>
-          <div className={styles.amen_list}>
-            {button_set_1}
-          </div>
-          <div className={styles.amen_list}>
-            {button_set_2}
-          </div>
+          <div className={styles.amen_list}>{button_set_1}</div>
+          <div className={styles.amen_list}>{button_set_2}</div>
         </div>
         <div style={{ marginTop: "62px", marginBottom: "92px" }}></div>
         <IndicatorCard />

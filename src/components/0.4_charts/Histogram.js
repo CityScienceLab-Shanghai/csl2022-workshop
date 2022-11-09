@@ -68,7 +68,10 @@ const Histogram = ({
 
   let sort_list = [{ value: userValue, weight: userWeight }];
   for (let i = 0; i < agent_value.length; i++) {
-    sort_list.push({ value: agent_value[i], weight: agent_weight[i] });
+    sort_list.push({
+      value: agent_value[i],
+      weight: isWeighted ? agent_weight[i] : 1,
+    });
   }
   sort_list.sort((a, b) => {
     return a.value - b.value;
