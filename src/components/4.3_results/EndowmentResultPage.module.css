@@ -72,7 +72,7 @@
 .toggle {
   position: absolute;
   left: 1050px;
-  top: 210px;
+  top: 150px;
   width: 300px;
   display: flex;
   align-items: center;
@@ -117,7 +117,7 @@
 .tree {
     /* position: absolute; */
     width: 1248px;
-    height: 461px;
+    height: 511px;
     /* left: 87px; */
     /* top: 390px; */
   }
