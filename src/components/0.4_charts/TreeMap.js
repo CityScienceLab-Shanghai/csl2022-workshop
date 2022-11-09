@@ -41,11 +41,11 @@ const TreeMap = ({
     for (var j = 0; j < agent_value[i].length; j++) {
       let newObj = {
         name: agent_id[i],
-        weight: agent_weight[i],
+        weight: isWeighted ? agent_weight[i] : 1,
       };
       let amen_id = agent_value[i][j];
       data.children[amen_id].children.push(newObj);
-      data.children[amen_id].total += agent_weight[i];
+      data.children[amen_id].total += newObj["weight"];
     }
   }
 
@@ -54,7 +54,7 @@ const TreeMap = ({
     return value.children.length > 0;
   });
 
-  console.log(data);
+  //   console.log(data);
 
   const ref = useRef();
   const containerRef = useRef();
@@ -78,9 +78,7 @@ const TreeMap = ({
       .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
     // build data
-    let root = d3
-      .hierarchy(data)
-      .sum((d) => (isWeighted ? d.weight : d.weight));
+    let root = d3.hierarchy(data).sum((d) => d.weight);
 
     d3
       .treemap()
@@ -89,67 +87,122 @@ const TreeMap = ({
       .paddingRight(7)
       .paddingInner(3)(root);
 
-    console.log(root.leaves());
+    // console.log(root.leaves());
 
     // create Chart
     svg
       .select("g")
       .selectAll("rect")
       .data(root.leaves())
-      .enter()
-      .append("rect")
-      .attr("x", (d) => d.x0)
-      .attr("y", (d) => d.y0)
-      .attr("width", (d) => d.x1 - d.x0)
-      .attr("height", (d) => d.y1 - d.y0)
-      .style("stroke", "black")
-      .style("fill", (d) => d.parent.data.color)
-      .style("opacity", (d) => 1);
+      .join(
+        (enter) =>
+          enter
+            .append("rect")
+            .attr("x", (d) => d.x0)
+            .attr("y", (d) => d.y0)
+            .attr("width", (d) => d.x1 - d.x0)
+            .attr("height", (d) => d.y1 - d.y0)
+            .style("stroke", "black")
+            .style("fill", (d) => d.parent.data.color)
+            .style("opacity", (d) => 1),
+        (update) =>
+          update
+            .transition()
+            .duration(700)
+            .attr("x", (d) => d.x0)
+            .attr("y", (d) => d.y0)
+            .attr("width", (d) => d.x1 - d.x0)
+            .attr("height", (d) => d.y1 - d.y0)
+            .style("stroke", "black")
+            .style("fill", (d) => d.parent.data.color)
+            .style("opacity", (d) => 1)
+      );
 
     // and to add the text labels
     svg
       .select("g")
-      .selectAll("text")
+      .selectAll(".ids")
       .data(root.leaves())
-      .enter()
-      .append("text")
-      .attr("x", (d) => d.x0 + 5)
-      .attr("y", (d) => d.y0 + 20)
-      .text((d) => d.data.name)
-      .attr("font-size", "17px")
-      .attr("fill", "white")
-      .attr("font-family", "Inter");
+      .join(
+        (enter) =>
+          enter
+            .append("text")
+            .attr("class", "ids")
+            .attr("x", (d) => d.x0 + 5)
+            .attr("y", (d) => d.y0 + 20)
+            .text((d) => d.data.name)
+            .attr("font-size", "17px")
+            .attr("fill", "white")
+            .attr("font-family", "Inter"),
+        (update) =>
+          update
+            .transition()
+            .duration(700)
+            .attr("x", (d) => d.x0 + 5)
+            .attr("y", (d) => d.y0 + 20)
+            .text((d) => d.data.name)
+            .attr("font-size", "17px")
+            .attr("fill", "white")
+            .attr("font-family", "Inter")
+      );
 
     // and to add the text labels
     svg
       .select("g")
-      .selectAll("vals")
+      .selectAll(".vals")
       .data(root.leaves())
-      .enter()
-      .append("text")
-      .attr("x", (d) => d.x0 + 5) // +10 to adjust position (more right)
-      .attr("y", (d) => d.y0 + 35) // +20 to adjust position (lower)
-      .text((d) => d.data.weight)
-      .attr("font-size", "11px")
-      .attr("fill", "white");
+      .join(
+        (enter) =>
+          enter
+            .append("text")
+            .attr("class", "vals")
+            .attr("x", (d) => d.x0 + 5) // +10 to adjust position (more right)
+            .attr("y", (d) => d.y0 + 35) // +20 to adjust position (lower)
+            .text((d) => d.data.weight)
+            .attr("font-size", "11px")
+            .attr("fill", "white"),
+        (update) =>
+          update
+            .text((d) => d.data.weight)
+            .transition()
+            .duration(700)
+            .attr("x", (d) => d.x0 + 5) // +10 to adjust position (more right)
+            .attr("y", (d) => d.y0 + 35) // +20 to adjust position (lower)
+            .attr("font-size", "11px")
+            .attr("fill", "white")
+      );
 
     // Add title for the groups
     svg
       .select("g")
-      .selectAll("titles")
+      .selectAll(".title")
       .data(
         root.descendants().filter(function (d) {
           return d.depth == 1;
         })
       )
-      .enter()
-      .append("text")
-      .attr("x", (d) => d.x0)
-      .attr("y", (d) => d.y0 + 21)
-      .text((d) => d.data.name + ":" + d.data.total)
-      .attr("font-size", "19px")
-      .attr("fill", (d) => d.data.color)
-      .attr("font-family", "Inter");
+      .join(
+        (enter) =>
+          enter
+            .append("text")
+            .attr("class", "title")
+            .attr("x", (d) => d.x0)
+            .attr("y", (d) => d.y0 + 21)
+            .text((d) => d.data.name + ":" + d.data.total)
+            .attr("font-size", "19px")
+            .attr("fill", (d) => d.data.color)
+            .attr("font-family", "Inter"),
+        (update) =>
+          update
+            .text((d) => d.data.name + ":" + d.data.total)
+            .transition()
+            .duration(700)
+            .attr("x", (d) => d.x0)
+            .attr("y", (d) => d.y0 + 21)
+            .attr("font-size", "19px")
+            .attr("fill", (d) => d.data.color)
+            .attr("font-family", "Inter")
+      );
   }, [data, containerWidth, containerHeight]);
 
   return (
