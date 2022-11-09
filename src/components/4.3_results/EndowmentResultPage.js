@@ -9,12 +9,11 @@ import TreeMap from "../0.4_charts/TreeMap";
 
 // import _TREE_DATA from "../../data/tutorial/deprecated_voting_json/votes_endowment.json";
 import _DATA from "../../data/tutorial/endowment_vote_result.json";
-import CAT_COLOR from "../../data/color/categorical_color_palette.json";
 
 import { stateStore } from "../../stores";
 
 const EndowmentResultPage = () => {
-  const { page, nextPage } = stateStore;
+  const { page, nextPage, tutorial_selected } = stateStore;
   const [weighted, setWeighted] = useState(false);
   const [isUsed, setIsUsed] = useState(false);
 
@@ -59,9 +58,12 @@ const EndowmentResultPage = () => {
         >
           <TreeMap
             className={styles.tree}
-            data={data}
-            colors={Object.values(CAT_COLOR)}
+            agent_id={_DATA["id"]}
+            agent_value={_DATA["data"]}
+            agent_weight={_DATA["weight"]}
             isWeighted={weighted}
+            // userValue={tutorial_sandbox_slider_value}
+            userWeight={1}
           />
         </div>
       </div>

@@ -3,13 +3,58 @@ import * as d3 from "d3";
 
 import { useResizeObserver } from "../../utils/useResizeObserver";
 
-const TreeMap = ({ data, colors, isWeighted = false }) => {
+import _AMENITIES_DATA from "../../data/sandbox/amenities.json";
+import _COLOR from "../../data/color/categorical_color_palette.json";
+
+const TreeMap = ({
+  agent_id,
+  agent_value,
+  agent_weight,
+  isWeighted = false,
+  userValue,
+  userWeight,
+}) => {
   const margin = {
-    top: 0,
+    top: -20,
     left: 0,
     bottom: 0,
     right: 0,
   };
+
+  // build data
+  let data = {
+    name: "DAO",
+    children: [],
+  };
+
+  for (var i = 0; i < _AMENITIES_DATA.length; i++) {
+    let newObj = {
+      name: _AMENITIES_DATA[i].name,
+      children: [],
+      color: _COLOR[i + 1],
+      total: 0,
+    };
+    data.children.push(newObj);
+  }
+
+  for (var i = 0; i < agent_id.length; i++) {
+    for (var j = 0; j < agent_value[i].length; j++) {
+      let newObj = {
+        name: agent_id[i],
+        weight: agent_weight[i],
+      };
+      let amen_id = agent_value[i][j];
+      data.children[amen_id].children.push(newObj);
+      data.children[amen_id].total += agent_weight[i];
+    }
+  }
+
+  // filter empty keys
+  data.children = data.children.filter((value, index, arr) => {
+    return value.children.length > 0;
+  });
+
+  console.log(data);
 
   const ref = useRef();
   const containerRef = useRef();
@@ -33,20 +78,18 @@ const TreeMap = ({ data, colors, isWeighted = false }) => {
       .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
     // build data
-    let root = d3.hierarchy(data).sum((d) => (isWeighted ? d.value : 1));
-    let color = d3
-      .scaleOrdinal()
-      .domain(["boss1", "boss2", "boss3"])
-      .range(["#402D54", "#D18975", "#8FD175"]);
+    let root = d3
+      .hierarchy(data)
+      .sum((d) => (isWeighted ? d.weight : d.weight));
 
     d3
       .treemap()
       .size([width, height])
       .paddingTop(28)
-    //   .paddingRight(7)
+      .paddingRight(7)
       .paddingInner(3)(root);
 
-    // console.log(root.leaves());
+    console.log(root.leaves());
 
     // create Chart
     svg
@@ -60,8 +103,7 @@ const TreeMap = ({ data, colors, isWeighted = false }) => {
       .attr("width", (d) => d.x1 - d.x0)
       .attr("height", (d) => d.y1 - d.y0)
       .style("stroke", "black")
-      //   .style("fill", (d) => color(d.parent.data.name))
-      .style("fill", (d) => "white")
+      .style("fill", (d) => d.parent.data.color)
       .style("opacity", (d) => 1);
 
     // and to add the text labels
@@ -71,19 +113,27 @@ const TreeMap = ({ data, colors, isWeighted = false }) => {
       .data(root.leaves())
       .enter()
       .append("text")
-      .attr("x", (d) => {
-        return d.x0 + 5;
-      })
-      .attr("y", (d) => {
-        return d.y0 + 20;
-      })
-      .text((d) => {
-        return d.data.name.replace("mister_", "");
-      })
-      .attr("font-size", "19px")
-      .attr("fill", "black");
+      .attr("x", (d) => d.x0 + 5)
+      .attr("y", (d) => d.y0 + 20)
+      .text((d) => d.data.name)
+      .attr("font-size", "17px")
+      .attr("fill", "white")
+      .attr("font-family", "Inter");
 
-    // Add title for the 3 groups
+    // and to add the text labels
+    svg
+      .select("g")
+      .selectAll("vals")
+      .data(root.leaves())
+      .enter()
+      .append("text")
+      .attr("x", (d) => d.x0 + 5) // +10 to adjust position (more right)
+      .attr("y", (d) => d.y0 + 35) // +20 to adjust position (lower)
+      .text((d) => d.data.weight)
+      .attr("font-size", "11px")
+      .attr("fill", "white");
+
+    // Add title for the groups
     svg
       .select("g")
       .selectAll("titles")
@@ -94,20 +144,12 @@ const TreeMap = ({ data, colors, isWeighted = false }) => {
       )
       .enter()
       .append("text")
-      .attr("x", function (d) {
-        return d.x0;
-      })
-      .attr("y", function (d) {
-        return d.y0 + 21;
-      })
-      .text(function (d) {
-        return d.data.name;
-      })
+      .attr("x", (d) => d.x0)
+      .attr("y", (d) => d.y0 + 21)
+      .text((d) => d.data.name + ":" + d.data.total)
       .attr("font-size", "19px")
-      //   .attr("fill", function (d) {
-      //     return color(d.data.name);
-      //   });
-      .style("fill", (d) => "white");
+      .attr("fill", (d) => d.data.color)
+      .attr("font-family", "Inter");
   }, [data, containerWidth, containerHeight]);
 
   return (
