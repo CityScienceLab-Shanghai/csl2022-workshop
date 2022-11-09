@@ -53,7 +53,7 @@ const EndowmentResultPage = () => {
           </div>
         </div>
         <div
-          style={{ marginTop: "12px", marginBottom: "92px" }}
+          style={{ marginTop: "14px", marginBottom: "92px" }}
           className={styles.tree}
         >
           <TreeMap
