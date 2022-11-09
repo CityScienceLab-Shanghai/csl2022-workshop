@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { ResponsiveRadar } from "@nivo/radar";
+import styles from "./RadarChart.module.css";
 import * as d3 from "d3";
 
 import SELETED_AMEN_IND_LIST from "../../data/tutorial/tutorial_amen_result.json";
@@ -137,7 +138,11 @@ const RadarChart = ({ data, dataKey = "ks" }) => {
   }, []);
 
   return (
-    <div ref={ref} style={{ width: "100%", height: "100%" }}>
+    <div
+      ref={ref}
+      style={{ width: "100%", height: "100%" }}
+      className={styles.tuneColor}
+    >
       <ResponsiveRadar
         isInteractive={false}
         data={radarCharts[dataKey]}

@@ -7,21 +7,26 @@ import "react-toggle/style.css";
 import CustomButton from "../0.1_buttons/CustomButton";
 import TreeMap from "../0.4_charts/TreeMap";
 
-import _TREE_DATA from "../../data/sim/votes_endowment.json";
-import CAT_COLOR from "../../data/color/categorical_color_palette.json";
+// import _TREE_DATA from "../../data/tutorial/deprecated_voting_json/votes_endowment.json";
+import _DATA from "../../data/tutorial/endowment_vote_result.json";
 
 import { stateStore } from "../../stores";
 
 const EndowmentResultPage = () => {
-  const { page, nextPage } = stateStore;
+  const { page, nextPage, tutorial_selected } = stateStore;
   const [weighted, setWeighted] = useState(false);
+  const [isUsed, setIsUsed] = useState(false);
 
-  let data = _TREE_DATA;
+  useEffect(() => {
+    if (weighted) setIsUsed(true);
+  }, [weighted]);
+
+  let data = _DATA;
 
   return (
     <>
       <div className={styles.container} id="protected_c">
-      <label className={styles.toggle}>
+        <label className={styles.toggle}>
           <Toggle
             defaultChecked={weighted}
             onChange={() => {
@@ -48,18 +53,26 @@ const EndowmentResultPage = () => {
           </div>
         </div>
         <div
-          style={{ marginTop: "62px", marginBottom: "92px" }}
+          style={{ marginTop: "14px", marginBottom: "92px" }}
           className={styles.tree}
         >
           <TreeMap
             className={styles.tree}
-            data={data}
-            colors={Object.values(CAT_COLOR)}
-            weighted={weighted}
+            agent_id={_DATA["id"]}
+            agent_value={_DATA["data"]}
+            agent_weight={_DATA["weight"]}
+            isWeighted={weighted}
+            userValue={tutorial_selected}
+            userWeight={1}
           />
         </div>
       </div>
 
+      <div className={styles.hint}>
+        {
+          "Compare the results before and after weighting, then hit the button ->"
+        }
+      </div>
       <CustomButton
         buttonText="Performance"
         positionStyle={styles.button}

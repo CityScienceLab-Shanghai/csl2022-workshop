@@ -17,7 +17,7 @@ const EndowmentVotingPage = () => {
   let button_set_1 = [];
   let button_set_2 = [];
   let selected_status = {};
-  for (var i = 0; i < 24; i++) selected_status[_AMENITIES_DATA[i].id] = false;
+  for (var i = 0; i < _AMENITIES_DATA.length; i++) selected_status[_AMENITIES_DATA[i].id] = false;
 
   const [selected, setSelected] = useState(selected_status);
 
@@ -25,9 +25,8 @@ const EndowmentVotingPage = () => {
     for (var i = 0; i < 12; i++)
       if (SELETED_AMEN_IND_LIST.includes(i)) {
         button_set_1.push(
-          <div className={styles.buttonRow}>
+          <div className={styles.buttonRow} key={_AMENITIES_DATA[i]["id"]}>
             <ToggleButton
-              key={_AMENITIES_DATA[i]["id"]}
               index={_AMENITIES_DATA[i]["id"]}
               buttonText={_AMENITIES_DATA[i].name}
               positionStyle={styles.amen_button}
@@ -46,12 +45,11 @@ const EndowmentVotingPage = () => {
           </div>
         );
       }
-    for (var i = 12; i < 24; i++)
+    for (var i = 12; i < _AMENITIES_DATA.length; i++)
       if (SELETED_AMEN_IND_LIST.includes(i)) {
         button_set_2.push(
-          <div className={styles.buttonRow}>
+          <div className={styles.buttonRow} key={_AMENITIES_DATA[i]["id"]}>
             <ToggleButton
-              key={_AMENITIES_DATA[i]["id"]}
               index={_AMENITIES_DATA[i]["id"]}
               buttonText={_AMENITIES_DATA[i].name}
               positionStyle={styles.amen_button}

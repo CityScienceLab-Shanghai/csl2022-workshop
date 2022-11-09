@@ -5,10 +5,9 @@ import Toggle from "react-toggle";
 import "react-toggle/style.css";
 
 import CustomButton from "../0.1_buttons/CustomButton";
-import TreeMap from "../0.4_charts/TreeMap";
 import Histogram from "../0.4_charts/Histogram";
 
-import _TREE_DATA from "../../data/sim/votes_incentive.json";
+// import _TREE_DATA from "../../data/tutorial/deprecated_voting_json/votes_incentive.json";
 import SEQ_COLOR from "../../data/color/sequential_color_palette.json";
 
 import _DATA from "../../data/tutorial/incentive_vote_result.json";
@@ -18,6 +17,11 @@ import { stateStore } from "../../stores";
 const IncentiveVotingPage = () => {
   const { page, nextPage, tutorial_sandbox_slider_value } = stateStore;
   const [weighted, setWeighted] = useState(false);
+  const [isUsed, setIsUsed] = useState(false);
+
+  useEffect(() => {
+    if (weighted) setIsUsed(true);
+  }, [weighted]);
 
   return (
     <>
@@ -53,36 +57,31 @@ const IncentiveVotingPage = () => {
           style={{ marginTop: "62px", marginBottom: "92px" }}
           className={styles.histogram}
         >
-          {/* <TreeMap
-            className={styles.tree}
-            data={data}
-            colors={Object.values(SEQ_COLOR)}
-            weighted={weighted}
-          /> */}
           <Histogram
-            agent_value={
-              weighted
-                ? _DATA["weighted"]["data"]
-                : _DATA["not_weighted"]["data"]
-            }
-            agent_weight={
-              weighted
-                ? _DATA["weighted"]["weight"]
-                : _DATA["not_weighted"]["weight"]
-            }
+            agent_value={_DATA["data"]}
+            agent_weight={_DATA["weight"]}
             isWeighted={weighted}
             userValue={tutorial_sandbox_slider_value}
             userWeight={1}
           />
         </div>
       </div>
-
+      {isUsed ? (
+        ""
+      ) : (
+        <div className={styles.hint}>
+          {
+            "Compare the results before and after weighting, then hit the button ->"
+          }
+        </div>
+      )}
       <CustomButton
         buttonText="Performance"
         positionStyle={styles.button}
         buttonOnclick={nextPage}
         colorIndex={0}
         largeFont={true}
+        // disable={!isUsed}
       />
     </>
   );

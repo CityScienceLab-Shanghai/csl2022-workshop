@@ -97,7 +97,11 @@ const BarChart = ({
   }, []);
 
   return (
-    <div ref={ref} style={{ width: "100%", height: "100%" }}>
+    <div
+      ref={ref}
+      style={{ width: "100%", height: "100%" }}
+      className={styles.tuneColor}
+    >
       <ResponsiveBar
         layout={horizontal ? "horizontal" : "vertical"}
         data={barCharts[dataKey]}

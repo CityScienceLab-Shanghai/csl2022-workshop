@@ -107,6 +107,7 @@ const getAmenCount = () => {
 };
 
 export const stateStore = resso({
+  _PRICE_FLOOR: 124000,
   page: 1,
   maxPage: 1,
   nextPage: () => {
@@ -197,5 +198,4 @@ export const stateStore = resso({
   checkValid: (dataKey, value) => {
     return stateStore.barCharts[dataKey][0]["value"] - value >= 0;
   },
-  _PRICE_FLOOR: 124000,
 });
