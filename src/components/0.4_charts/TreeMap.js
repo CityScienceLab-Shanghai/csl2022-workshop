@@ -1,10 +1,20 @@
 import React, { useEffect, useRef, useState } from "react";
-import { ResponsiveTreeMap } from "@nivo/treemap";
-
 import * as d3 from "d3";
 
+import { useResizeObserver } from "../../utils/useResizeObserver";
+
 const TreeMap = ({ data, colors, weighted = false }) => {
+  const margin = {
+    top: 40,
+    left: 0,
+    bottom: 40,
+    right: 0,
+  };
+
   const ref = useRef();
+  const containerRef = useRef();
+  const [containerWidth, containerHeight] = useResizeObserver(containerRef);
+  
   let svg = d3.select(ref.current);
 
   //   useEffect(() => {
@@ -17,29 +27,24 @@ const TreeMap = ({ data, colors, weighted = false }) => {
   //   });
 
   return (
-    <div ref={ref} style={{ width: "100%", height: "100%" }}>
-      <ResponsiveTreeMap
-        data={data}
-        identity="name"
-        value={weighted ? "token" : "ppl"}
-        valueFormat=".02s"
-        margin={{ top: 10, right: 10, bottom: 10, left: 10 }}
-        labelSkipSize={12}
-        labelTextColor={{
-          from: "color",
-          modifiers: [["darker", 1.2]],
-        }}
-        parentLabelPosition="left"
-        parentLabelTextColor={{
-          from: "color",
-          modifiers: [["darker", 2]],
-        }}
-        colors={colors}
-        borderColor={{
-          from: "color",
-          modifiers: [["darker", 0.1]],
-        }}
-      />
+    <div ref={containerRef} style={{ width: "100%", height: "100%" }}>
+      <svg ref={ref}>
+        {/* Main Chart */}
+        <g />
+        <line id="xAxis" />
+        <line id="yAxis" />
+        <text id="AxisTextRight" />
+        <text id="AxisTextZero" />
+        <text id="AxisTextUp" />
+
+        {/* Avg Line */}
+        <line id="avgLine" />
+        <text id="avgText" />
+
+        {/* User Arrow */}
+        <text id="userText" />
+        <text id="userArrow" />
+      </svg>
     </div>
   );
 };

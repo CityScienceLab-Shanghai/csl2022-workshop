@@ -2,7 +2,6 @@ import React, { useEffect, useRef } from "react";
 import * as d3 from "d3";
 
 import { useResizeObserver } from "../../utils/useResizeObserver";
-import SEQ_COLOR from "../../data/color/sequential_color_palette.json";
 
 const getRgb = (color) => {
   let [r, g, b] = Array.from(color);
@@ -59,7 +58,6 @@ const Histogram = ({
   const ref = useRef();
   const containerRef = useRef();
 
-  const textWidth = 50;
   const margin = {
     top: 40,
     left: 0,

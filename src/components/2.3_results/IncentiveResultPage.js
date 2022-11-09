@@ -5,10 +5,9 @@ import Toggle from "react-toggle";
 import "react-toggle/style.css";
 
 import CustomButton from "../0.1_buttons/CustomButton";
-import TreeMap from "../0.4_charts/TreeMap";
 import Histogram from "../0.4_charts/Histogram";
 
-import _TREE_DATA from "../../data/sim/votes_incentive.json";
+// import _TREE_DATA from "../../data/tutorial/deprecated_voting_json/votes_incentive.json";
 import SEQ_COLOR from "../../data/color/sequential_color_palette.json";
 
 import _DATA from "../../data/tutorial/incentive_vote_result.json";

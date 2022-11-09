@@ -7,7 +7,7 @@ import "react-toggle/style.css";
 import CustomButton from "../0.1_buttons/CustomButton";
 import TreeMap from "../0.4_charts/TreeMap";
 
-import _TREE_DATA from "../../data/sim/votes_endowment.json";
+// import _TREE_DATA from "../../data/tutorial/deprecated_voting_json/votes_endowment.json";
 import CAT_COLOR from "../../data/color/categorical_color_palette.json";
 
 import { stateStore } from "../../stores";
@@ -15,13 +15,18 @@ import { stateStore } from "../../stores";
 const EndowmentResultPage = () => {
   const { page, nextPage } = stateStore;
   const [weighted, setWeighted] = useState(false);
+  const [isUsed, setIsUsed] = useState(false);
+
+  useEffect(() => {
+    if (weighted) setIsUsed(true);
+  }, [weighted]);
 
   let data = _TREE_DATA;
 
   return (
     <>
       <div className={styles.container} id="protected_c">
-      <label className={styles.toggle}>
+        <label className={styles.toggle}>
           <Toggle
             defaultChecked={weighted}
             onChange={() => {
@@ -60,6 +65,11 @@ const EndowmentResultPage = () => {
         </div>
       </div>
 
+      <div className={styles.hint}>
+        {
+          "Compare the results before and after weighting, then hit the button ->"
+        }
+      </div>
       <CustomButton
         buttonText="Performance"
         positionStyle={styles.button}
