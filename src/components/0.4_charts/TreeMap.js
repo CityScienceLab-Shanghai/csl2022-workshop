@@ -119,6 +119,10 @@ const TreeMap = ({
             .attr("width", (d) => d.x1 - d.x0)
             .attr("height", (d) => d.y1 - d.y0)
             .style("stroke", (d) => (d.data.name == "You" ? "white" : "black"))
+            .style("stroke-width", "2px")
+            .style("stroke-dasharray", (d) =>
+              d.data.name == "You" ? "5, 5" : ""
+            )
             .style("fill", (d) => d.parent.data.color)
             .style("opacity", (d) => 1),
         (update) =>
@@ -130,6 +134,10 @@ const TreeMap = ({
             .attr("width", (d) => d.x1 - d.x0)
             .attr("height", (d) => d.y1 - d.y0)
             .style("stroke", (d) => (d.data.name == "You" ? "white" : "black"))
+            .style("stroke-width", "1.5px")
+            .style("stroke-dasharray", (d) =>
+              d.data.name == "You" ? "5, 5" : ""
+            )
             .style("fill", (d) => d.parent.data.color)
             .style("opacity", (d) => 1)
       );
@@ -147,7 +155,7 @@ const TreeMap = ({
             .attr("x", (d) => d.x0 + 5)
             .attr("y", (d) => d.y0 + 20)
             .text((d) => (d.x1 - d.x0 > 30 ? d.data.name : ""))
-            .attr("font-size", "17px")
+            .attr("font-size", (d) => (d.data.name == "You" ? "14px" : "17px"))
             .attr("fill", "white")
             .attr("font-family", "Inter"),
         (update) =>
@@ -157,7 +165,7 @@ const TreeMap = ({
             .attr("x", (d) => d.x0 + 5)
             .attr("y", (d) => d.y0 + 20)
             .text((d) => (d.x1 - d.x0 > 30 ? d.data.name : ""))
-            .attr("font-size", "17px")
+            .attr("font-size", (d) => (d.data.name == "You" ? "14px" : "17px"))
             .attr("fill", "white")
             .attr("font-family", "Inter")
       );
