@@ -1,4 +1,4 @@
-# SoCity Community Action:A New Process for Pro-socialUrban Development
+# SoCity Community Action:A New Process for Pro-social Urban Development
 
 ![1](assets/1.png)
 
